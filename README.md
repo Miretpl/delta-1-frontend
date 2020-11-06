@@ -1,6 +1,17 @@
-# delta-1-frontend
+# Delta-1 frontend
 
-Projekt z programownaia aplikacji webowych.
+### Informacje
+**Przedmiot**: Programowanie aplikacji webowych
+
+**Technologie**
+* **Frontend**: Angular<br>
+* **Backend**: Spring
+
+**Zespół**
+* Michał Ogłoza, 215834<br>
+* Patryk Janowski, 215745<br>
+* Krzysztof Chybicki, 215693<br>
+* Przemysław Mirowski, 215825
 
 ### Instalacja
 Do uruchomienia należy mieć zainstalowane node.js oraz pobrane za pomocą `npm install @angular/cli`.<br>
