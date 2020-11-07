@@ -21,7 +21,7 @@ Powyższe polecenie wykonujemy w root repozytorium.
 Kompilację wykonujemy za pomocą polecenie `ng build`.
 
 ### Uruchamianie
-W celu uruchomienia aplikacji wykonujemy polecenie `node server.js`.
+W celu uruchomienia aplikacji wykonujemy polecenie `node server.js`. Aplikacja będzie słuchać na `http://localhost:8080`.
 
 ### Uwagi
 Powyższe instrukcje tyczą się tylko i wyłącznie kompilacji oraz uruchamiania aplikacji na localhost.
