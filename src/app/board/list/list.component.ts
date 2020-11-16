@@ -10,21 +10,6 @@ export class ListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.boards = [ {name: 'Board 1', description: 'Description 1', lastUpdate: 1 },
-                    {name: 'Board 2', description: 'Description 2', lastUpdate: 2  },
-                    {name: 'Board 3', description: 'Description 3', lastUpdate: 3  },
-                    {name: 'Board 4', description: 'Description 4', lastUpdate: 4  },
-                    {name: 'Board 2', description: 'Description 2', lastUpdate: 2  },
-                    {name: 'Board 3', description: 'Description 3', lastUpdate: 3  },
-                    {name: 'Board 4', description: 'Description 4', lastUpdate: 4  },
-                    {name: 'Board 2', description: 'Description 2', lastUpdate: 2  },
-                    {name: 'Board 3', description: 'Description 3', lastUpdate: 3  },
-                    {name: 'Board 4', description: 'Description 4', lastUpdate: 4  },
-                    {name: 'Board 2', description: 'Description 2', lastUpdate: 2  },
-                    {name: 'Board 3', description: 'Description 3', lastUpdate: 3  },
-                    {name: 'Board 4', description: 'Description 4', lastUpdate: 4  },
-                    {name: 'Board 5', description: 'Description 5', lastUpdate: 5  }
-                  ]
+    this.boards = [ {name: "Board 1", description: "Desc 2"}, {name: "Board 1", description: "Desc 2"} ]
   }
-
 }

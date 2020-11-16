@@ -3,12 +3,10 @@
         <h3>Boards</h3>
     </div>
     <div class="card-columns">
-        <!-- <mat-spinner *ngIf="boards.length === 0"></mat-spinner> -->
         <div class="card" *ngFor="let board of boards">
         <div class="card-body">
             <h5 class="card-title">{{ board.name }}</h5>
-            <!-- <p class="card-text">{{ board.description }}</p> -->
-            <!-- <p class="card-text"><small class="text-muted">Last updated {{ board.lastUpdate }} mins ago</small></p> -->
+            <p class="card-text">{{ board.description }}</p>
         </div>
         </div>
     </div>
