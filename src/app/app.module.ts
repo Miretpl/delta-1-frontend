@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BoardModule } from './board/board.module';
+import { UserModule } from './user/user.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { MenuComponent } from './menu/menu.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    BoardModule
+    BoardModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

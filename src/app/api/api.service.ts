@@ -14,4 +14,12 @@ export class ApiService {
   public getTestData() {
     return this.httpClient.get(this.SERVER_URL);
   }
+
+  public send(endpoint: string, data: any) {
+    return this.httpClient
+      .post(this.SERVER_URL + endpoint, data, {observe: 'response'})
+      .subscribe(resp => {
+         console.log(resp.headers.get('Expires'));
+      });
+  }
 }
