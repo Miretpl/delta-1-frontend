@@ -1,0 +1,17 @@
+.card {
+    max-width: 200px;
+    min-width: 200px;
+    max-height: 120px;
+
+    margin: 15px;
+}
+
+.title {
+    padding: 10px;
+}
+
+.boards {
+    max-width: 800px;
+    width: auto;
+    margin: auto;
+}
