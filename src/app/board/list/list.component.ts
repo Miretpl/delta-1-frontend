@@ -8,7 +8,7 @@ import { ApiService } from '../../api/api.service'
 })
 export class ListComponent implements OnInit {
   private BOARD_LIST_ENDPOINT = '/board/list';
-  private boards: any;
+  boards: any;
   
   constructor(private apiService: ApiService) { }
 
