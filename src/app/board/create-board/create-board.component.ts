@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { ApiService } from '../../api/api.service';
+
 declare var $: any;
 
 @Component({
@@ -8,12 +11,21 @@ declare var $: any;
   styleUrls: ['./create-board.component.css']
 })
 export class CreateBoardComponent implements OnInit {
+  private BOARD_CREATE_ENDPOINT = '/board/create';
+  
   createBoardForm: FormGroup;
   submitted = false;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
-  get f() {
+  ngOnInit(): void {
+    this.createBoardForm = new FormBuilder().group({
+      boardName: ['', [Validators.required]],
+      visibility: ['true', [Validators.required]]
+    })
+  }
+
+  get getFormControls() {
     return this.createBoardForm.controls;
   }
 
@@ -26,15 +38,18 @@ export class CreateBoardComponent implements OnInit {
 
     if (this.submitted) {
       $("#boardcreationmodal").modal("hide");
-      console.log(this.createBoardForm.get("boardName").value);
-      console.log(this.createBoardForm.get("visibility").value);
+
+      this.apiService.createBoard(this.getData(), this.BOARD_CREATE_ENDPOINT).subscribe(
+        resp => console.log("Board created"),
+        error => console.error(error)
+      );
     }
   }
 
-  ngOnInit(): void {
-    this.createBoardForm = new FormBuilder().group({
-      boardName: ['', [Validators.required]],
-      visibility: ['true', [Validators.required]]
-    })
+  private getData() {
+    return {
+      name: this.createBoardForm.get("boardName").value,
+      is_public: this.createBoardForm.get("visibility").value == "true"
+    };
   }
 }

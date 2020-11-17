@@ -10,9 +10,9 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label>Board name</label>
-                <input type="text" formControlName="boardName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boardName.errors }" />
-                <div *ngIf="submitted && f.boardName.errors" class="invalid-feedback">
-                  <div *ngIf="f.boardName.errors.required">Board nane is required</div>
+                <input type="text" formControlName="boardName" class="form-control" [ngClass]="{ 'is-invalid': submitted && getFormControls.boardName.errors }" />
+                <div *ngIf="submitted && getFormControls.boardName.errors" class="invalid-feedback">
+                  <div *ngIf="getFormControls.boardName.errors.required">Board name is required</div>
                 </div>
               </div>
             </div>
