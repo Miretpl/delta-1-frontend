@@ -8,36 +8,14 @@ import { environment } from '../../environments/environment';
 })
 export class ApiService {
   private SERVER_URL = environment.serverUrl;
+  private USER_ID_NAME = "user_id";
+  private TOKEN_NAME = "token";
 
   constructor(private httpClient: HttpClient) { }
 
-  public getTestData() {
-    return this.httpClient.get(this.SERVER_URL);
-  }
-
-  public getBoardList() {
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')  
-      .set('Access-Control-Allow-Origin', '*')
-      .set('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3dhbHNraSIsImF1dGhvcml0aWVzIjpbXSwiaWF0IjoxNjA1NTI1ODYxLCJleHAiOjE2MDYzNDUyMDB9._7yjmyFTzLjwCU8exatqUlNLm13a1xs6CzzRaKju06J5MXzPrkojPID4UsW8yyhSCKXbkEjo40P7MnWpWgSrAA')
-    ;
-    // 'Authorization': `${this.getCookie("token")}`,
-    
-    let responseBody: any;
-    // var url = `${this.SERVER_URL}${this.getCookie("userid")}/board/list`;
-    var url = `${this.SERVER_URL}2/board/list`;
-
-    this.httpClient.get(url, { 'headers': headers }).subscribe({
-      next: data => {
-        responseBody = data;
-      },
-      error: error => {
-        console.error("Error durning board list request", error);
-      }
-    });
-
-    console.log(responseBody);
-    return responseBody;
+  public getBoardList(endpoint: string) {
+    let url = this.getUrlWithUserId(endpoint);
+    return this.httpClient.get(url, { headers: this.getHeader(), observe: 'body' });
   }
 
   // public createBoard(boardName: string, isBoardPublic: boolean) {
@@ -61,7 +39,18 @@ export class ApiService {
   //   });
   // }
 
+  private getUrlWithUserId(endpoint: string) {
+    return this.SERVER_URL + this.getCookie(this.USER_ID_NAME) + endpoint;
+  }
+
+  private getHeader() {
+    return new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `${this.getCookie(this.TOKEN_NAME)}`)
+    ;
+  }
+
   private getCookie(name: string) {
-    return document.cookie.match("(?<=" + name + "=).[^;]+");
+    return document.cookie.match(`(?<=${name}=).[^;]{0,}`);
   }
 }

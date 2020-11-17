@@ -7,10 +7,15 @@ import { ApiService } from '../../api/api.service'
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  boards: [];
+  private BOARD_LIST_ENDPOINT = '/board/list';
+  private boards: any;
+  
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.boards = this.apiService.getBoardList();
+    this.apiService.getBoardList(this.BOARD_LIST_ENDPOINT).subscribe(
+      resp => this.boards = resp,
+      error => console.error(error)
+    );
   }
 }
