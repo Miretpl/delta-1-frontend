@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router"
 import { ApiService } from 'src/app/api/api.service';
-
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -18,24 +18,30 @@ export class LoginComponent implements OnInit {
 
   private token: any;
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private apiService: ApiService, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
   login() {
-    this.sendLoginMessage(this.getAuthenticationJSON());
-    this.setTokenCookie();
-
-    if (this.token != null) {
-      this.router.navigate(["/boards-list"]);
-    }
+    this.handleLogging(this.getAuthenticationJSON());
   }
 
-  private sendLoginMessage(data: any) {
+  private handleLogging(data: any) {
     this.apiService.send(this.ENDPOINT_NAME, data).subscribe(
-      resp => this.token = resp.body[this.TOKEN_NAME],
-      error => this.isShow = !this.isShow
+      resp => {
+        this.token = resp.body[this.TOKEN_NAME];
+        this.setTokenCookie();
+
+        if (this.token != null) {
+          this.userService.changeLoggingStatus();
+          this.userService.emitLoggingStatus();
+          this.router.navigate(["/boards-list"]);
+        }
+      },
+      error => {
+        this.isShow = !this.isShow;
+      }
     );
   }
 
