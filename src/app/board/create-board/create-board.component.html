@@ -1,0 +1,38 @@
+<div class="modal" id="boardcreationmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Create new board</h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="createBoardForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Board name</label>
+                <input type="text" formControlName="boardName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boardName.errors }" />
+                <div *ngIf="submitted && f.boardName.errors" class="invalid-feedback">
+                  <div *ngIf="f.boardName.errors.required">Board nane is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Visibility</label>
+                  <select type="text" formControlName="visibility" class="form-control" id="exampleFormControlSelect1">
+                    <option value="true" selected>Public</option>
+                    <option value="false">Private</option>
+                  </select>
+                </div>     
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
