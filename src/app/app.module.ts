@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { BoardModule } from './board/board.module';
 import { UserModule } from './user/user.module';
@@ -20,7 +21,8 @@ import { MenuComponent } from './menu/menu.component';
     HttpClientModule,
     AppRoutingModule,
     BoardModule,
-    UserModule
+    UserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
