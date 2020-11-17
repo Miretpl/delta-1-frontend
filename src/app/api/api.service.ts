@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 
@@ -16,14 +16,18 @@ export class ApiService {
   }
 
   public getBoardList() {
-    const headers = {
-      'Authorization': `${this.getCookie("token")}`,
-      'Content-Type': 'application/json'
-    };
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')  
+      .set('Access-Control-Allow-Origin', '*')
+      .set('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3dhbHNraSIsImF1dGhvcml0aWVzIjpbXSwiaWF0IjoxNjA1NTI1ODYxLCJleHAiOjE2MDYzNDUyMDB9._7yjmyFTzLjwCU8exatqUlNLm13a1xs6CzzRaKju06J5MXzPrkojPID4UsW8yyhSCKXbkEjo40P7MnWpWgSrAA')
+    ;
+    // 'Authorization': `${this.getCookie("token")}`,
     
     let responseBody: any;
+    // var url = `${this.SERVER_URL}${this.getCookie("userid")}/board/list`;
+    var url = `${this.SERVER_URL}2/board/list`;
 
-    this.httpClient.get<any>(`${this.SERVER_URL}/${this.getCookie("userid")}/boards/list`, { headers }).subscribe({
+    this.httpClient.get(url, { 'headers': headers }).subscribe({
       next: data => {
         responseBody = data;
       },
@@ -32,29 +36,30 @@ export class ApiService {
       }
     });
 
+    console.log(responseBody);
     return responseBody;
   }
 
-  public createBoard(boardName: string, isBoardPublic: boolean) {
-    const headers = {
-      'Authorization': `${this.getCookie("token")}`,
-      'Content-Type': 'application/json'
-    };
+  // public createBoard(boardName: string, isBoardPublic: boolean) {
+  //   const headers = {
+  //     'Authorization': `${this.getCookie("token")}`,
+  //     'Content-Type': 'application/json'
+  //   };
 
-    let body = {
-      name: boardName,
-      is_public: isBoardPublic
-    };
+  //   let body = {
+  //     name: boardName,
+  //     is_public: isBoardPublic
+  //   };
 
-    this.httpClient.put<any>(`${this.SERVER_URL}/${this.getCookie("userid")}/boards/create`, body, { headers }).subscribe({
-      next: data => {
-        console.log(`Board ${boardName} created.`, data);
-      },
-      error: error => {
-        console.error("Error durning creating of board", error);
-      }
-    });
-  }
+  //   this.httpClient.put<any>(`${this.SERVER_URL}/${this.getCookie("userid")}/boards/create`, body, { headers }).subscribe({
+  //     next: data => {
+  //       console.log(`Board ${boardName} created.`, data);
+  //     },
+  //     error: error => {
+  //       console.error("Error durning creating of board", error);
+  //     }
+  //   });
+  // }
 
   private getCookie(name: string) {
     return document.cookie.match("(?<=" + name + "=).[^;]+");
