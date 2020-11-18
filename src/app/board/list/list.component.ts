@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../api/api.service'
 
 @Component({
   selector: 'app-list',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  boards = [];
-  constructor() { }
+  private BOARD_LIST_ENDPOINT = '/board/list';
+  boards: any;
+  
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.boards = [ {name: "Board 1", description: "Desc 2"}, {name: "Board 1", description: "Desc 2"} ]
+    this.apiService.getBoardList(this.BOARD_LIST_ENDPOINT).subscribe(
+      resp => this.boards = resp,
+      error => console.error(error)
+    );
   }
 }
