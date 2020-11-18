@@ -37,4 +37,9 @@ export class ApiService {
   private getCookie(name: string) {
     return document.cookie.match(`(?<=${name}=).[^;]{0,}`);
   }
+
+  public send(endpoint: string, data: any) {
+    return this.httpClient.post(this.SERVER_URL + endpoint, data, {observe: 'body'});
+  }
 }
+
