@@ -16,6 +16,6 @@ export class ApiService {
   }
 
   public send(endpoint: string, data: any) {
-    return this.httpClient.post(this.SERVER_URL + endpoint, data, {observe: 'response'});
+    return this.httpClient.post(this.SERVER_URL + endpoint, data, {observe: 'body'});
   }
 }

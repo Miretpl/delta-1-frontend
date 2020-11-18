@@ -11,12 +11,11 @@ import { UserService } from '../user.service';
 export class LoginComponent implements OnInit {
   private TOKEN_NAME: string = "token";
   private ENDPOINT_NAME: string = "login";
-  
+  private token: any;
+
   isShow: boolean = false;
   username: string;
   password: string;
-
-  private token: any;
 
   constructor(private apiService: ApiService, private router: Router, private userService: UserService) { }
 
@@ -30,19 +29,24 @@ export class LoginComponent implements OnInit {
   private handleLogging(data: any) {
     this.apiService.send(this.ENDPOINT_NAME, data).subscribe(
       resp => {
-        this.token = resp.body[this.TOKEN_NAME];
+        this.token = resp[this.TOKEN_NAME];
         this.setTokenCookie();
 
         if (this.token != null) {
-          this.userService.changeLoggingStatus();
-          this.userService.emitLoggingStatus();
-          this.router.navigate(["/boards-list"]);
+          this.loginStatus();
         }
       },
       error => {
         this.isShow = !this.isShow;
+        console.log(error);
       }
     );
+  }
+
+  private loginStatus() {
+    this.userService.changeLoggingStatus();
+    this.userService.emitLoggingStatus();
+    this.router.navigate(["/boards-list"]);
   }
 
   private setTokenCookie() {
@@ -50,7 +54,7 @@ export class LoginComponent implements OnInit {
   }
 
   private getAuthenticationJSON() {
-    return "{\"username\":\"" + this.username + "\", \"password\":\"" + this.password + "\"}";
+    return `{"username": "${this.username}", "password": "${this.password}"}`;
   }
 
 }

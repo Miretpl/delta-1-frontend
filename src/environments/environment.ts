@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
   environmentName: 'localhost',
-  serverUrl: 'http://localhost:8080/'
+  serverUrl: 'https://paw-delta-1-backend-dev.herokuapp.com/'
 };

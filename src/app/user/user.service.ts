@@ -7,8 +7,10 @@ export class UserService {
   @Output() loggingStatus: EventEmitter<any> = new EventEmitter();
   isLogged: boolean;
 
+  private TOKEN: string = "token";
+
   constructor() {
-    if (this.getCookie("token") != null && this.getCookie("token")[0].length > 0) {
+    if (this.getCookie(this.TOKEN) != null && this.getCookie(this.TOKEN)[0].length > 0) {
       this.changeLoggingStatus();
     }
   }
@@ -32,5 +34,4 @@ export class UserService {
   private getCookie(name: string) {
     return document.cookie.match(`(?<=${name}=).[^;]{0,}`);
   }
-
 }
