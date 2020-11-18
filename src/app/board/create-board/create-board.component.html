@@ -2,15 +2,15 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Create new board</h4>
+        <h5 class="modal-title" id="myModalLabel">Create new board</h5>
       </div>
       <div class="modal-body">
         <form [formGroup]="createBoardForm" (ngSubmit)="onSubmit()">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
               <div class="form-group">
                 <label>Board name</label>
-                <input type="text" formControlName="boardName" class="form-control" [ngClass]="{ 'is-invalid': submitted && getFormControls.boardName.errors }" />
+                <input type="text" placeholder="Add board title" formControlName="boardName" class="form-control" [ngClass]="{ 'is-invalid': submitted && getFormControls.boardName.errors }" />
                 <div *ngIf="submitted && getFormControls.boardName.errors" class="invalid-feedback">
                   <div *ngIf="getFormControls.boardName.errors.required">Board name is required</div>
                 </div>
@@ -28,11 +28,11 @@
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary">Create Board</button>
+            <button type="button" class="btn btn-dark ml-1" data-dismiss="modal">Close</button>
+          </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
