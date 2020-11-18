@@ -9,11 +9,13 @@ export class AuthService {
   constructor(public jwtHelper: JwtHelperService) {}
 
   public isAuthenticated(): boolean {
-    try {
-      const token = localStorage.getItem(this.TOKEN);
-      return !this.jwtHelper.isTokenExpired(token);
-    } catch (error) {
-      return false;
+    const token = this.getCookie(this.TOKEN);
+    if (token != null && token[0].length > 0) {
+      return true;
     }
+  }
+
+  private getCookie(name: string) {
+    return document.cookie.match(`(?<=${name}=).[^;]{0,}`);
   }
 }
