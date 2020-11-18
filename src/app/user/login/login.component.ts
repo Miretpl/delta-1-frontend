@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent implements OnInit {
   private TOKEN_NAME: string = "token";
+  private USER_ID_NAME: string = "id";
   private ENDPOINT_NAME: string = "login";
   private token: any;
 
@@ -30,7 +31,9 @@ export class LoginComponent implements OnInit {
     this.apiService.send(this.ENDPOINT_NAME, data).subscribe(
       resp => {
         this.token = resp[this.TOKEN_NAME];
-        this.setTokenCookie();
+        
+        this.setTokenCookie(this.TOKEN_NAME, this.token);
+        this.setTokenCookie("user_id", resp[this.USER_ID_NAME])
 
         if (this.token != null) {
           this.loginStatus();
@@ -49,8 +52,8 @@ export class LoginComponent implements OnInit {
     this.router.navigate(["/boards"]);
   }
 
-  private setTokenCookie() {
-    document.cookie = this.TOKEN_NAME + "=" + this.token + ";";
+  private setTokenCookie(name: string, value: string) {
+    document.cookie = `${name}=${value};`;
   }
 
   private getAuthenticationJSON() {

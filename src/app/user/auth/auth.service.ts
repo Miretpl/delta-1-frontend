@@ -13,6 +13,8 @@ export class AuthService {
     if (token != null && token[0].length > 0) {
       return true;
     }
+
+    return false;
   }
 
   private getCookie(name: string) {
