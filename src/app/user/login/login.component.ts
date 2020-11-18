@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
   private loginStatus() {
     this.userService.changeLoggingStatus();
     this.userService.emitLoggingStatus();
-    this.router.navigate(["/boards-list"]);
+    this.router.navigate(["/boards"]);
   }
 
   private setTokenCookie() {
