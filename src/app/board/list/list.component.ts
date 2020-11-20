@@ -8,8 +8,8 @@ import { ApiService } from '../../api/api.service'
 })
 export class ListComponent implements OnInit {
   private BOARD_LIST_ENDPOINT = '/board/list';
-  boards_public = [];
-  boards_private = [];
+  publicBoards = [];
+  privateBoards = [];
 
   constructor(private apiService: ApiService) { }
 
@@ -23,9 +23,9 @@ export class ListComponent implements OnInit {
   private boardsSeperationByVisibility(body: any) {
     body.forEach((board: { is_public: any; }) => {
       if (board.is_public) {
-        this.boards_public.push(board);
+        this.publicBoards.push(board);
       } else {
-          this.boards_private.push(board);
+          this.privateBoards.push(board);
       }
     });
   }

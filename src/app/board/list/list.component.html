@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="row row-eq-height">
-        <div class="card-body mw-25" *ngFor="let board of boards_public">
+        <div class="card-body mw-25" *ngFor="let board of publicBoards">
             <div class="card p-4">
                 <h6>{{ board.name }}</h6>
             </div>
@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="row row-eq-height">
-        <div class="card-body mw-25" *ngFor="let board of boards_private">
+        <div class="card-body mw-25" *ngFor="let board of privateBoards">
             <div class="card p-4">
                 <h6>{{ board.name }}</h6>
             </div>
