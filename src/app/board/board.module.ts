@@ -5,12 +5,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BoardsOverviewComponent } from './boards-overview/boards-overview.component';
 import { CreateBoardComponent } from './create-board/create-board.component';
 import { ListBoardsComponent } from './list-boards/list-boards.component';
+import { ViewBoardComponent } from './view-board/view-board.component';
 
 @NgModule({
   declarations: [
     BoardsOverviewComponent,
     CreateBoardComponent,
-    ListBoardsComponent
+    ListBoardsComponent,
+    ViewBoardComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { ListBoardsComponent } from './list-boards/list-boards.component';
   exports:[
     BoardsOverviewComponent,
     CreateBoardComponent,
-    ListBoardsComponent
+    ListBoardsComponent,
+    ViewBoardComponent
   ]
 })
 
