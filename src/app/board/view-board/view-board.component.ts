@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-board',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-board.component.css']
 })
 export class ViewBoardComponent implements OnInit {
+  board_id: number;
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.board_id = this.activatedRoute.snapshot.params.board_id;
   }
-
 }
