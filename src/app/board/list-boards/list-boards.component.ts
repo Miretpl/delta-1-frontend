@@ -3,10 +3,10 @@ import { ApiService } from '../../api/api.service'
 
 @Component({
   selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  templateUrl: './list-boards.component.html',
+  styleUrls: ['./list-boards.component.css']
 })
-export class ListComponent implements OnInit {
+export class ListBoardsComponent implements OnInit {
   private BOARD_LIST_ENDPOINT = '/board/list';
   boards: any;
   
