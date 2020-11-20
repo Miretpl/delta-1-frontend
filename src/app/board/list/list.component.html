@@ -1,11 +1,31 @@
 <div class="col-md-12 m-auto w-50">
     <div class="boards">
         <div class="p-2">
+            <h3>Public boards</h3>
+        </div>
+    </div>
+    <div class="row row-eq-height">
+        <div class="card-body mw-25" *ngFor="let board of boards_public">
+            <div class="card p-4">
+                <h6>{{ board.name }}</h6>
+            </div>
+        </div>
+        <div class="card-body mw-25">
+            <div class="card hoverable p-4 text-center text-muted">
+                <h6>Create new board</h6>
+                <a href="" class="stretched-link" data-toggle="modal" data-target="#boardcreationmodal"></a>
+           </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12 m-auto w-50">
+    <div class="boards">
+        <div class="p-2">
             <h3>Personal boards</h3>
         </div>
     </div>
     <div class="row row-eq-height">
-        <div class="card-body mw-25" *ngFor="let board of boards">
+        <div class="card-body mw-25" *ngFor="let board of boards_private">
             <div class="card p-4">
                 <h6>{{ board.name }}</h6>
             </div>
