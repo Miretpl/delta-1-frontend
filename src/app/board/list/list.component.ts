@@ -8,14 +8,25 @@ import { ApiService } from '../../api/api.service'
 })
 export class ListComponent implements OnInit {
   private BOARD_LIST_ENDPOINT = '/board/list';
-  boards: any;
-  
+  publicBoards = [];
+  privateBoards = [];
+
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.apiService.getBoardList(this.BOARD_LIST_ENDPOINT).subscribe(
-      resp => this.boards = resp,
+      resp => this.boardsSeperationByVisibility(resp),
       error => console.error(error)
     );
+  }
+
+  private boardsSeperationByVisibility(body: any) {
+    body.forEach((board: { is_public: any; }) => {
+      if (board.is_public) {
+        this.publicBoards.push(board);
+      } else {
+          this.privateBoards.push(board);
+      }
+    });
   }
 }
