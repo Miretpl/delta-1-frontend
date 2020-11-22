@@ -1,9 +1,3 @@
 <div>
-    <div>
-        <nav class="navbar navbar-expand-md">
-            <div contenteditable="true">
-                Nazwa boardu
-            </div>
-        </nav>
-    </div>
+    <input #newBoardName (keyup.enter)="updateBoardName(newBoardName.value)" (blur)="updateBoardName(newBoardName.value)" [value]="boardName"/>
 </div>
