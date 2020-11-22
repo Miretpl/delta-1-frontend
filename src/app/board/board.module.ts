@@ -2,22 +2,30 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { ListComponent } from './list/list.component';
 import { BoardsOverviewComponent } from './boards-overview/boards-overview.component';
 import { CreateBoardComponent } from './create-board/create-board.component';
+import { ListBoardsComponent } from './list-boards/list-boards.component';
+import { ViewBoardComponent } from './view-board/view-board.component';
+import { BoardNameComponent } from './view-board/board-name/board-name.component';
 
 @NgModule({
-  declarations: [ListComponent,
+  declarations: [
     BoardsOverviewComponent,
-    CreateBoardComponent
+    CreateBoardComponent,
+    ListBoardsComponent,
+    ViewBoardComponent,
+    BoardNameComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule
   ],
   exports:[
-    ListComponent,
-    CreateBoardComponent
+    BoardsOverviewComponent,
+    CreateBoardComponent,
+    ListBoardsComponent,
+    ViewBoardComponent,
+    BoardNameComponent
   ]
 })
 
