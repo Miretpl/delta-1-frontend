@@ -3,3 +3,8 @@
         <app-board-name name="{{ boardName }}" id="{{ boardId }}"></app-board-name>
     </div>
 </div>
+<div class="row">
+    <div class="col list mx-1 bg-light" *ngFor="let list of cardLists">
+        <app-board-list-cards [name]="list.name" [cards]="list.cards"></app-board-list-cards>
+    </div>
+</div>

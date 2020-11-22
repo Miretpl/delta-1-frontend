@@ -7,6 +7,8 @@ import { CreateBoardComponent } from './create-board/create-board.component';
 import { ListBoardsComponent } from './list-boards/list-boards.component';
 import { ViewBoardComponent } from './view-board/view-board.component';
 import { BoardNameComponent } from './view-board/board-name/board-name.component';
+import { ListComponent } from './view-board/list/list.component';
+import { CardComponent } from './view-board/card/card.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { BoardNameComponent } from './view-board/board-name/board-name.component
     CreateBoardComponent,
     ListBoardsComponent,
     ViewBoardComponent,
-    BoardNameComponent
+    BoardNameComponent,
+    ListComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,
