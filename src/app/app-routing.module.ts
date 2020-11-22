@@ -9,7 +9,7 @@ import { AuthGuardNotService } from './user/auth/auth-guard-not.service';
 
 const routes: Routes = [
   {path: 'boards', component: BoardsOverviewComponent, canActivate: [AuthGuardService]},
-  {path: 'boards/view/:board_id', component: ViewBoardComponent, canActivate: [AuthGuardService]},
+  {path: 'boards/:board_id', component: ViewBoardComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent, canActivate: [AuthGuardNotService]},
   { path: '**', redirectTo: '' }
 ];
