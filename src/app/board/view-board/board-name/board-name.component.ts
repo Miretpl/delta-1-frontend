@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ApiService } from '../../../api/api.service'
 
 @Component({
   selector: 'app-board-name',
@@ -9,11 +10,12 @@ export class BoardNameComponent implements OnInit {
   private ENTER_CODE: string = "Enter";
   private BACKSPACE_CODE: string = "Backspace";
   private MAX_NAME_LENGTH: number = 32;
+  private BOARD_EDIT_ENDPOINT: string = "board/edit";
 
   @Input() id: number;
   @Input() name: string;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
   }
@@ -30,8 +32,22 @@ export class BoardNameComponent implements OnInit {
 
   updateName(value: string) : void {
     if (this.name != value) {
-      // send request to database if good set boardName new value
-      this.name = value;
+      var endpoint = `${this.BOARD_EDIT_ENDPOINT}/${this.id}`; 
+
+      this.apiService.editBoardElement(this.getData(value), endpoint).subscribe(
+        resp => {
+          console.log("Board name changed");
+          this.name = value;
+        },
+        error => console.error(error)
+      );
+    }
+  }
+
+  private getData(newValue: string) {
+    return {
+      name: "name",
+      value: newValue
     }
   }
 }
