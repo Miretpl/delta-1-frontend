@@ -1,7 +1,5 @@
-<div class="col-md-12 m-auto w-auto" style="background-color: red;">
+<div class="col-md-12 m-auto w-auto">
     <div class="row row-eq-height p-2">
-        <div class="col-md-auto m-auto d-inline-block text-center">
-            <h5 class="px-3 py-2" #newBoardName contenteditable (keydown)="checkCharacters($event, newBoardName.innerText)" (blur)="updateBoardName(newBoardName.innerText)">{{ boardName }}</h5>
-        </div>
+        <app-board-name name="{{ boardName }}" id="{{ boardId }}"></app-board-name>
     </div>
 </div>

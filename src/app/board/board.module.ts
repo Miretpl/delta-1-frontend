@@ -6,13 +6,15 @@ import { BoardsOverviewComponent } from './boards-overview/boards-overview.compo
 import { CreateBoardComponent } from './create-board/create-board.component';
 import { ListBoardsComponent } from './list-boards/list-boards.component';
 import { ViewBoardComponent } from './view-board/view-board.component';
+import { BoardNameComponent } from './view-board/board-name/board-name.component';
 
 @NgModule({
   declarations: [
     BoardsOverviewComponent,
     CreateBoardComponent,
     ListBoardsComponent,
-    ViewBoardComponent
+    ViewBoardComponent,
+    BoardNameComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { ViewBoardComponent } from './view-board/view-board.component';
     BoardsOverviewComponent,
     CreateBoardComponent,
     ListBoardsComponent,
-    ViewBoardComponent
+    ViewBoardComponent,
+    BoardNameComponent
   ]
 })
 
