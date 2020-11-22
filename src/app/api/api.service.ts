@@ -35,7 +35,7 @@ export class ApiService {
   }
 
   private getUrlWithUserId(endpoint: string) {
-    return this.SERVER_URL + this.getCookie(this.USER_ID_NAME) + endpoint;
+    return `${this.SERVER_URL}${this.getCookie(this.USER_ID_NAME)}${endpoint}`;
   }
 
   private getAuthorizationHeader() {
