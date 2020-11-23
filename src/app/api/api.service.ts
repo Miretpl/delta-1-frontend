@@ -19,7 +19,7 @@ export class ApiService {
   }
 
   public editBoardElement(data: any, endpoint: string) {
-    return this.putRequest(this.SERVER_URL + endpoint, data, this.getAuthorizationHeader());
+    return this.postRequest(this.SERVER_URL + endpoint, data, this.getAuthorizationHeader());
   }
 
   public createBoard(data: any, endpoint: string) {
@@ -27,15 +27,25 @@ export class ApiService {
   }
 
   public send(endpoint: string, data: any) {
-    return this.httpClient.post(this.SERVER_URL + endpoint, data, {observe: 'body'});
+    return this.postRequest(this.SERVER_URL + endpoint, data, this.getHeader());
   }
 
   private putRequest(url: string, data: any, headers: any) {
     return this.httpClient.put(url, data, { headers: headers});
   }
 
+  private postRequest(url: string, data: any, headers: any) {
+    return this.httpClient.post(url, data, { headers: headers, observe: 'body'});
+  }
+
   private getUrlWithUserId(endpoint: string) {
     return `${this.SERVER_URL}${this.getCookie(this.USER_ID_NAME)}${endpoint}`;
+  }
+
+  private getHeader() {
+    return new HttpHeaders()
+      .set('Content-Type', 'application/json')
+    ;
   }
 
   private getAuthorizationHeader() {
