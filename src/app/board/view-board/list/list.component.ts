@@ -12,8 +12,6 @@ export class ListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.name);
-    console.log(this.cards);
   }
 
 }
