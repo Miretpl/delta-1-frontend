@@ -1,7 +1,7 @@
 <header style="height: 6vh;">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="height: inherit;">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark nav-header">
         <div><a href="/" class="navbar-brand">Delta 1 - {{ envName }}</a></div>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav text-center">
             <li *ngIf="isLogged"><a class="nav-link" href="/boards">Boards</a></li>
             <li *ngIf="!isLogged"><a class="nav-link" href="/login">Login</a></li>
             <li *ngIf="isLogged"><a class="nav-link" (click)="logout()">Logout</a></li>

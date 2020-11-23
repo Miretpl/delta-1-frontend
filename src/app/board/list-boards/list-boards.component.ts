@@ -8,18 +8,16 @@ import { ApiService } from '../../api/api.service';
 })
 export class ListBoardsComponent implements OnInit {
   private BOARD_LIST_ENDPOINT = '/board/list';
-  boards = [{board_id: 1, is_public: false, name: "board 1"}];
   publicBoards = [];
   privateBoards = [];
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.boardsSeperationByVisibility(this.boards);
-    // this.apiService.getBoardList(this.BOARD_LIST_ENDPOINT).subscribe(
-    //   resp => this.boardsSeperationByVisibility(resp),
-    //   error => console.error(error)
-    // );
+    this.apiService.getBoardList(this.BOARD_LIST_ENDPOINT).subscribe(
+      resp => this.boardsSeperationByVisibility(resp),
+      error => console.error(error)
+    );
   }
 
   private boardsSeperationByVisibility(body: any) {
