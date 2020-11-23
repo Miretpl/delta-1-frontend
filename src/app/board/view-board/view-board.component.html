@@ -1,5 +1,10 @@
-<div class="col-md-12 m-auto w-auto">
-    <div class="row row-eq-height p-2">
-        <app-board-name name="{{ boardName }}" id="{{ boardId }}"></app-board-name>
+<div class="board">
+    <nav class="navbar navbar-expand-md board-menu">
+        <ul class="navbar-nav text-center">
+            <li><app-board-name name="{{ boardName }}" id="{{ boardId }}"></app-board-name></li>
+        </ul>
+    </nav>
+    <div class="overflow-auto text-nowrap scrollbar px-2 board-lists">
+        <app-board-list-cards *ngFor="let list of cardLists" [name]="list.name" [cards]="list.cards"></app-board-list-cards>
     </div>
 </div>
