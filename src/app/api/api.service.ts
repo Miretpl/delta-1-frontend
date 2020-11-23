@@ -43,16 +43,13 @@ export class ApiService {
   }
 
   private getHeader() {
-    return new HttpHeaders()
-      .set('Content-Type', 'application/json')
-    ;
+    return new HttpHeaders().set('Content-Type', 'application/json');
   }
 
   private getAuthorizationHeader() {
     return new HttpHeaders()
       .set('Content-Type', 'application/json')
-      .set('Authorization', `${this.getCookie(this.TOKEN_NAME)}`)
-    ;
+      .set('Authorization', `${this.getCookie(this.TOKEN_NAME)}`);
   }
 
   private getCookie(name: string) {
