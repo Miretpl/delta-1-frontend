@@ -4,7 +4,7 @@
             <app-board-name name="{{ boardName }}" id="{{ boardId }}"></app-board-name>
         </div>
     </div>
-    <div class="m-2" style="background-color: red; overflow-x: auto; max-width: 1500px; white-space: nowrap;">
-        <app-board-list-cards *ngFor="let list of cardLists" [name]="list.name" [cards]="list.cards" style="height: 85vh; max-height: 85vh;"></app-board-list-cards>
+    <div class="overflow-auto text-nowrap scrollbar" style="max-width: 100vw; height: 88vh; max-height: 88vh;">
+        <app-board-list-cards *ngFor="let list of cardLists" [name]="list.name" [cards]="list.cards"></app-board-list-cards>
     </div>
 </div>

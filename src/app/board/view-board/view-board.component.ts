@@ -25,6 +25,9 @@ export class ViewBoardComponent implements OnInit {
       { name: "lista 4", cards: [ { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" } ] },
       { name: "lista 5", cards: [ { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] },
       { name: "lista 6", cards: [ { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] },
+      { name: "lista 6", cards: [ { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] },
+      { name: "lista 6", cards: [ { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] },
+      { name: "lista 6", cards: [ { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] },
       { name: "lista 7", cards: [ { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] }
     ]
   }
