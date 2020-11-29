@@ -6,5 +6,10 @@
     </nav>
     <div class="overflow-auto text-nowrap scrollbar px-2 board-lists">
         <app-board-list-cards *ngFor="let list of cardLists" [name]="list.name" [cards]="list.cards"></app-board-list-cards>
+            <div class="mx-1 p-1 rounded mh-100 list d-inline-block align-top shadow-sm card">
+                <h6 class="px-2 pt-1 text-break">Add new list</h6>
+                <a href="" class="stretched-link" data-toggle="modal" data-target="#listcreationmodal"></a>
+            </div>
+            <app-new-list></app-new-list>
     </div>
 </div>
