@@ -8,7 +8,7 @@
         <div class="card-body mw-25" *ngFor="let board of publicBoards">
             <div class="card p-4">
                 <h6>{{ board.name }}</h6>
-                <a href="boards/{{ board.board_id }}" class="stretched-link"></a>
+                <a href="/boards/{{ board.boardId }}" class="stretched-link"></a>
             </div>
         </div>
         <div class="card-body mw-25">
@@ -29,7 +29,7 @@
         <div class="card-body mw-25" *ngFor="let board of privateBoards">
             <div class="card p-4">
                 <h6>{{ board.name }}</h6>
-                <a href="boards/{{ board.board_id }}" class="stretched-link"></a>
+                <a href="/boards/{{ board.boardId }}" class="stretched-link"></a>
             </div>
         </div>
         <div class="card-body mw-25">
