@@ -8,6 +8,7 @@ import { ApiService } from '../../../api/api.service'
 })
 export class BoardNameComponent implements OnInit {
   private ENTER_CODE: string = "Enter";
+  private NUMPAD_ENTER_CODE: string = "NumpadEnter";
   private BACKSPACE_CODE: string = "Backspace";
   private MAX_NAME_LENGTH: number = 32;
   private BOARD_EDIT_ENDPOINT: string = "/board/edit";
@@ -21,7 +22,7 @@ export class BoardNameComponent implements OnInit {
   }
 
   checkCharacters(event: any, text: string) : boolean {
-    if (event.code == this.ENTER_CODE) {
+    if (event.code == this.ENTER_CODE || event.code == this.NUMPAD_ENTER_CODE) {
       event.target.blur();
     } else if (text.length >= this.MAX_NAME_LENGTH) {
       return event.code == this.BACKSPACE_CODE;
