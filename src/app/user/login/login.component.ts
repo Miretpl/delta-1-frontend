@@ -11,7 +11,7 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent implements OnInit {
   private TOKEN_NAME: string = "token";
-  private ENDPOINT_NAME: string = "login";
+  private ENDPOINT_NAME: string = "/login";
 
   isShow: boolean = false;
   username: string;
