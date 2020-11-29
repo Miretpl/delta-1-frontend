@@ -10,7 +10,7 @@ export class BoardNameComponent implements OnInit {
   private ENTER_CODE: string = "Enter";
   private BACKSPACE_CODE: string = "Backspace";
   private MAX_NAME_LENGTH: number = 32;
-  private BOARD_EDIT_ENDPOINT: string = "board/edit";
+  private BOARD_EDIT_ENDPOINT: string = "/board/edit";
 
   @Input() id: number;
   @Input() name: string;
