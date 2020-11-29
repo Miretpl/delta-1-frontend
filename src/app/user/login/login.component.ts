@@ -31,16 +31,16 @@ export class LoginComponent implements OnInit {
     this.apiService.send(this.ENDPOINT_NAME, data).subscribe(
       resp => {
         this.token = resp[this.TOKEN_NAME];
-        
-        this.setTokenCookie(this.TOKEN_NAME, this.token);
-        this.setTokenCookie("user_id", resp[this.USER_ID_NAME])
 
         if (this.token != null) {
+          this.setTokenCookie(this.TOKEN_NAME, this.token);
           this.loginStatus();
         }
       },
       error => {
-        this.isShow = !this.isShow;
+        if (!this.isShow) {
+          this.isShow = !this.isShow;
+        }
         console.log(error);
       }
     );
