@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ApiService } from '../../../api/api.service';
@@ -11,45 +11,52 @@ declare var $: any;
   styleUrls: ['./new-list.component.css']
 })
 export class NewListComponent implements OnInit {
-  private BOARD_CREATE_ENDPOINT = '/board/create';
-  
-  createBoardForm: FormGroup;
+  private LIST_CREATE_ENDPOINT = '/list/create';
+
+  createListForm: FormGroup;
   submitted = false;
+
+  @Output("turnOnWindow") turnOnWindow: EventEmitter<any> = new EventEmitter();
+  @Input() board_id: number;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.createBoardForm = new FormBuilder().group({
-      boardName: ['', [Validators.required]],
-      visibility: ['true', [Validators.required]]
+    this.createListForm = new FormBuilder().group({
+      listName: ['', [Validators.required]]
     })
   }
 
   get getFormControls() {
-    return this.createBoardForm.controls;
+    return this.createListForm.controls;
   }
 
   onSubmit() {
     this.submitted = true;
 
-    if (this.createBoardForm.invalid) {
+    if (this.createListForm.invalid) {
       return;
     }
 
     if (this.submitted) {
-      $("#listcreationmodal").modal("hide");
-
-      this.apiService.createBoard(this.getData(), this.BOARD_CREATE_ENDPOINT).subscribe(
-        resp => console.log("Board created"),
+      this.apiService.createList(this.getData(), this.LIST_CREATE_ENDPOINT).subscribe(
+        resp => {
+          console.log("List created");
+          this.close();
+        },
         error => console.error(error)
       );
     }
   }
 
+  public close() {
+    this.turnOnWindow.emit();
+  }
+
   private getData() {
     return {
-      name: this.createBoardForm.get("boardName").value,
-      is_public: this.createBoardForm.get("visibility").value == "true"
+      name: this.createListForm.get("listName").value,
+      boardId: this.board_id
     };
   }
 }

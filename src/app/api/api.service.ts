@@ -25,6 +25,10 @@ export class ApiService {
     return this.putRequest(this.getUrl(endpoint), data, this.getAuthorizationHeader());
   }
 
+  public createList(data: any, endpoint: string) {
+    return this.putRequest(this.getUrl(endpoint), data, this.getAuthorizationHeader());
+  }
+
   public send(endpoint: string, data: any) {
     return this.postRequest(this.SERVER_URL + endpoint, data, this.getHeader());
   }

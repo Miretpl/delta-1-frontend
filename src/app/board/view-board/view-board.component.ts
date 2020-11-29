@@ -10,11 +10,12 @@ export class ViewBoardComponent implements OnInit {
   boardId: number;
   boardName: string;
   cardLists: any;
+  visible : boolean;
 
   constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.boardId = this.activatedRoute.snapshot.params.board_id;
+    this.boardId = Number(this.activatedRoute.snapshot.params.board_id);
     // send request to backend to get all information about the board
     this.boardName = "test board 1";
     this.cardLists = [
@@ -29,5 +30,9 @@ export class ViewBoardComponent implements OnInit {
       { name: "lista 6", cards: [ { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] },
       { name: "lista 7", cards: [ { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] }
     ]
+  }
+
+  turnOnWindow(): void {
+    this.visible = !this.visible;
   }
 }
