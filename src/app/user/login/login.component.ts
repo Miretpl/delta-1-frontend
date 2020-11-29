@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router"
 import { ApiService } from 'src/app/api/api.service';
+import { AuthService } from '../auth/auth.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -10,15 +11,13 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent implements OnInit {
   private TOKEN_NAME: string = "token";
-  private USER_ID_NAME: string = "id";
   private ENDPOINT_NAME: string = "login";
-  private token: any;
 
   isShow: boolean = false;
   username: string;
   password: string;
 
-  constructor(private apiService: ApiService, private router: Router, private userService: UserService) { }
+  constructor(private apiService: ApiService, private router: Router, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -42,10 +41,10 @@ export class LoginComponent implements OnInit {
   }
 
   private handleLoginMessage(resp: Object) {
-    this.token = resp[this.TOKEN_NAME];
+    var token = resp[this.TOKEN_NAME];
 
-    if (this.token != null) {
-      this.setTokenCookie(this.TOKEN_NAME, this.token);
+    if (this.authService.authenticate(token)) {
+      this.setTokenCookie(this.TOKEN_NAME, token);
       this.loginStatus();
     }
   }
