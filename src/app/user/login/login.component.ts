@@ -29,21 +29,25 @@ export class LoginComponent implements OnInit {
 
   private handleLogging(data: any) {
     this.apiService.send(this.ENDPOINT_NAME, data).subscribe(
-      resp => {
-        this.token = resp[this.TOKEN_NAME];
-
-        if (this.token != null) {
-          this.setTokenCookie(this.TOKEN_NAME, this.token);
-          this.loginStatus();
-        }
-      },
-      error => {
-        if (!this.isShow) {
-          this.isShow = !this.isShow;
-        }
-        console.log(error);
-      }
+      resp => this.handleLoginMessage(resp),
+      error => this.handleLoginErrorMessage(error)
     );
+  }
+
+  private handleLoginErrorMessage(error: any) {
+    if (!this.isShow) {
+      this.isShow = !this.isShow;
+    }
+    console.log(error);
+  }
+
+  private handleLoginMessage(resp: Object) {
+    this.token = resp[this.TOKEN_NAME];
+
+    if (this.token != null) {
+      this.setTokenCookie(this.TOKEN_NAME, this.token);
+      this.loginStatus();
+    }
   }
 
   private loginStatus() {
