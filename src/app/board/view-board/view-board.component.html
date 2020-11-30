@@ -9,9 +9,9 @@
         <div class="mx-1 p-1 rounded mh-100 list d-inline-block align-top shadow-sm card">
             <div [hidden]="visibleAddList">
                 <h6 class="px-2 pt-1 text-break">Add new list</h6>
-                <a class="stretched-link" (click)=turnOnWindow()></a>
+                <a class="stretched-link" (click)=visibleAddListForm()></a>
             </div>
-            <app-new-list [hidden]="!visibleAddList" (turnOnWindow)="turnOnWindow()" [board_id]=boardId></app-new-list>
+            <app-new-list [hidden]="!visibleAddList" (visibleAddListForm)="visibleAddListForm()" [board_id]=boardId></app-new-list>
         </div>
     </div>
 </div>

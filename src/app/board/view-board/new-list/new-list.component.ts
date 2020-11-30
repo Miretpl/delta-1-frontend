@@ -11,7 +11,7 @@ import { ApiService } from '../../../api/api.service';
 export class NewListComponent implements OnInit {
   private LIST_CREATE_ENDPOINT = '/list/create';
 
-  @Output("turnOnWindow") turnOnWindow: EventEmitter<any> = new EventEmitter();
+  @Output("visibleAddListForm") visibleAddListForm: EventEmitter<any> = new EventEmitter();
   @Input() board_id: number;
 
   createListForm: FormGroup;
@@ -51,7 +51,7 @@ export class NewListComponent implements OnInit {
   }
 
   public close() {
-    this.turnOnWindow.emit();
+    this.visibleAddListForm.emit();
   }
 
   private getData() {

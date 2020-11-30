@@ -32,7 +32,7 @@ export class ViewBoardComponent implements OnInit {
     ]
   }
 
-  turnOnWindow(): void {
+  visibleAddListForm(): void {
     this.visibleAddList = !this.visibleAddList;
   }
 }
