@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
     if (!this.isShow) {
       this.isShow = !this.isShow;
     }
+    
     console.log(error);
   }
 
