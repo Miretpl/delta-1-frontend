@@ -10,7 +10,7 @@ export class ViewBoardComponent implements OnInit {
   boardId: number;
   boardName: string;
   cardLists: any;
-  visible : boolean;
+  visibleAddList : boolean;
 
   constructor(private activatedRoute: ActivatedRoute) { }
 
@@ -33,6 +33,6 @@ export class ViewBoardComponent implements OnInit {
   }
 
   turnOnWindow(): void {
-    this.visible = !this.visible;
+    this.visibleAddList = !this.visibleAddList;
   }
 }
