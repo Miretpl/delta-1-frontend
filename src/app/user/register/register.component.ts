@@ -10,7 +10,7 @@ import { ApiService } from 'src/app/api/api.service';
 export class RegisterComponent implements OnInit {
   private ENDPOINT_NAME: string = "/register";
 
-  isShow: boolean = false;
+  showDangerMessage: boolean = false;
   
   email: string;
   username: string;
@@ -27,35 +27,35 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  register() {
-    if (this.password !== this.retype_password && !this.isShow) {
-      this.isShow = !this.isShow;
+  register(): void {
+    if (this.password !== this.retype_password && !this.showDangerMessage) {
+      this.showDangerMessage = !this.showDangerMessage;
       return;
     } 
     
     this.handleRegistering(this.getData());
   }
 
-  private handleRegistering(data: any) {
-    console.log(data);
+  private handleRegistering(data: any): void {
     this.apiService.register(data, this.ENDPOINT_NAME).subscribe(
       resp => this.handleRegisterMessage(resp),
       error => this.handleRegisterErrorMessage(error)
     );
   }
 
-  private handleRegisterErrorMessage(error: any) {
-    if (!this.isShow) {
-      this.isShow = !this.isShow;
+  private handleRegisterErrorMessage(error: any): void {
+    if (!this.showDangerMessage) {
+      this.showDangerMessage = !this.showDangerMessage;
     }
-    console.log(error);
+
+    console.error(error);
   }
 
-  private handleRegisterMessage(resp: Object) {
+  private handleRegisterMessage(resp: Object): void {
     this.router.navigate(["/login"]);
   }
 
-  private getData() {
+  private getData(): object {
     return {
       username: this.username,
       firstname: this.firstname,

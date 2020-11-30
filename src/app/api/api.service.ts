@@ -18,7 +18,7 @@ export class ApiService {
   }
 
   public register(data: any, endpoint: string) {
-    return this.postRequest(this.SERVER_URL + endpoint, data, null);
+    return this.postRequest(`${this.SERVER_URL}${endpoint}`, data, null);
   }
 
   public editBoardElement(data: any, endpoint: string) {

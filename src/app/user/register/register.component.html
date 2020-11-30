@@ -1,7 +1,7 @@
 <div class="wrapper">
     <form class="form-signin">       
         <h2 class="form-signin-heading">Please register</h2>
-        <div class="alert alert-danger" role="alert" [hidden]="!isShow">
+        <div class="alert alert-danger" role="alert" [hidden]="!showDangerMessage">
             Given login or pass is incorrect.
         </div>
         <input type="text" class="form-control" [(ngModel)]="username" name="username" placeholder="Username" required="" autofocus="" />
