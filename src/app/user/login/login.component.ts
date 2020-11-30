@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router"
 import { ApiService } from 'src/app/api/api.service';
+import { AuthService } from '../auth/auth.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -10,15 +11,13 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent implements OnInit {
   private TOKEN_NAME: string = "token";
-  private USER_ID_NAME: string = "id";
-  private ENDPOINT_NAME: string = "login";
-  private token: any;
+  private ENDPOINT_NAME: string = "/login";
 
   isShow: boolean = false;
   username: string;
   password: string;
 
-  constructor(private apiService: ApiService, private router: Router, private userService: UserService) { }
+  constructor(private apiService: ApiService, private router: Router, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -29,21 +28,26 @@ export class LoginComponent implements OnInit {
 
   private handleLogging(data: any) {
     this.apiService.send(this.ENDPOINT_NAME, data).subscribe(
-      resp => {
-        this.token = resp[this.TOKEN_NAME];
-        
-        this.setTokenCookie(this.TOKEN_NAME, this.token);
-        this.setTokenCookie("user_id", resp[this.USER_ID_NAME])
-
-        if (this.token != null) {
-          this.loginStatus();
-        }
-      },
-      error => {
-        this.isShow = !this.isShow;
-        console.log(error);
-      }
+      resp => this.handleLoginMessage(resp),
+      error => this.handleLoginErrorMessage(error)
     );
+  }
+
+  private handleLoginErrorMessage(error: any) {
+    if (!this.isShow) {
+      this.isShow = !this.isShow;
+    }
+    
+    console.log(error);
+  }
+
+  private handleLoginMessage(resp: Object) {
+    var token = resp[this.TOKEN_NAME];
+
+    if (this.authService.authenticate(token)) {
+      this.setTokenCookie(this.TOKEN_NAME, token);
+      this.loginStatus();
+    }
   }
 
   private loginStatus() {

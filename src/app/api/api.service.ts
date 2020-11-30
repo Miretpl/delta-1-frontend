@@ -8,13 +8,12 @@ import { environment } from '../../environments/environment';
 })
 export class ApiService {
   private SERVER_URL = environment.serverUrl;
-  private USER_ID_NAME = "user_id";
   private TOKEN_NAME = "token";
 
   constructor(private httpClient: HttpClient) { }
 
   public getBoardList(endpoint: string) {
-    let url = this.getUrlWithUserId(endpoint);
+    let url = this.getUrl(endpoint);
     return this.httpClient.get(url, { headers: this.getAuthorizationHeader(), observe: 'body' });
   }
 
@@ -23,7 +22,11 @@ export class ApiService {
   }
 
   public createBoard(data: any, endpoint: string) {
-    return this.putRequest(this.getUrlWithUserId(endpoint), data, this.getAuthorizationHeader());
+    return this.putRequest(this.getUrl(endpoint), data, this.getAuthorizationHeader());
+  }
+
+  public createList(data: any, endpoint: string) {
+    return this.putRequest(this.getUrl(endpoint), data, this.getAuthorizationHeader());
   }
 
   public send(endpoint: string, data: any) {
@@ -38,8 +41,8 @@ export class ApiService {
     return this.httpClient.post(url, data, { headers: headers, observe: 'body'});
   }
 
-  private getUrlWithUserId(endpoint: string) {
-    return `${this.SERVER_URL}${this.getCookie(this.USER_ID_NAME)}${endpoint}`;
+  private getUrl(endpoint: string) {
+    return `${this.SERVER_URL}${endpoint}`;
   }
 
   private getHeader() {

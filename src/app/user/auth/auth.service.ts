@@ -10,7 +10,11 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const token = this.getCookie(this.TOKEN);
-    if (token != null && token[0].length > 0) {
+    return this.authenticate(token);
+  }
+
+  public authenticate(token: string): boolean {
+    if (token != null) {
       return true;
     }
 
@@ -18,6 +22,12 @@ export class AuthService {
   }
 
   private getCookie(name: string) {
-    return document.cookie.match(`(?<=${name}=).[^;]{0,}`);
+    var token = document.cookie.match(`(?<=${name}=).[^;]{0,}`);
+
+    if (token != null && token[0].length > 0) {
+      return token[0];
+    }
+
+    return "";
   }
 }
