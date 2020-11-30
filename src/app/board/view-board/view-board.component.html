@@ -11,7 +11,7 @@
                 <h6 class="px-2 pt-1 text-break">Add new list</h6>
                 <a class="stretched-link" (click)=visibleAddListForm()></a>
             </div>
-            <app-new-list [hidden]="!visibleAddList" (visibleAddListForm)="visibleAddListForm()" [board_id]=boardId></app-new-list>
+            <app-new-list [hidden]="!visibleAddList"  (getCardLists)="getCardLists()" (visibleAddListForm)="visibleAddListForm()" [board_id]=boardId></app-new-list>
         </div>
     </div>
 </div>

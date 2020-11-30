@@ -12,6 +12,7 @@ export class NewListComponent implements OnInit {
   private LIST_CREATE_ENDPOINT = '/list/create';
 
   @Output("visibleAddListForm") visibleAddListForm: EventEmitter<any> = new EventEmitter();
+  @Output("getCardLists") getCardLists: EventEmitter<any> = new EventEmitter();
   @Input() board_id: number;
 
   createListForm: FormGroup;
@@ -50,7 +51,8 @@ export class NewListComponent implements OnInit {
     }
   }
 
-  public close() {
+  public close(): void {
+    this.getCardLists.emit();
     this.visibleAddListForm.emit();
   }
 
