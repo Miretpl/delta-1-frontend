@@ -51,7 +51,7 @@ export class NewListComponent implements OnInit {
     }
   }
 
-  public close() {
+  public close(): void {
     this.getCardLists.emit();
     this.visibleAddListForm.emit();
   }

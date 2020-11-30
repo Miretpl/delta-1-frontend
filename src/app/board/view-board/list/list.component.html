@@ -3,7 +3,7 @@
     <div class="overflow-auto scrollbar list-cards">
         <ul class="list-unstyled">
             <li class="px-1" *ngFor="let card of cards">
-                <app-board-card id="{{ card.cardId }}" name="{{ card.name }}"></app-board-card>
+                <app-board-card [id]=card.cardId [name]=card.name></app-board-card>
             </li>
         </ul>
     </div>
