@@ -1,9 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ApiService } from '../../../api/api.service';
-
-declare var $: any;
 
 @Component({
   selector: 'app-new-list',
@@ -13,11 +11,11 @@ declare var $: any;
 export class NewListComponent implements OnInit {
   private LIST_CREATE_ENDPOINT = '/list/create';
 
-  createListForm: FormGroup;
-  submitted = false;
-
   @Output("turnOnWindow") turnOnWindow: EventEmitter<any> = new EventEmitter();
   @Input() board_id: number;
+
+  createListForm: FormGroup;
+  submitted = false;
 
   constructor(private apiService: ApiService) { }
 
@@ -44,7 +42,10 @@ export class NewListComponent implements OnInit {
           console.log("List created");
           this.close();
         },
-        error => console.error(error)
+        error => {
+          console.error(error);
+          this.close(); 
+        }
       );
     }
   }
