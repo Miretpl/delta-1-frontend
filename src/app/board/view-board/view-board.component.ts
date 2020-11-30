@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../../api/api.service';
 
 @Component({
   selector: 'app-view-board',
@@ -7,32 +8,41 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./view-board.component.css']
 })
 export class ViewBoardComponent implements OnInit {
+  private ENDPOINT_NAME: string = "/board/get/";
+  private TWO_MINUTES: number = 120000;
+  private interval: any;
+
   boardId: number;
   boardName: string;
   cardLists: any;
   visibleAddList : boolean;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.boardId = Number(this.activatedRoute.snapshot.params.board_id);
-    // send request to backend to get all information about the board
-    this.boardName = "test board 1";
-    this.cardLists = [
-      { name: "lista 1", cards: [ { id: 1, name: "karta 1" }, { id: 2, name: "karta 2" } ] },
-      { name: "lista 2", cards: [ { id: 3, name: "karta 1" }, { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] },
-      { name: "lista 3", cards: [ { id: 3, name: "karta 1" }, { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] },
-      { name: "lista 4", cards: [ { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" }, { id: 4, name: "karta 2" } ] },
-      { name: "lista 5", cards: [ { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] },
-      { name: "lista 6", cards: [ { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] },
-      { name: "lista 6", cards: [ { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] },
-      { name: "lista 6", cards: [ { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] },
-      { name: "lista 6", cards: [ { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] },
-      { name: "lista 7", cards: [ { id: 3, name: "karta 1" }, { id: 4, name: "karta 2" } ] }
-    ]
+    this.getCardLists();
+    this.interval = setInterval(() => this.getCardLists(), this.TWO_MINUTES);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.interval);
   }
 
   visibleAddListForm(): void {
     this.visibleAddList = !this.visibleAddList;
+  }
+
+  public getCardLists(): void {
+    this.apiService.getBoardList(`${this.ENDPOINT_NAME}${this.boardId}`).subscribe(
+      resp => this.getData(resp),
+      error => console.error(error)
+    )
+  }
+
+  private getData(resp: Object): void {
+    this.cardLists = resp['lists'];
+    this.boardName = resp['name'];
+    this.boardId = Number(resp['boardId']);
   }
 }
