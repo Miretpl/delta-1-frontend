@@ -17,6 +17,10 @@ export class ApiService {
     return this.httpClient.get(url, { headers: this.getAuthorizationHeader(), observe: 'body' });
   }
 
+  public register(data: any, endpoint: string) {
+    return this.postRequest(`${this.SERVER_URL}${endpoint}`, data, null);
+  }
+
   public editBoardElement(data: any, endpoint: string) {
     return this.postRequest(this.SERVER_URL + endpoint, data, this.getAuthorizationHeader());
   }

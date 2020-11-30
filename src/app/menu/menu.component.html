@@ -4,6 +4,7 @@
         <ul class="navbar-nav text-center">
             <li *ngIf="isLogged"><a class="nav-link" href="/boards">Boards</a></li>
             <li *ngIf="!isLogged"><a class="nav-link" href="/login">Login</a></li>
+            <li *ngIf="!isLogged"><a class="nav-link" href="/register">Register</a></li>
             <li *ngIf="isLogged"><a class="nav-link" (click)="logout()">Logout</a></li>
         </ul>
     </nav>

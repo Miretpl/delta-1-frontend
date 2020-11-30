@@ -14,7 +14,7 @@ export class AuthService {
   }
 
   public authenticate(token: string): boolean {
-    if (token != null) {
+    if (token != null && token.length != 0) {
       return true;
     }
 
