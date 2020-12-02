@@ -10,6 +10,7 @@ import { BoardNameComponent } from './view-board/board-name/board-name.component
 import { ListComponent } from './view-board/list/list.component';
 import { CardComponent } from './view-board/card/card.component';
 import { NewListComponent } from './view-board/new-list/new-list.component';
+import { NewCardComponent } from './view-board/new-card/new-card.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NewListComponent } from './view-board/new-list/new-list.component';
     BoardNameComponent,
     ListComponent,
     CardComponent,
-    NewListComponent
+    NewListComponent,
+    NewCardComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { NewListComponent } from './view-board/new-list/new-list.component';
     ListBoardsComponent,
     ViewBoardComponent,
     BoardNameComponent,
-    NewListComponent
+    NewListComponent,
+    NewCardComponent
   ]
 })
 
