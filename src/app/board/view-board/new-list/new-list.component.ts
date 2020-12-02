@@ -43,10 +43,7 @@ export class NewListComponent implements OnInit {
           console.log("List created");
           this.close();
         },
-        error => {
-          console.error(error);
-          this.close(); 
-        }
+        error => console.error(error)
       );
     }
   }

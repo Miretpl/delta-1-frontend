@@ -40,7 +40,10 @@ export class NewCardComponent implements OnInit {
 
     if (this.submitted) {
       this.apiService.createCard(this.getData(), this.LIST_CREATE_ENDPOINT).subscribe(
-        resp => console.log("Card created"),
+        resp => {
+          console.log("List created");
+          this.close();
+        },
         error => console.error(error)
       );
 
