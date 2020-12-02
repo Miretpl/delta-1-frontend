@@ -1,4 +1,5 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
+import { AuthService } from '../user/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,8 @@ export class UserService {
 
   private TOKEN: string = "token";
 
-  constructor() {
-    if (this.getCookie(this.TOKEN) != null && this.getCookie(this.TOKEN)[0].length > 0) {
+  constructor(private authService: AuthService) {
+    if (this.authService.isAuthenticated()) {
       this.changeLoggingStatus();
     }
   }

@@ -14,11 +14,7 @@ export class AuthService {
   }
 
   public authenticate(token: string): boolean {
-    if (token != null && token.length != 0) {
-      return true;
-    }
-
-    return false;
+    return !this.jwtHelper.isTokenExpired(token);
   }
 
   private getCookie(name: string) {
