@@ -14,7 +14,7 @@ export class UserService {
     }
   }
 
-  getLoggingStatus(): object {
+  getLoggingStatus(): any {
     return this.loggingStatus;
   }
 

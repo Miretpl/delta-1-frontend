@@ -28,8 +28,6 @@ export class MenuComponent implements OnInit {
       resp => this.handleLogout(),
       error => console.error(error)
     );
-
-    
   }
 
   private handleLogout(): void {
