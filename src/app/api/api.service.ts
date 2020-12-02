@@ -21,6 +21,10 @@ export class ApiService {
     return this.postRequest(`${this.SERVER_URL}${endpoint}`, data, null);
   }
 
+  public logout(endpoint: string) {
+    return this.postRequest(`${this.SERVER_URL}${endpoint}`, null, this.getAuthorizationHeader());
+  }
+
   public editBoardElement(data: any, endpoint: string) {
     return this.postRequest(this.SERVER_URL + endpoint, data, this.getAuthorizationHeader());
   }
