@@ -20,12 +20,12 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  visibleAddCardForm() {
+  visibleAddCardForm(): void {
    this.visibleAddCard = !this.visibleAddCard;
    console.log(this.listId); 
   }
 
-  getCardListsForListComponent() {
+  getCardListsForListComponent(): void {
     this.getCardLists.emit();
   }
 

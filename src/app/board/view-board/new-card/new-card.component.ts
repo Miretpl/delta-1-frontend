@@ -27,7 +27,7 @@ export class NewCardComponent implements OnInit {
     })
   }
 
-  get getFormControls() {
+  get getFormControls(): any {
     return this.createCardForm.controls;
   }
 
@@ -39,7 +39,6 @@ export class NewCardComponent implements OnInit {
     }
 
     if (this.submitted) {
-      console.log(this.getData());
       this.apiService.createCard(this.getData(), this.LIST_CREATE_ENDPOINT).subscribe(
         resp => console.log("Card created"),
         error => console.error(error)
