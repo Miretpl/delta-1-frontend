@@ -1,9 +1,14 @@
-<div class="modal" id="cardviewmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" (blur)="closeCardView()">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="myModalLabel">{{ cardId }}</h5>
+<div class="modal fade" id="cardviewmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" (blur)="closeCardView()">
+  <div class="modal-dialog modal-dialog-centered modal-lg rounded">
+    <div class="modal-content">
+      <div class="row rounded p-3">
+        <div class="col-md-12">
+          <h3>{{ name }}</h3>
+          in list <span class="underline">{{ listName }}</span>
+          <h5 class="mt-5">Description</h5>
+          <span class="text-break">{{ description }}</span>
         </div>
       </div>
     </div>
-</div> 
+  </div>
+</div>

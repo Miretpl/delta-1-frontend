@@ -3,7 +3,7 @@
     <div class="overflow-auto scrollbar list-cards">
         <ul class="list-unstyled">
             <li class="px-1" *ngFor="let card of cards">
-                <app-card-in-list (click)="openCardView(card.cardId)" [name]=card.name></app-card-in-list>
+                <app-card-in-list (click)="openCardView(card.cardId, name)" [name]=card.name></app-card-in-list>
             </li>
             <li class="px-1">
                 <div class="card">

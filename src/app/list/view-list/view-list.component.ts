@@ -22,8 +22,10 @@ export class ViewListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openCardView(cardId: string): void {
+  openCardView(cardId: string, listName: string): void {
     this.apiService.setCookie("cardId", cardId);
+    this.apiService.setCookie("listName", listName);
+
     this.visibleCardViewModal.emit();
   }
 
