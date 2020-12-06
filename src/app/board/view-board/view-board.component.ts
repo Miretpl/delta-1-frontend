@@ -39,7 +39,7 @@ export class ViewBoardComponent implements OnInit {
   }
 
   public getCardLists(): void {
-    this.apiService.getBoardList(`${consts.BOARD_GET_ENDPOINT}/${this.boardId}`).subscribe(
+    this.apiService.executeGetRequest(`${consts.BOARD_GET_ENDPOINT}/${this.boardId}`).subscribe(
       resp => this.getData(resp),
       error => console.error(error)
     )

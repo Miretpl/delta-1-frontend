@@ -22,7 +22,7 @@ export class MenuComponent implements OnInit {
   }
 
   logout(): void {
-    this.apiService.logout(consts.LOGOUT_ENDPOINT).subscribe(
+    this.apiService.executePostRequest(consts.LOGOUT_ENDPOINT, null, true).subscribe(
       resp => this.handleLogout(),
       error => console.error(error)
     );

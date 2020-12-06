@@ -11,39 +11,26 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getBoardList(endpoint: string) {
-    let url = this.getUrl(endpoint);
-    return this.httpClient.get(url, { headers: this.getAuthorizationHeader(), observe: 'body' });
+  public executeGetRequest(endpoint: string) {
+    return this.getRequest(this.getUrl(endpoint), { headers: this.getAuthorizationHeader(), observe: 'body' });
   }
 
-  public register(data: any, endpoint: string) {
-    return this.postRequest(`${this.SERVER_URL}${endpoint}`, data, null);
-  }
-
-  public logout(endpoint: string) {
-    return this.postRequest(`${this.SERVER_URL}${endpoint}`, null, this.getAuthorizationHeader());
-  }
-
-  public editBoardElement(data: any, endpoint: string) {
-    return this.postRequest(this.SERVER_URL + endpoint, data, this.getAuthorizationHeader());
-  }
-
-  public createBoard(data: any, endpoint: string) {
+  public executePutRequest(endpoint: string, data: any) {
     return this.putRequest(this.getUrl(endpoint), data, this.getAuthorizationHeader());
   }
 
-  public createList(data: any, endpoint: string) {
-    return this.putRequest(this.getUrl(endpoint), data, this.getAuthorizationHeader());
+  public executePostRequest(endpoint: string, data: any, auth: boolean) {
+    if (auth) {
+      return this.postRequest(this.getUrl(endpoint), data, this.getHeader());
+    } else {
+      return this.postRequest(this.getUrl(endpoint), data, this.getAuthorizationHeader());
+    }
   }
 
-  public createCard(data: any, endpoint: string) {
-    return this.putRequest(this.getUrl(endpoint), data, this.getAuthorizationHeader());
+  private getRequest(url: string, headers: any) {
+    return this.httpClient.get(url, { headers: headers, observe: 'body' });
   }
-
-  public send(endpoint: string, data: any) {
-    return this.postRequest(this.SERVER_URL + endpoint, data, this.getHeader());
-  }
-
+  
   private putRequest(url: string, data: any, headers: any) {
     return this.httpClient.put(url, data, { headers: headers});
   }

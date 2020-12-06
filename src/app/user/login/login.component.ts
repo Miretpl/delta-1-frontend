@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   private handleLogging(data: any): void {
-    this.apiService.send(consts.LOGIN_ENDPOINT, data).subscribe(
+    this.apiService.executePostRequest(consts.LOGIN_ENDPOINT, data, false).subscribe(
       resp => this.handleLoginMessage(resp),
       error => this.handleLoginErrorMessage(error)
     );
