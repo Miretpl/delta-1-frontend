@@ -21,7 +21,7 @@ export class ChangeCardDescriptionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(): void {
+  updateDescription(): void {
     if (this.description != $("#newDescription").val()) {
       this.apiService.executePostRequest(`${consts.CARD_EDIT_ENDPOINT}/${this.id}`, this.getData($("#newDescription").val()), true).subscribe(
         resp => {
@@ -33,10 +33,10 @@ export class ChangeCardDescriptionComponent implements OnInit {
       );
     }
 
-    this.onClose();
+    this.close();
   }
 
-  onClose(): void {
+  close(): void {
     this.visibleChangeDescription.emit();
   }
 

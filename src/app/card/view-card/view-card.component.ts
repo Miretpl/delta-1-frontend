@@ -16,7 +16,8 @@ export class ViewCardComponent implements OnInit {
   listName: string;
   name: string;
   description: string;
-  insideClick: boolean;
+  isArchive: boolean;
+  isInsideClickComponent: boolean;
   visibleChangeDescriptionField: boolean;
 
   constructor(private apiService: ApiService) { }
@@ -33,12 +34,12 @@ export class ViewCardComponent implements OnInit {
   }
 
   insideClickDetect(): void {
-    this.insideClick = true;
+    this.isInsideClickComponent = true;
   }
 
   closeCardView(): void {
-    if (this.insideClick) {
-      this.insideClick = false;
+    if (this.isInsideClickComponent) {
+      this.isInsideClickComponent = false;
     } else {
       this.apiService.setCookie("cardId", "");
       this.visibleCardViewModal.emit();

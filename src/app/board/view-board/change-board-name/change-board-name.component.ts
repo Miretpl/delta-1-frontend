@@ -8,13 +8,6 @@ import { consts } from 'src/app/config/consts';
   styleUrls: ['./change-board-name.component.css']
 })
 export class ChangeBoardNameComponent implements OnInit {
-  private ENTER_CODE: string = "Enter";
-  private NUMPAD_ENTER_CODE: string = "NumpadEnter";
-  private BACKSPACE_CODE: string = "Backspace";
-  private ARROW_LEFT_CODE: string = "ArrowLeft";
-  private ARROW_RIGHT_CODE: string = "ArrowRight";
-  private ARROW_UP_CODE: string = "ArrowUp";
-  private ARROW_DOWN_CODE: string = "ArrowDown";
   private MAX_NAME_LENGTH: number = 32;
 
   @Input() id: number;
@@ -26,18 +19,18 @@ export class ChangeBoardNameComponent implements OnInit {
   }
 
   checkCharacters(event: any, text: string) : boolean {
-    if (event.code == this.ENTER_CODE || event.code == this.NUMPAD_ENTER_CODE) {
+    if (event.code == consts.ENTER_CODE || event.code == consts.NUMPAD_ENTER_CODE) {
       event.target.blur();
     } else if (text.length >= this.MAX_NAME_LENGTH) {
-      return this.isAllowedCode(event.code);
+      return this.isAllowedKeyCode(event.code);
     }
 
     return true;
   }
 
-  isAllowedCode(code: string): boolean {
-    return code == this.BACKSPACE_CODE || code == this.ARROW_LEFT_CODE || code == this.ARROW_RIGHT_CODE
-      || code == this.ARROW_UP_CODE || code == this.ARROW_DOWN_CODE;
+  isAllowedKeyCode(code: string): boolean {
+    return code == consts.BACKSPACE_CODE || code == consts.ARROW_LEFT_CODE || code == consts.ARROW_RIGHT_CODE
+      || code == consts.ARROW_UP_CODE || code == consts.ARROW_DOWN_CODE;
   }
 
   updateName(value: string) : void {
