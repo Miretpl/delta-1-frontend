@@ -16,6 +16,7 @@ export class ViewCardComponent implements OnInit {
   listName: string;
   name: string;
   description: string;
+  insideClick: boolean;
 
   constructor(private apiService: ApiService) { }
 
@@ -26,10 +27,17 @@ export class ViewCardComponent implements OnInit {
     this.requestCardData();
   }
 
+  insideClickDetect(): void {
+    this.insideClick = true;
+  }
+
   closeCardView(): void {
-    $("#cardviewmodal").modal("hide");
-    this.apiService.setCookie("cardId", "");
-    this.visibleCardViewModal.emit();
+    if (this.insideClick) {
+      this.insideClick = false;
+    } else {
+      this.apiService.setCookie("cardId", "");
+      this.visibleCardViewModal.emit();
+    }
   }
 
   requestCardData(): void {

@@ -2,10 +2,19 @@
     text-decoration: underline;
 }
 
-.row {
-    height: inherit;
+.align-items-center {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 
-.modal-content {
-    height: 600px;
+.card-view {
+    width: 40%;
+    height: 80%;
 } 
