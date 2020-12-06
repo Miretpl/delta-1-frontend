@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
   }
 
   private handleRegistering(data: any): void {
-    this.apiService.register(data, consts.REGISTER_ENDPOINT).subscribe(
+    this.apiService.executePostRequest(consts.REGISTER_ENDPOINT, data, false).subscribe(
       resp => this.handleRegisterMessage(resp),
       error => this.handleRegisterErrorMessage(error)
     );

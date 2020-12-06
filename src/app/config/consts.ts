@@ -7,6 +7,7 @@ export const consts = {
   BOARD_LIST_ENDPOINT: "/board/list",
 
   CARD_CREATE_ENDPOINT: "/card/create",
+  CARD_GET_ENDPOINT: "/card/get",
   
   LIST_CREATE_ENDPOINT: "/list/create",
 

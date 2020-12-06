@@ -37,7 +37,7 @@ export class CreateBoardComponent implements OnInit {
     if (this.submitted) {
       $("#boardcreationmodal").modal("hide");
 
-      this.apiService.createBoard(this.getData(), consts.BOARD_CREATE_ENDPOINT).subscribe(
+      this.apiService.executePutRequest(consts.BOARD_CREATE_ENDPOINT, this.getData()).subscribe(
         resp => console.log("Board created"),
         error => console.error(error)
       );

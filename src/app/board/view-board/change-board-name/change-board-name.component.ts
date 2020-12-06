@@ -35,7 +35,7 @@ export class ChangeBoardNameComponent implements OnInit {
     if (this.name != value) {
       var endpoint = `${consts.BOARD_EDIT_ENDPOINT}/${this.id}`; 
 
-      this.apiService.editBoardElement(this.getData(value), endpoint).subscribe(
+      this.apiService.executePostRequest(endpoint, this.getData(value), true).subscribe(
         resp => {
           console.log("Board name changed");
           this.name = value;

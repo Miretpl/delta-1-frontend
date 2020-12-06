@@ -1,0 +1,11 @@
+.underline {
+    text-decoration: underline;
+}
+
+.row {
+    height: inherit;
+}
+
+.modal-content {
+    height: 600px;
+} 

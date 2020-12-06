@@ -14,7 +14,7 @@ export class BoardInListComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.apiService.getBoardList(consts.BOARD_LIST_ENDPOINT).subscribe(
+    this.apiService.executeGetRequest(consts.BOARD_LIST_ENDPOINT).subscribe(
       resp => this.boardsSeperationByVisibility(resp),
       error => console.error(error)
     );

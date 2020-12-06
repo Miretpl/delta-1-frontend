@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ApiService } from 'src/app/api/api.service';
 
 @Component({
   selector: 'app-view-list',
@@ -7,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ViewListComponent implements OnInit {
   @Output("getCardLists") getCardLists: EventEmitter<any> = new EventEmitter();
+  @Output("visibleCardViewModal") visibleCardViewModal: EventEmitter<any> = new EventEmitter();
 
   @Input() cards: any;
   @Input() name: string;
@@ -15,17 +17,24 @@ export class ViewListComponent implements OnInit {
 
   visibleAddCard: boolean;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
   }
 
+  openCardView(cardId: string, listName: string): void {
+    this.apiService.setCookie("cardId", cardId);
+    this.apiService.setCookie("listName", listName);
+
+    this.visibleCardViewModal.emit();
+  }
+
   visibleAddCardForm(): void {
     this.visibleAddCard = !this.visibleAddCard;
-   }
+  }
  
-   getCardListsForListComponent(): void {
-     this.getCardLists.emit();
-   }
+  getCardListsForListComponent(): void {
+    this.getCardLists.emit();
+  }
 
 }

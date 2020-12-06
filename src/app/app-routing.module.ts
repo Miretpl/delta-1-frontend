@@ -13,7 +13,7 @@ import { RegisterComponent } from './user/register/register.component';
 
 const routes: Routes = [
   {path: 'boards', component: BoardInListComponent, canActivate: [AuthGuardService]},
-  {path: 'boards/:board_id', component: ViewBoardComponent, canActivate: [AuthGuardService]},
+  {path: 'boards/:boardId', component: ViewBoardComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent, canActivate: [AuthGuardNotService]},
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuardNotService]},
   {path: '**', redirectTo: ''}

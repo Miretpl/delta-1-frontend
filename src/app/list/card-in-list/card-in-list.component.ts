@@ -6,9 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./card-in-list.component.css']
 })
 export class CardInListComponent implements OnInit {
-  @Input() id: number;
   @Input() name: string;
-  
+
   constructor() { }
 
   ngOnInit(): void {
