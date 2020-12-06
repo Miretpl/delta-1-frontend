@@ -2,41 +2,27 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { BoardsOverviewComponent } from './boards-overview/boards-overview.component';
-import { CreateBoardComponent } from './create-board/create-board.component';
-import { ListBoardsComponent } from './list-boards/list-boards.component';
-import { ViewBoardComponent } from './view-board/view-board.component';
-import { BoardNameComponent } from './view-board/board-name/board-name.component';
-import { ListComponent } from './view-board/list/list.component';
-import { CardComponent } from './view-board/card/card.component';
-import { NewListComponent } from './view-board/new-list/new-list.component';
-import { NewCardComponent } from './view-board/new-card/new-card.component';
+import { ListModule } from 'src/app/list/list.module'
+
+import { ViewBoardComponent } from './view-board/view-board.component'
+import { CreateBoardComponent } from './create-board/create-board.component'
+import { ChangeBoardNameComponent } from './view-board/change-board-name/change-board-name.component'
+
+
 
 @NgModule({
   declarations: [
-    BoardsOverviewComponent,
-    CreateBoardComponent,
-    ListBoardsComponent,
     ViewBoardComponent,
-    BoardNameComponent,
-    ListComponent,
-    CardComponent,
-    NewListComponent,
-    NewCardComponent
+    CreateBoardComponent,
+    ChangeBoardNameComponent
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ListModule
   ],
   exports:[
-    BoardsOverviewComponent,
-    CreateBoardComponent,
-    ListBoardsComponent,
-    ViewBoardComponent,
-    BoardNameComponent,
-    NewListComponent,
-    NewCardComponent
+    CreateBoardComponent
   ]
 })
-
 export class BoardModule { }

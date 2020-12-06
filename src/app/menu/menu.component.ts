@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { UserService } from '../user/user.service';
-import { ApiService } from '../api/api.service';
-
 import { Router } from "@angular/router";
+import { environment } from 'src/environments/environment';
+import { UserService } from 'src/app/user/service/user.service';
+import { ApiService } from 'src/app/api/api.service';
+import { consts } from 'src/app/config/consts';
 
 @Component({
   selector: 'app-menu',
@@ -11,8 +11,6 @@ import { Router } from "@angular/router";
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  private ENDPOINT_NAME: string = "/logout";
-
   envName = environment.environmentName;
   isLogged: boolean;
 
@@ -24,7 +22,7 @@ export class MenuComponent implements OnInit {
   }
 
   logout(): void {
-    this.apiService.logout(this.ENDPOINT_NAME).subscribe(
+    this.apiService.logout(consts.LOGOUT_ENDPOINT).subscribe(
       resp => this.handleLogout(),
       error => console.error(error)
     );
@@ -36,4 +34,5 @@ export class MenuComponent implements OnInit {
     this.userService.emitLoggingStatus();
     this.router.navigate(["/"]);
   }
+
 }

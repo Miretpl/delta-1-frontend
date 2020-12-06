@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '../../api/api.service';
+import { ApiService } from 'src/app/api/api.service';
+import { consts } from 'src/app/config/consts';
 
 @Component({
   selector: 'app-view-board',
@@ -8,7 +9,6 @@ import { ApiService } from '../../api/api.service';
   styleUrls: ['./view-board.component.css']
 })
 export class ViewBoardComponent implements OnInit {
-  private ENDPOINT_NAME: string = "/board/get/";
   private TWO_MINUTES: number = 120000;
   private interval: any;
 
@@ -34,7 +34,7 @@ export class ViewBoardComponent implements OnInit {
   }
 
   public getCardLists(): void {
-    this.apiService.getBoardList(`${this.ENDPOINT_NAME}${this.boardId}`).subscribe(
+    this.apiService.getBoardList(`${consts.BOARD_GET_ENDPOINT}/${this.boardId}`).subscribe(
       resp => this.getData(resp),
       error => console.error(error)
     )
@@ -45,4 +45,5 @@ export class ViewBoardComponent implements OnInit {
     this.boardName = resp['name'];
     this.boardId = Number(resp['boardId']);
   }
+
 }

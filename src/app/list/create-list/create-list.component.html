@@ -1,0 +1,18 @@
+<div id="listcreationmodal">
+    <form [formGroup]="createListForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <input type="text" placeholder="Add list name" formControlName="listName" class="form-control" [ngClass]="{ 'is-invalid': submitted && getFormControls.listName.errors }" />
+                    <div *ngIf="submitted && getFormControls.listName.errors" class="invalid-feedback">
+                        <div *ngIf="getFormControls.listName.errors.required">List name is required</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Add List</button>
+            <button type="button" class="btn btn-dark ml-1" (click)=close()>Close</button>
+        </div>
+    </form>
+</div>

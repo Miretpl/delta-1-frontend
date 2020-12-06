@@ -1,17 +1,19 @@
 <div class="board">
     <nav class="navbar navbar-expand-md board-menu">
         <ul class="navbar-nav text-center">
-            <li><app-board-name name="{{ boardName }}" id="{{ boardId }}"></app-board-name></li>
+            <li>
+                <app-change-board-name name="{{ boardName }}" id="{{ boardId }}"></app-change-board-name>
+            </li>
         </ul>
     </nav>
     <div class="overflow-auto text-nowrap scrollbar px-2 board-lists">
-        <app-board-list-cards *ngFor="let list of cardLists" (getCardLists)="getCardLists()" [name]="list.name" [cards]="list.cards" [listId]="list.listId" [boardId]="boardId"></app-board-list-cards>
+        <app-view-list *ngFor="let list of cardLists" (getCardLists)="getCardLists()" [name]="list.name" [cards]="list.cards" [listId]="list.listId" [boardId]="boardId"></app-view-list>
         <div class="mx-1 p-1 rounded mh-100 list d-inline-block align-top shadow-sm card">
             <div [hidden]="visibleAddList">
                 <h6 class="px-2 pt-1 text-break">Add new list</h6>
                 <a class="stretched-link" (click)=visibleAddListForm()></a>
             </div>
-        <app-new-list [hidden]="!visibleAddList" (getCardLists)="getCardLists()" (visibleAddListForm)="visibleAddListForm()" [board_id]=boardId></app-new-list>
+            <app-create-list [hidden]="!visibleAddList" (getCardLists)="getCardLists()" (visibleAddListForm)="visibleAddListForm()" [boardId]=boardId></app-create-list>
         </div>
     </div>
 </div>

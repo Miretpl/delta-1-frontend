@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { ApiService } from '../../api/api.service';
+import { ApiService } from 'src/app/api/api.service';
+import { consts } from 'src/app/config/consts';
 
 declare var $: any;
 
@@ -11,8 +11,6 @@ declare var $: any;
   styleUrls: ['./create-board.component.css']
 })
 export class CreateBoardComponent implements OnInit {
-  private BOARD_CREATE_ENDPOINT = '/board/create';
-  
   createBoardForm: FormGroup;
   submitted = false;
 
@@ -25,11 +23,11 @@ export class CreateBoardComponent implements OnInit {
     })
   }
 
-  get getFormControls() {
+  get getFormControls(): any {
     return this.createBoardForm.controls;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.submitted = true;
 
     if (this.createBoardForm.invalid) {
@@ -39,17 +37,18 @@ export class CreateBoardComponent implements OnInit {
     if (this.submitted) {
       $("#boardcreationmodal").modal("hide");
 
-      this.apiService.createBoard(this.getData(), this.BOARD_CREATE_ENDPOINT).subscribe(
+      this.apiService.createBoard(this.getData(), consts.BOARD_CREATE_ENDPOINT).subscribe(
         resp => console.log("Board created"),
         error => console.error(error)
       );
     }
   }
 
-  private getData() {
+  private getData(): object {
     return {
       name: this.createBoardForm.get("boardName").value,
       is_public: this.createBoardForm.get("visibility").value == "true"
     };
   }
+
 }
