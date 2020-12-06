@@ -11,6 +11,10 @@ export class ChangeBoardNameComponent implements OnInit {
   private ENTER_CODE: string = "Enter";
   private NUMPAD_ENTER_CODE: string = "NumpadEnter";
   private BACKSPACE_CODE: string = "Backspace";
+  private ARROW_LEFT_CODE: string = "ArrowLeft";
+  private ARROW_RIGHT_CODE: string = "ArrowRight";
+  private ARROW_UP_CODE: string = "ArrowUp";
+  private ARROW_DOWN_CODE: string = "ArrowDown";
   private MAX_NAME_LENGTH: number = 32;
 
   @Input() id: number;
@@ -25,7 +29,8 @@ export class ChangeBoardNameComponent implements OnInit {
     if (event.code == this.ENTER_CODE || event.code == this.NUMPAD_ENTER_CODE) {
       event.target.blur();
     } else if (text.length >= this.MAX_NAME_LENGTH) {
-      return event.code == this.BACKSPACE_CODE;
+      return event.code == this.BACKSPACE_CODE || event.code == this.ARROW_LEFT_CODE || event.code == this.ARROW_RIGHT_CODE
+        || event.code == this.ARROW_UP_CODE || event.code == this.ARROW_DOWN_CODE;
     }
 
     return true;
