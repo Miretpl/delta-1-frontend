@@ -39,9 +39,9 @@ export class ViewCardComponent implements OnInit {
     );
   }
 
-  extractCardData(data: any): void {
-    this.name = data["name"];
-    this.description = data["description"]
+  extractCardData(resp: Object): void {
+    this.name = resp['name'];
+    this.description = resp['description'];
   }
 
 }
