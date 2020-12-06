@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router"
 import { ApiService } from 'src/app/api/api.service';
+import { consts } from 'src/app/config/consts';
 
 @Component({
   selector: 'app-register',
@@ -8,8 +9,6 @@ import { ApiService } from 'src/app/api/api.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  private ENDPOINT_NAME: string = "/register";
-
   showDangerMessage: boolean = false;
   
   email: string;
@@ -37,7 +36,7 @@ export class RegisterComponent implements OnInit {
   }
 
   private handleRegistering(data: any): void {
-    this.apiService.register(data, this.ENDPOINT_NAME).subscribe(
+    this.apiService.register(data, consts.REGISTER_ENDPOINT).subscribe(
       resp => this.handleRegisterMessage(resp),
       error => this.handleRegisterErrorMessage(error)
     );
@@ -65,4 +64,5 @@ export class RegisterComponent implements OnInit {
       description: this.description 
     };
   }
+
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router"
 import { ApiService } from 'src/app/api/api.service';
-import { AuthService } from '../auth/auth.service';
-import { UserService } from '../user.service';
+import { AuthService } from 'src/app/user/auth/auth.service';
+import { UserService } from 'src/app/user/service/user.service';
+import { consts } from 'src/app/config/consts';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,6 @@ import { UserService } from '../user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private TOKEN_NAME: string = "token";
-  private ENDPOINT_NAME: string = "/login";
-
   isShow: boolean = false;
   username: string;
   password: string;
@@ -22,18 +20,18 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login() {
+  login(): void {
     this.handleLogging(this.getAuthenticationJSON());
   }
 
-  private handleLogging(data: any) {
-    this.apiService.send(this.ENDPOINT_NAME, data).subscribe(
+  private handleLogging(data: any): void {
+    this.apiService.send(consts.LOGIN_ENDPOINT, data).subscribe(
       resp => this.handleLoginMessage(resp),
       error => this.handleLoginErrorMessage(error)
     );
   }
 
-  private handleLoginErrorMessage(error: any) {
+  private handleLoginErrorMessage(error: any): void {
     if (!this.isShow) {
       this.isShow = !this.isShow;
     }
@@ -41,26 +39,26 @@ export class LoginComponent implements OnInit {
     console.log(error);
   }
 
-  private handleLoginMessage(resp: Object) {
-    var token = resp[this.TOKEN_NAME];
+  private handleLoginMessage(resp: Object): void {
+    var token = resp[consts.TOKEN_NAME];
 
     if (this.authService.authenticate(token)) {
-      this.setTokenCookie(this.TOKEN_NAME, token);
+      this.setTokenCookie(consts.TOKEN_NAME, token);
       this.loginStatus();
     }
   }
 
-  private loginStatus() {
+  private loginStatus(): void {
     this.userService.changeLoggingStatus();
     this.userService.emitLoggingStatus();
     this.router.navigate(["/boards"]);
   }
 
-  private setTokenCookie(name: string, value: string) {
+  private setTokenCookie(name: string, value: string): void {
     document.cookie = `${name}=${value};`;
   }
 
-  private getAuthenticationJSON() {
+  private getAuthenticationJSON(): string {
     return `{"username": "${this.username}", "password": "${this.password}"}`;
   }
 

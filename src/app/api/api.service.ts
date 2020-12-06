@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-import { environment } from '../../environments/environment';
+import { environment } from 'src/environments/environment';
+import { consts } from 'src/app/config/consts';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   private SERVER_URL = environment.serverUrl;
-  private TOKEN_NAME = "token";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -64,11 +63,11 @@ export class ApiService {
   private getAuthorizationHeader() {
     return new HttpHeaders()
       .set('Content-Type', 'application/json')
-      .set('Authorization', `${this.getCookie(this.TOKEN_NAME)}`);
+      .set('Authorization', `${this.getCookie(consts.TOKEN_NAME)}`);
   }
 
   private getCookie(name: string) {
     return document.cookie.match(`(?<=${name}=).[^;]{0,}`);
   }
-}
 
+}
