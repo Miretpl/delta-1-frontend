@@ -7,7 +7,7 @@
         </ul>
     </nav>
     <div class="overflow-auto text-nowrap scrollbar px-2 board-lists">
-        <app-view-list *ngFor="let list of cardLists" (getCardLists)="getCardLists()" [name]="list.name" [cards]="list.cards" [listId]="list.listId" [boardId]="boardId"></app-view-list>
+        <app-view-list *ngFor="let list of cardLists" (visibleCardViewModal)="visibleCardViewModal()" (getCardLists)="getCardLists()" [name]="list.name" [cards]="list.cards" [listId]="list.listId" [boardId]="boardId"></app-view-list>
         <div class="mx-1 p-1 rounded mh-100 list d-inline-block align-top shadow-sm card">
             <div [hidden]="visibleAddList">
                 <h6 class="px-2 pt-1 text-break">Add new list</h6>
@@ -16,4 +16,5 @@
             <app-create-list [hidden]="!visibleAddList" (getCardLists)="getCardLists()" (visibleAddListForm)="visibleAddListForm()" [boardId]=boardId></app-create-list>
         </div>
     </div>
+    <app-view-card *ngIf="visibleCardView" (visibleCardViewModal)="visibleCardViewModal()"></app-view-card>
 </div>

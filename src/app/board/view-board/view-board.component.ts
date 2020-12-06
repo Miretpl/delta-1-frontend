@@ -15,18 +15,23 @@ export class ViewBoardComponent implements OnInit {
   boardId: number;
   boardName: string;
   cardLists: any;
-  visibleAddList : boolean;
+  visibleAddList: boolean;
+  visibleCardView: boolean;
 
   constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.boardId = Number(this.activatedRoute.snapshot.params.board_id);
+    this.boardId = Number(this.activatedRoute.snapshot.params.boardId);
     this.getCardLists();
     this.interval = setInterval(() => this.getCardLists(), this.TWO_MINUTES);
   }
 
   ngOnDestroy(): void {
     clearInterval(this.interval);
+  }
+
+  visibleCardViewModal(): void {
+    this.visibleCardView = !this.visibleCardView;
   }
 
   visibleAddListForm(): void {
