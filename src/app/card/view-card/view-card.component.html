@@ -2,7 +2,7 @@
   <div class="mx-auto rounded bg-white card-view" (click)="insideClickDetect()">
     <div class="row rounded p-3">
       <div class="col-md-12">
-        <h3>{{ name }}</h3>
+        <app-change-card-name name="{{ name }}" id="{{ cardId }}"></app-change-card-name>
         in list <span class="underline">{{ listName }}</span>
         <h5 class="mt-5">Description</h5>
         <span class="text-break">{{ description }}</span>
