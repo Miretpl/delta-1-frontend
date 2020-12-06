@@ -66,7 +66,11 @@ export class ApiService {
       .set('Authorization', `${this.getCookie(consts.TOKEN_NAME)}`);
   }
 
-  private getCookie(name: string) {
+  public setCookie(name: string, value: string) {
+    document.cookie = `${name}=${value};`;
+  }
+
+  public getCookie(name: string) {
     return document.cookie.match(`(?<=${name}=).[^;]{0,}`);
   }
 
