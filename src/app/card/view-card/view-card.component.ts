@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ApiService } from 'src/app/api/api.service';
+import { consts } from 'src/app/config/consts';
 
 declare var $: any;
 
@@ -22,7 +23,7 @@ export class ViewCardComponent implements OnInit {
     this.cardId = Number(this.apiService.getCookie("cardId"));
     this.listName = String(this.apiService.getCookie("listName"));
 
-    this.getCardData();
+    this.requestCardData();
   }
 
   closeCardView(): void {
@@ -31,9 +32,16 @@ export class ViewCardComponent implements OnInit {
     this.visibleCardViewModal.emit();
   }
 
-  getCardData(): void {
-    this.name = "nazwa testowej karty";
-    this.description = "opis testowej karty";
+  requestCardData(): void {
+    this.apiService.executeGetRequest(`${consts.CARD_GET_ENDPOINT}/${this.cardId}`).subscribe(
+      resp => this.extractCardData(resp),
+      error => console.error(error)
+    );
+  }
+
+  extractCardData(data: any): void {
+    this.name = data["name"];
+    this.description = data["description"]
   }
 
 }
