@@ -5,7 +5,11 @@
         <app-change-card-name name="{{ name }}" id="{{ cardId }}"></app-change-card-name>
         in list <span class="underline">{{ listName }}</span>
         <h5 class="mt-5">Description</h5>
-        <span class="text-break">{{ description }}</span>
+        <div [hidden]="visibleChangeDescriptionField" class="hoverable rounded">
+          <span class="text-break">{{ description }}</span>
+          <a class="stretched-link" (click)=visibleChangeDescription()></a>
+        </div>
+        <app-change-card-description [hidden]="!visibleChangeDescriptionField" (visibleChangeDescription)="visibleChangeDescription()" (requestCardData)="requestCardData()" description="{{ description }}" id="{{ cardId }}"></app-change-card-description>
       </div>
     </div>
   </div>

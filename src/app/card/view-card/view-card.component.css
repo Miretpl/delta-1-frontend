@@ -17,4 +17,16 @@
 .card-view {
     width: 40%;
     height: 80%;
-} 
+}
+
+a {
+    cursor: pointer;
+}
+
+.hoverable {
+    transition: all 0.3s;
+}
+
+.hoverable:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}

@@ -38,9 +38,7 @@ export class ChangeCardNameComponent implements OnInit {
 
   updateName(value: string) : void {
     if (this.name != value) {
-      var endpoint = `${consts.CARD_EDIT_ENDPOINT}/${this.id}`; 
-      console.log(this.getData(value));
-      this.apiService.executePostRequest(endpoint, this.getData(value), true).subscribe(
+      this.apiService.executePostRequest(`${consts.CARD_EDIT_ENDPOINT}/${this.id}`, this.getData(value), true).subscribe(
         resp => {
           console.log("Card name changed");
           this.name = value;

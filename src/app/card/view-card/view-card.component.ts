@@ -17,6 +17,7 @@ export class ViewCardComponent implements OnInit {
   name: string;
   description: string;
   insideClick: boolean;
+  visibleChangeDescriptionField: boolean;
 
   constructor(private apiService: ApiService) { }
 
@@ -25,6 +26,10 @@ export class ViewCardComponent implements OnInit {
     this.listName = String(this.apiService.getCookie("listName"));
 
     this.requestCardData();
+  }
+
+  visibleChangeDescription(): void {
+    this.visibleChangeDescriptionField = !this.visibleChangeDescriptionField;
   }
 
   insideClickDetect(): void {
