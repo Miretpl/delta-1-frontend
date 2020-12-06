@@ -29,11 +29,15 @@ export class ChangeCardNameComponent implements OnInit {
     if (event.code == this.ENTER_CODE || event.code == this.NUMPAD_ENTER_CODE) {
       event.target.blur();
     } else if (text.length >= this.MAX_NAME_LENGTH) {
-      return event.code == this.BACKSPACE_CODE || event.code == this.ARROW_LEFT_CODE || event.code == this.ARROW_RIGHT_CODE
-        || event.code == this.ARROW_UP_CODE || event.code == this.ARROW_DOWN_CODE;
+      return this.isAllowedCode(event.code);
     }
 
     return true;
+  }
+
+  isAllowedCode(code: string): boolean {
+    return code == this.BACKSPACE_CODE || code == this.ARROW_LEFT_CODE || code == this.ARROW_RIGHT_CODE
+      || code == this.ARROW_UP_CODE || code == this.ARROW_DOWN_CODE;
   }
 
   updateName(value: string) : void {
