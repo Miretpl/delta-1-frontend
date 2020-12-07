@@ -17,9 +17,11 @@ export class ViewCardComponent implements OnInit {
   listName: string;
   name: string;
   description: string;
-  isArchive: boolean;
+  dueDate: string;
+  isArchived: boolean;
   isInsideClickComponent: boolean;
   visibleChangeDescriptionField: boolean;
+  visibleDueDatePicker: boolean;
 
   constructor(private apiService: ApiService) { }
 
@@ -28,6 +30,10 @@ export class ViewCardComponent implements OnInit {
     this.listName = String(this.apiService.getCookie("listName"));
 
     this.requestCardData();
+  }
+
+  changeVisibilityOfDueDatePicker(): void {
+    this.visibleDueDatePicker = !this.visibleDueDatePicker;
   }
 
   archiveCard(): void {
@@ -84,6 +90,8 @@ export class ViewCardComponent implements OnInit {
   extractCardData(resp: Object): void {
     this.name = resp['name'];
     this.description = resp['description'];
+    this.isArchived = resp['isArchived'];
+    this.dueDate = resp['dueDate'];
   }
 
   private async refreshBoardAndCard(): Promise<void> {
@@ -93,7 +101,7 @@ export class ViewCardComponent implements OnInit {
 
   private getData(newValue: boolean): object {
     return {
-      name: "isArchive",
+      name: "isArchived",
       value: newValue
     }
   }

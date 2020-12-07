@@ -1,0 +1,20 @@
+.due-date-picker {
+    position: fixed;
+    top: inherit;
+    left: inherit;
+}
+
+.timepicker {
+    position: relative;
+    margin: 0 auto;
+    width: 60%;
+}
+
+.center {
+ margin: 0 auto;
+}
+
+.date-title {
+    display: block;
+    width: 100%;
+}

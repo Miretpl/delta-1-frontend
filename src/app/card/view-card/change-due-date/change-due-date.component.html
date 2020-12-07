@@ -1,0 +1,19 @@
+<div class="due-date-picker p-2 mt-2 rounded bg-light shadow">
+    <div class="input-group mt-2 text-center">
+        <h6 class="date-title">Date</h6>
+        <div class="center">
+            <input type="text" class="form-control text-center" placeholder="yyyy-mm-dd" [(ngModel)]="calendarModel" ngbDatepicker>
+        </div>
+    </div>
+    <ngb-datepicker class="mt-2" #dp [(ngModel)]="calendarModel"></ngb-datepicker>
+    <div class="mt-2 text-center">
+        <h6>Time</h6>
+        <div class="timepicker">
+            <ngb-timepicker [(ngModel)]="timeModel"></ngb-timepicker>
+        </div>
+    </div>
+    <div class="mt-2">
+        <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+        <button type="button" class="btn btn-danger ml-2" (click)="remove()">Remove</button>
+    </div>
+</div>

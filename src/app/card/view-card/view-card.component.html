@@ -1,7 +1,7 @@
 <div class="align-items-center" (click)="closeCardView()">
   <div class="mx-auto rounded bg-white card-view" (click)="insideClickDetect()">
-    <div class="row rounded p-3">
-      <div [hidden]="!isArchive" class="col-md-12 p-3 mb-2 bg-warning text-dark">
+      <div class="row rounded p-3">
+      <div [hidden]="!isArchived" class="col-md-12 p-3 mb-2 bg-warning text-dark">
         <h4>This card is archived.</h4>
       </div>
       <div class="col-md-12">
@@ -17,11 +17,16 @@
         <app-change-card-description [hidden]="!visibleChangeDescriptionField" (visibleChangeDescription)="visibleChangeDescription()" (requestCardData)="requestCardData()" description="{{ description }}" id="{{ cardId }}"></app-change-card-description>
       </div>
       <div class="col-md-3">
+        <div>
+          <h6>ADD TO CARD</h6>
+          <button type="submit" class="btn btn-light mt-1 text-left shadow-sm" style="width: 100%;" (click)="changeVisibilityOfDueDatePicker()">Due Date</button>
+          <app-change-due-date [hidden]="!visibleDueDatePicker" (changeVisibilityOfDueDatePicker)="changeVisibilityOfDueDatePicker()" (requestCardData)="requestCardData()" cardId="{{ cardId }}" dueDate="{{ dueDate }}"></app-change-due-date>
+        </div>
         <div class="mt-4">
           <h6>ACTIONS</h6>
-          <button [hidden]="isArchive" type="button" class="btn btn-light mt-1 text-left shadow-sm" style="width: 100%;" (click)="archiveCard()">Archive</button>
-          <button [hidden]="!isArchive" type="button" class="btn btn-light mt-1 text-left shadow-sm" style="width: 100%;" (click)="sendCardToBoard()">Send to board</button>
-          <button [hidden]="!isArchive" type="button" class="btn btn-danger mt-1 text-left shadow-sm" style="width: 100%;" (click)="deleteCard()">Delete</button>
+          <button [hidden]="isArchived" type="button" class="btn btn-light mt-1 text-left shadow-sm" style="width: 100%;" (click)="archiveCard()">Archive</button>
+          <button [hidden]="!isArchived" type="button" class="btn btn-light mt-1 text-left shadow-sm" style="width: 100%;" (click)="sendCardToBoard()">Send to board</button>
+          <button [hidden]="!isArchived" type="button" class="btn btn-danger mt-1 text-left shadow-sm" style="width: 100%;" (click)="deleteCard()">Delete</button>
         </div>
       </div>
     </div>
