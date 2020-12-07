@@ -16,5 +16,5 @@
             <app-create-list [hidden]="!visibleAddList" (getCardLists)="getCardLists()" (visibleAddListForm)="visibleAddListForm()" [boardId]=boardId></app-create-list>
         </div>
     </div>
-    <app-view-card *ngIf="visibleCardView" (visibleCardViewModal)="visibleCardViewModal()"></app-view-card>
+    <app-view-card *ngIf="visibleCardView" (visibleCardViewModal)="visibleCardViewModal()" (getCardLists)="getCardLists()"></app-view-card>
 </div>

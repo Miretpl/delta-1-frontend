@@ -1,15 +1,28 @@
 <div class="align-items-center" (click)="closeCardView()">
   <div class="mx-auto rounded bg-white card-view" (click)="insideClickDetect()">
     <div class="row rounded p-3">
+      <div [hidden]="!isArchive" class="col-md-12 p-3 mb-2 bg-warning text-dark">
+        <h4>This card is archived.</h4>
+      </div>
       <div class="col-md-12">
         <app-change-card-name name="{{ name }}" id="{{ cardId }}"></app-change-card-name>
         in list <span class="underline">{{ listName }}</span>
+      </div>
+      <div class="col-md-9">
         <h5 class="mt-5">Description</h5>
         <div [hidden]="visibleChangeDescriptionField" class="hoverable rounded card">
           <span class="text-break">{{ description }}</span>
           <a class="stretched-link" (click)=visibleChangeDescription()></a>
         </div>
         <app-change-card-description [hidden]="!visibleChangeDescriptionField" (visibleChangeDescription)="visibleChangeDescription()" (requestCardData)="requestCardData()" description="{{ description }}" id="{{ cardId }}"></app-change-card-description>
+      </div>
+      <div class="col-md-3">
+        <div class="mt-4">
+          <h6>ACTIONS</h6>
+          <button [hidden]="isArchive" type="button" class="btn btn-light mt-1 text-left shadow-sm" style="width: 100%;" (click)="archiveCard()">Archive</button>
+          <button [hidden]="!isArchive" type="button" class="btn btn-light mt-1 text-left shadow-sm" style="width: 100%;" (click)="sendCardToBoard()">Send to board</button>
+          <button [hidden]="!isArchive" type="button" class="btn btn-danger mt-1 text-left shadow-sm" style="width: 100%;" (click)="deleteCard()">Delete</button>
+        </div>
       </div>
     </div>
   </div>
