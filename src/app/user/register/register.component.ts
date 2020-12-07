@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router"
 import { ApiService } from 'src/app/api/api.service';
-import { consts } from 'src/app/config/consts';
+import { endpoints } from 'src/app/config/endpoints';
 
 @Component({
   selector: 'app-register',
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
   }
 
   private handleRegistering(data: any): void {
-    this.apiService.executePostRequest(consts.REGISTER_ENDPOINT, data, false).subscribe(
+    this.apiService.executePostRequest(endpoints.REGISTER, data, false).subscribe(
       resp => this.handleRegisterMessage(resp),
       error => this.handleRegisterErrorMessage(error)
     );

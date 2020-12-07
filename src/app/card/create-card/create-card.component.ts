@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/api/api.service';
-import { consts } from 'src/app/config/consts';
+import { endpoints } from 'src/app/config/endpoints';
 
 @Component({
   selector: 'app-create-card',
@@ -38,7 +38,7 @@ export class CreateCardComponent implements OnInit {
     }
 
     if (this.submitted) {
-      this.apiService.executePutRequest(consts.CARD_CREATE_ENDPOINT, this.getData()).subscribe(
+      this.apiService.executePutRequest(endpoints.CARD_CREATE, this.getData()).subscribe(
         resp => {
           console.log("List created");
           this.close();

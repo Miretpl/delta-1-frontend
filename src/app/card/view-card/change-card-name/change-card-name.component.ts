@@ -4,12 +4,12 @@ import { keys } from 'src/app/config/keys';
 import { endpoints } from 'src/app/config/endpoints';
 
 @Component({
-  selector: 'app-change-board-name',
-  templateUrl: './change-board-name.component.html',
-  styleUrls: ['./change-board-name.component.css']
+  selector: 'app-change-card-name',
+  templateUrl: './change-card-name.component.html',
+  styleUrls: ['./change-card-name.component.css']
 })
-export class ChangeBoardNameComponent implements OnInit {
-  private MAX_NAME_LENGTH: number = 32;
+export class ChangeCardNameComponent implements OnInit {
+  private MAX_NAME_LENGTH: number = 60;
 
   @Input() id: number;
   @Input() name: string;
@@ -36,11 +36,9 @@ export class ChangeBoardNameComponent implements OnInit {
 
   updateName(value: string) : void {
     if (this.name != value) {
-      var endpoint = `${endpoints.BOARD_EDIT}/${this.id}`; 
-
-      this.apiService.executePostRequest(endpoint, this.getData(value), true).subscribe(
+      this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.id}`, this.getData(value), true).subscribe(
         resp => {
-          console.log("Board name changed");
+          console.log("Card name changed");
           this.name = value;
         },
         error => console.error(error)
@@ -54,5 +52,5 @@ export class ChangeBoardNameComponent implements OnInit {
       value: newValue
     }
   }
-  
+
 }

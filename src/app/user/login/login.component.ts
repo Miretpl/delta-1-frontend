@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/api/api.service';
 import { AuthService } from 'src/app/user/auth/auth.service';
 import { UserService } from 'src/app/user/service/user.service';
 import { consts } from 'src/app/config/consts';
+import { endpoints } from 'src/app/config/endpoints';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   private handleLogging(data: any): void {
-    this.apiService.executePostRequest(consts.LOGIN_ENDPOINT, data, false).subscribe(
+    this.apiService.executePostRequest(endpoints.LOGIN, data, false).subscribe(
       resp => this.handleLoginMessage(resp),
       error => this.handleLoginErrorMessage(error)
     );

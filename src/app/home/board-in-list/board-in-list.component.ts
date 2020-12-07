@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api/api.service';
-import { consts } from 'src/app/config/consts';
+import { endpoints } from 'src/app/config/endpoints';
 
 @Component({
   selector: 'app-board-in-list',
@@ -14,7 +14,7 @@ export class BoardInListComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.apiService.executeGetRequest(consts.BOARD_LIST_ENDPOINT).subscribe(
+    this.apiService.executeGetRequest(endpoints.BOARD_LIST).subscribe(
       resp => this.boardsSeperationByVisibility(resp),
       error => console.error(error)
     );

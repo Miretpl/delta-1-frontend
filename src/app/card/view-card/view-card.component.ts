@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ApiService } from 'src/app/api/api.service';
-import { consts } from 'src/app/config/consts';
+import { endpoints } from 'src/app/config/endpoints';
 
 declare var $: any;
 
@@ -16,6 +16,9 @@ export class ViewCardComponent implements OnInit {
   listName: string;
   name: string;
   description: string;
+  isArchive: boolean;
+  isInsideClickComponent: boolean;
+  visibleChangeDescriptionField: boolean;
 
   constructor(private apiService: ApiService) { }
 
@@ -26,14 +29,25 @@ export class ViewCardComponent implements OnInit {
     this.requestCardData();
   }
 
+  visibleChangeDescription(): void {
+    this.visibleChangeDescriptionField = !this.visibleChangeDescriptionField;
+  }
+
+  insideClickDetect(): void {
+    this.isInsideClickComponent = true;
+  }
+
   closeCardView(): void {
-    $("#cardviewmodal").modal("hide");
-    this.apiService.setCookie("cardId", "");
-    this.visibleCardViewModal.emit();
+    if (this.isInsideClickComponent) {
+      this.isInsideClickComponent = false;
+    } else {
+      this.apiService.setCookie("cardId", "");
+      this.visibleCardViewModal.emit();
+    }
   }
 
   requestCardData(): void {
-    this.apiService.executeGetRequest(`${consts.CARD_GET_ENDPOINT}/${this.cardId}`).subscribe(
+    this.apiService.executeGetRequest(`${endpoints.CARD_GET}/${this.cardId}`).subscribe(
       resp => this.extractCardData(resp),
       error => console.error(error)
     );
