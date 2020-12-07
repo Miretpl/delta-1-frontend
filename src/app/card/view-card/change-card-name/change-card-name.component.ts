@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api/api.service';
 import { consts } from 'src/app/config/consts';
+import { endpoints } from 'src/app/config/endpoints';
 
 @Component({
   selector: 'app-change-card-name',
@@ -35,7 +36,7 @@ export class ChangeCardNameComponent implements OnInit {
 
   updateName(value: string) : void {
     if (this.name != value) {
-      this.apiService.executePostRequest(`${consts.CARD_EDIT_ENDPOINT}/${this.id}`, this.getData(value), true).subscribe(
+      this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.id}`, this.getData(value), true).subscribe(
         resp => {
           console.log("Card name changed");
           this.name = value;

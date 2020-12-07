@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api/api.service';
 import { consts } from 'src/app/config/consts';
+import { endpoints } from 'src/app/config/endpoints';
 
 @Component({
   selector: 'app-change-board-name',
@@ -35,7 +36,7 @@ export class ChangeBoardNameComponent implements OnInit {
 
   updateName(value: string) : void {
     if (this.name != value) {
-      var endpoint = `${consts.BOARD_EDIT_ENDPOINT}/${this.id}`; 
+      var endpoint = `${endpoints.BOARD_EDIT}/${this.id}`; 
 
       this.apiService.executePostRequest(endpoint, this.getData(value), true).subscribe(
         resp => {

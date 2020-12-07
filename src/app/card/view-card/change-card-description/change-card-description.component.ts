@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from 'src/app/api/api.service';
-import { consts } from 'src/app/config/consts';
+import { endpoints } from 'src/app/config/endpoints';
 
 declare var $: any;
 
@@ -23,7 +23,7 @@ export class ChangeCardDescriptionComponent implements OnInit {
 
   updateDescription(): void {
     if (this.description != $("#newDescription").val()) {
-      this.apiService.executePostRequest(`${consts.CARD_EDIT_ENDPOINT}/${this.id}`, this.getData($("#newDescription").val()), true).subscribe(
+      this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.id}`, this.getData($("#newDescription").val()), true).subscribe(
         resp => {
           console.log("Card description changed");
           this.description = $("#newDescription").val();

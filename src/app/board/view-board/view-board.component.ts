@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/api/api.service';
-import { consts } from 'src/app/config/consts';
+import { endpoints } from 'src/app/config/endpoints';
 
 @Component({
   selector: 'app-view-board',
@@ -39,7 +39,7 @@ export class ViewBoardComponent implements OnInit {
   }
 
   public getCardLists(): void {
-    this.apiService.executeGetRequest(`${consts.BOARD_GET_ENDPOINT}/${this.boardId}`).subscribe(
+    this.apiService.executeGetRequest(`${endpoints.BOARD_GET}/${this.boardId}`).subscribe(
       resp => this.getData(resp),
       error => console.error(error)
     )

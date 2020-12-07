@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/api/api.service';
-import { consts } from 'src/app/config/consts';
+import { endpoints } from 'src/app/config/endpoints';
 
 declare var $: any;
 
@@ -37,7 +37,7 @@ export class CreateBoardComponent implements OnInit {
     if (this.submitted) {
       $("#boardcreationmodal").modal("hide");
 
-      this.apiService.executePutRequest(consts.BOARD_CREATE_ENDPOINT, this.getData()).subscribe(
+      this.apiService.executePutRequest(endpoints.BOARD_CREATE, this.getData()).subscribe(
         resp => console.log("Board created"),
         error => console.error(error)
       );

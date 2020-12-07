@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ApiService } from 'src/app/api/api.service';
-import { consts } from 'src/app/config/consts';
+import { endpoints } from 'src/app/config/endpoints';
 
 declare var $: any;
 
@@ -47,7 +47,7 @@ export class ViewCardComponent implements OnInit {
   }
 
   requestCardData(): void {
-    this.apiService.executeGetRequest(`${consts.CARD_GET_ENDPOINT}/${this.cardId}`).subscribe(
+    this.apiService.executeGetRequest(`${endpoints.CARD_GET}/${this.cardId}`).subscribe(
       resp => this.extractCardData(resp),
       error => console.error(error)
     );
