@@ -12,7 +12,7 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
   public executeGetRequest(endpoint: string) {
-    return this.getRequest(this.getUrl(endpoint), { headers: this.getAuthorizationHeader(), observe: 'body' });
+    return this.getRequest(this.getUrl(endpoint), this.getAuthorizationHeader());
   }
 
   public executePutRequest(endpoint: string, data: any) {
@@ -25,6 +25,14 @@ export class ApiService {
     } else {
       return this.postRequest(this.getUrl(endpoint), data, this.getAuthorizationHeader());
     }
+  }
+
+  public executeDeleteRequest(endpoint: string) {
+    return this.deleteRequest(this.getUrl(endpoint), this.getAuthorizationHeader());
+  }
+
+  private deleteRequest(url: string, headers: any) {
+    return this.httpClient.delete(url, { headers: headers });
   }
 
   private getRequest(url: string, headers: any) {
