@@ -27,30 +27,27 @@ export class ChangeDueDateComponent implements OnInit {
     this.setDueDate();
   }
 
-  save(): void {
-    this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(this.getDateTimeFromPicker()), true).subscribe(
-      resp => {
-        console.log("Due date added.");
-        this.requestCardData.emit();
-      },
-      error => console.log(error)
-    )
+  saveDueDate(): void {
+    this.sendChangesToServer(this.getDateTimeFromPicker(), "created");
+    this.changeVisibilityOfDueDatePicker.emit();
+  }
+
+  removeDueDate(): void {
+    if (this.dueDate.length > 0) {
+      this.sendChangesToServer(null, "removed");
+    }
 
     this.changeVisibilityOfDueDatePicker.emit();
   }
 
-  remove(): void {
-    if (this.dueDate.length > 0) {
-      this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(null), true).subscribe(
-        resp => {
-          console.log("Due date removed.");
-          this.requestCardData.emit();
-        },
-        error => console.log(error)
-      )
-    }
-
-    this.changeVisibilityOfDueDatePicker.emit();
+  private sendChangesToServer(newValue: string | null, message: string): void {
+    this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(newValue), true).subscribe(
+      resp => {
+        console.log(`Due date ${message}.`);
+        this.requestCardData.emit();
+      },
+      error => console.log(error)
+    );
   }
 
   private setDueDate(): void {
