@@ -30,3 +30,11 @@ a {
 .hoverable:hover {
     background-color: rgba(0, 0, 0, 0.05);
 }
+
+.due-date {
+    width: fit-content;
+}
+
+.w-100 {
+    width: 100%;
+}

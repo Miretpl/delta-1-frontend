@@ -2,6 +2,7 @@
     position: fixed;
     top: inherit;
     left: inherit;
+    z-index: 1;
 }
 
 .timepicker {

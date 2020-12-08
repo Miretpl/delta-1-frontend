@@ -21,7 +21,8 @@ export class ViewCardComponent implements OnInit {
   isArchived: boolean;
   isInsideClickComponent: boolean;
   visibleChangeDescriptionField: boolean;
-  visibleDueDatePicker: boolean;
+  visibleMenuDueDatePicker: boolean;
+  visibleTitleDueDatePicker: boolean;
 
   constructor(private apiService: ApiService) { }
 
@@ -32,8 +33,12 @@ export class ViewCardComponent implements OnInit {
     this.requestCardData();
   }
 
-  changeVisibilityOfDueDatePicker(): void {
-    this.visibleDueDatePicker = !this.visibleDueDatePicker;
+  changeVisibilityOfTitleDueDatePicker(): void {
+    this.visibleTitleDueDatePicker = !this.visibleTitleDueDatePicker;
+  }
+
+  changeVisibilityOfMenuDueDatePicker(): void {
+    this.visibleMenuDueDatePicker = !this.visibleMenuDueDatePicker;
   }
 
   archiveCard(): void {

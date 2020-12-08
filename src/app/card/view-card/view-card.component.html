@@ -8,25 +8,34 @@
         <app-change-card-name name="{{ name }}" id="{{ cardId }}"></app-change-card-name>
         in list <span class="underline">{{ listName }}</span>
       </div>
-      <div class="col-md-9">
-        <h5 class="mt-5">Description</h5>
-        <div [hidden]="visibleChangeDescriptionField" class="hoverable rounded card">
-          <span class="text-break">{{ description }}</span>
-          <a class="stretched-link" (click)=visibleChangeDescription()></a>
+      <div class="col-md-9 align-self-start">
+        <div class="due-date mt-3" [hidden]="!dueDate">
+          <div>
+            <h6>DUE DATE</h6>
+            <button type="submit" class="btn btn-light text-left shadow-sm w-100" (click)="changeVisibilityOfTitleDueDatePicker()">{{ dueDate }}</button>
+            <app-change-due-date [hidden]="!visibleTitleDueDatePicker" (changeVisibilityOfDueDatePicker)="changeVisibilityOfTitleDueDatePicker()" (requestCardData)="requestCardData()" cardId="{{ cardId }}" dueDate="{{ dueDate }}"></app-change-due-date>
+          </div>
         </div>
-        <app-change-card-description [hidden]="!visibleChangeDescriptionField" (visibleChangeDescription)="visibleChangeDescription()" (requestCardData)="requestCardData()" description="{{ description }}" id="{{ cardId }}"></app-change-card-description>
+        <div class="mt-3">
+          <h5 class="">Description</h5>
+          <div [hidden]="visibleChangeDescriptionField" class="hoverable rounded card">
+            <span class="text-break">{{ description }}</span>
+            <a class="stretched-link" (click)=visibleChangeDescription()></a>
+          </div>
+          <app-change-card-description [hidden]="!visibleChangeDescriptionField" (visibleChangeDescription)="visibleChangeDescription()" (requestCardData)="requestCardData()" description="{{ description }}" id="{{ cardId }}"></app-change-card-description>
+        </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 mt-3 align-self-start">
         <div>
           <h6>ADD TO CARD</h6>
-          <button type="submit" class="btn btn-light mt-1 text-left shadow-sm" style="width: 100%;" (click)="changeVisibilityOfDueDatePicker()">Due Date</button>
-          <app-change-due-date [hidden]="!visibleDueDatePicker" (changeVisibilityOfDueDatePicker)="changeVisibilityOfDueDatePicker()" (requestCardData)="requestCardData()" cardId="{{ cardId }}" dueDate="{{ dueDate }}"></app-change-due-date>
+          <button type="submit" class="btn btn-light mt-1 text-left shadow-sm w-100" (click)="changeVisibilityOfMenuDueDatePicker()">Due Date</button>
+          <app-change-due-date [hidden]="!visibleMenuDueDatePicker" (changeVisibilityOfDueDatePicker)="changeVisibilityOfMenuDueDatePicker()" (requestCardData)="requestCardData()" cardId="{{ cardId }}" dueDate="{{ dueDate }}"></app-change-due-date>
         </div>
         <div class="mt-4">
           <h6>ACTIONS</h6>
-          <button [hidden]="isArchived" type="button" class="btn btn-light mt-1 text-left shadow-sm" style="width: 100%;" (click)="archiveCard()">Archive</button>
-          <button [hidden]="!isArchived" type="button" class="btn btn-light mt-1 text-left shadow-sm" style="width: 100%;" (click)="sendCardToBoard()">Send to board</button>
-          <button [hidden]="!isArchived" type="button" class="btn btn-danger mt-1 text-left shadow-sm" style="width: 100%;" (click)="deleteCard()">Delete</button>
+          <button [hidden]="isArchived" type="button" class="btn btn-light mt-1 text-left shadow-sm w-100" (click)="archiveCard()">Archive</button>
+          <button [hidden]="!isArchived" type="button" class="btn btn-light mt-1 text-left shadow-sm w-100" (click)="sendCardToBoard()">Send to board</button>
+          <button [hidden]="!isArchived" type="button" class="btn btn-danger mt-1 text-left shadow-sm w-100" (click)="deleteCard()">Delete</button>
         </div>
       </div>
     </div>

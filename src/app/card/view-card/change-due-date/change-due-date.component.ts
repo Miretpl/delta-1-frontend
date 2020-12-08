@@ -28,18 +28,28 @@ export class ChangeDueDateComponent implements OnInit {
   }
 
   save(): void {
-    this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(), true).subscribe(
+    this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(this.getDateTimeFromPicker()), true).subscribe(
       resp => {
         console.log("Due date added.");
         this.requestCardData.emit();
       },
       error => console.log(error)
     )
-    
-    this.remove();
+
+    this.changeVisibilityOfDueDatePicker.emit();
   }
 
   remove(): void {
+    if (this.dueDate.length > 0) {
+      this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(null), true).subscribe(
+        resp => {
+          console.log("Due date removed.");
+          this.requestCardData.emit();
+        },
+        error => console.log(error)
+      )
+    }
+
     this.changeVisibilityOfDueDatePicker.emit();
   }
 
@@ -50,7 +60,7 @@ export class ChangeDueDateComponent implements OnInit {
       this.setCurrentDate(datetime['year'], datetime['month'], datetime['day']);
       this.setCurrentTime(datetime['hour'], datetime['minute'], datetime['second']);
     } else {
-      this.setCurrentDate(this.datetime.getFullYear(), this.datetime.getMonth(), this.datetime.getDay());
+      this.setCurrentDate(this.datetime.getFullYear(), this.datetime.getMonth() + 1, this.datetime.getDate());
       this.setCurrentTime(this.datetime.getHours(), this.datetime.getMinutes(), 0);
     }
   }
@@ -101,10 +111,10 @@ export class ChangeDueDateComponent implements OnInit {
     };
   }
 
-  private getData(): Object {
+  private getData(newValue: string | null): Object {
     return {
       name: "dueDate",
-      value: this.getDateTimeFromPicker()
+      value: newValue
     }
   }
 
