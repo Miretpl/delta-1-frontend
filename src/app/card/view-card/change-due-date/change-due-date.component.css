@@ -1,7 +1,5 @@
 .due-date-picker {
-    position: fixed;
-    top: inherit;
-    left: inherit;
+    position: absolute;
     z-index: 1;
 }
 
