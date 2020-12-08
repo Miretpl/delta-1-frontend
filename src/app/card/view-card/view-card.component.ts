@@ -15,11 +15,14 @@ export class ViewCardComponent implements OnInit {
 
   cardId: number;
   listName: string;
+  
   name: string;
   description: string;
   dueDate: string;
   isArchived: boolean;
+  
   isInsideClickComponent: boolean;
+  
   visibleChangeDescriptionField: boolean;
   visibleMenuDueDatePicker: boolean;
   visibleTitleDueDatePicker: boolean;
@@ -42,23 +45,11 @@ export class ViewCardComponent implements OnInit {
   }
 
   archiveCard(): void {
-    this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(true), true).subscribe(
-      resp => {
-        console.log("Card archived");
-        this.refreshBoardAndCard();
-      },
-      error => console.error(error)
-    );
+    this.updateCard(true, "archived");
   }
 
   sendCardToBoard(): void {
-    this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(false), true).subscribe(
-      resp => {
-        console.log("Card sent to board");
-        this.refreshBoardAndCard();
-      },
-      error => console.error(error)
-    );
+    this.updateCard(false, "sent to board");
   }
 
   deleteCard(): void {
@@ -85,18 +76,28 @@ export class ViewCardComponent implements OnInit {
     }
   }
 
-  async requestCardData(): Promise<void> {
+  private async requestCardData(): Promise<void> {
     this.apiService.executeGetRequest(`${endpoints.CARD_GET}/${this.cardId}`).subscribe(
       resp => this.extractCardData(resp),
       error => console.error(error)
     );
   }
 
-  extractCardData(resp: Object): void {
+  private extractCardData(resp: Object): void {
     this.name = resp['name'];
     this.description = resp['description'];
     this.isArchived = resp['isArchived'];
     this.dueDate = resp['dueDate'];
+  }
+
+  private updateCard(newValue: boolean, message: string) {
+    this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(newValue), true).subscribe(
+      resp => {
+        console.log(`Card ${message}`);
+        this.refreshBoardAndCard();
+      },
+      error => console.error(error)
+    );
   }
 
   private async refreshBoardAndCard(): Promise<void> {
