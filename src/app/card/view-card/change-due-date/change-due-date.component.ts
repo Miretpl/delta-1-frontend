@@ -52,28 +52,40 @@ export class ChangeDueDateComponent implements OnInit {
 
   private setDueDate(): void {
     if (this.dueDate.length > 0) {
-      let datetime = this.extractDateFromDueDate(this.dueDate);
-
-      this.setCurrentDate(datetime['year'], datetime['month'], datetime['day']);
-      this.setCurrentTime(datetime['hour'], datetime['minute'], datetime['second']);
+      this.setDateTimeFromSetted();
     } else {
-      this.setCurrentDate(this.datetime.getFullYear(), this.datetime.getMonth() + 1, this.datetime.getDate());
-      this.setCurrentTime(this.datetime.getHours(), this.datetime.getMinutes(), 0);
+      this.setLocalCurrentDateTime();
     }
   }
 
-  private getDateTimeFromPicker(): string {
-    let month = this.getProperDayOrMonth(String(this.calendarModel.month));
-    let day = this.getProperDayOrMonth(String(this.calendarModel.day));
+  private setLocalCurrentDateTime(): void {
+    this.setCurrentDate(this.datetime.getFullYear(), this.datetime.getMonth() + 1, this.datetime.getDate());
+    this.setCurrentTime(this.datetime.getHours(), this.datetime.getMinutes(), 0);
+  }
 
-    let hour = this.getProperDayOrMonth(String(this.timeModel.hour));
-    let minute = this.getProperDayOrMonth(String(this.timeModel.minute));
-    let second = this.getProperDayOrMonth(String(this.timeModel.second));
+  private setDateTimeFromSetted(): void {
+    let datetime = this.extractDateFromDueDate(this.dueDate);
+
+    this.setCurrentDate(datetime['year'], datetime['month'], datetime['day']);
+    this.setCurrentTime(datetime['hour'], datetime['minute'], datetime['second']);
+  }
+
+  private getDateTimeFromPicker(): string {
+    let month = this.getProperStringValue(this.calendarModel.month);
+    let day = this.getProperStringValue(this.calendarModel.day);
+
+    let hour = this.getProperStringValue(this.timeModel.hour);
+    let minute = this.getProperStringValue(this.timeModel.minute);
+    let second = this.getProperStringValue(this.timeModel.second);
 
     return `${this.calendarModel.year}-${month}-${day} ${hour}:${minute}:${second}`;
   }
 
-  private getProperDayOrMonth(text: string) {
+  private getProperStringValue(value: number): string {
+    return this.getProperDatetimeValue(String(value));
+  }
+
+  private getProperDatetimeValue(text: string) {
     return text.length == 1 ? `0${text}` : text;
   }
 
