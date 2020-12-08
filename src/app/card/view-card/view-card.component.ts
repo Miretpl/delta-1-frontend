@@ -76,7 +76,7 @@ export class ViewCardComponent implements OnInit {
     }
   }
 
-  private async requestCardData(): Promise<void> {
+  async requestCardData(): Promise<void> {
     this.apiService.executeGetRequest(`${endpoints.CARD_GET}/${this.cardId}`).subscribe(
       resp => this.extractCardData(resp),
       error => console.error(error)
