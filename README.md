@@ -16,7 +16,7 @@
 ### Instalacja
 Do uruchomienia należy mieć zainstalowane node.js oraz wykonać w folderze repozytorium poniższe polecenie:
 ```
-npm install @angular/cli bootstrap jquery 
+npm install @angular/cli bootstrap jquery @angular/localize @ng-bootstrap/ng-bootstrap
 ```
 
 <br>

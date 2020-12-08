@@ -15,11 +15,17 @@ export class ViewCardComponent implements OnInit {
 
   cardId: number;
   listName: string;
+  
   name: string;
   description: string;
-  isArchive: boolean;
+  dueDate: string;
+  isArchived: boolean;
+  
   isInsideClickComponent: boolean;
+  
   visibleChangeDescriptionField: boolean;
+  visibleMenuDueDatePicker: boolean;
+  visibleTitleDueDatePicker: boolean;
 
   constructor(private apiService: ApiService) { }
 
@@ -30,24 +36,20 @@ export class ViewCardComponent implements OnInit {
     this.requestCardData();
   }
 
+  changeVisibilityOfTitleDueDatePicker(): void {
+    this.visibleTitleDueDatePicker = !this.visibleTitleDueDatePicker;
+  }
+
+  changeVisibilityOfMenuDueDatePicker(): void {
+    this.visibleMenuDueDatePicker = !this.visibleMenuDueDatePicker;
+  }
+
   archiveCard(): void {
-    this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(true), true).subscribe(
-      resp => {
-        console.log("Card archived");
-        this.refreshBoardAndCard();
-      },
-      error => console.error(error)
-    );
+    this.updateCard(true, "archived");
   }
 
   sendCardToBoard(): void {
-    this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(false), true).subscribe(
-      resp => {
-        console.log("Card sent to board");
-        this.refreshBoardAndCard();
-      },
-      error => console.error(error)
-    );
+    this.updateCard(false, "sent to board");
   }
 
   deleteCard(): void {
@@ -81,9 +83,21 @@ export class ViewCardComponent implements OnInit {
     );
   }
 
-  extractCardData(resp: Object): void {
+  private extractCardData(resp: Object): void {
     this.name = resp['name'];
     this.description = resp['description'];
+    this.isArchived = resp['isArchived'];
+    this.dueDate = resp['dueDate'];
+  }
+
+  private updateCard(newValue: boolean, message: string) {
+    this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(newValue), true).subscribe(
+      resp => {
+        console.log(`Card ${message}`);
+        this.refreshBoardAndCard();
+      },
+      error => console.error(error)
+    );
   }
 
   private async refreshBoardAndCard(): Promise<void> {
@@ -93,7 +107,7 @@ export class ViewCardComponent implements OnInit {
 
   private getData(newValue: boolean): object {
     return {
-      name: "isArchive",
+      name: "isArchived",
       value: newValue
     }
   }
