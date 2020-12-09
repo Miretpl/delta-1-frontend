@@ -10,6 +10,7 @@ export const endpoints = {
     CARD_DELETE: "card/delete",
 
     LIST_CREATE: "/list/create",
+    LIST_EDIT: "/list/edit",
 
     LOGIN: "/login",
     REGISTER: "/register",
