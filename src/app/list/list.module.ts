@@ -8,6 +8,7 @@ import { ViewListComponent } from './view-list/view-list.component';
 import { CreateListComponent } from './create-list/create-list.component';
 import { CardInListComponent } from './card-in-list/card-in-list.component';
 import { ChangeListNameComponent } from './view-list/change-list-name/change-list-name.component';
+import { ListMenuComponent } from './list-menu/list-menu.component';
 
 
 
@@ -16,7 +17,8 @@ import { ChangeListNameComponent } from './view-list/change-list-name/change-lis
     ViewListComponent,
     CreateListComponent,
     CardInListComponent,
-    ChangeListNameComponent
+    ChangeListNameComponent,
+    ListMenuComponent
   ],
   imports: [
     CommonModule,
