@@ -1,5 +1,5 @@
 <div class="mx-1 p-1 rounded mh-100 list d-inline-block align-top shadow-sm">
-    <h6 class="px-2 pt-1 text-break">{{ name }}</h6>
+    <app-change-list-name name="{{ name }}" id="{{ listId }}"></app-change-list-name>
     <div class="overflow-auto scrollbar list-cards">
         <ul class="list-unstyled">
             <li class="px-1" *ngFor="let card of cards">
