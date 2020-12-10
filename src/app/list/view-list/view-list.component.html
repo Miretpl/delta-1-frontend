@@ -1,13 +1,13 @@
 <div class="mx-1 p-1 rounded mh-100 list d-inline-block align-top shadow-sm">
-    <app-change-list-name name="{{ name }}" id="{{ listId }}" style="float: left; width: 85%;"></app-change-list-name>
-    <div class="rounded card text-center bg-transparent border-0 text-secondary hoverable-box" style="float: right; width: 14%;">
+    <app-change-list-name name="{{ name }}" id="{{ listId }}" class="change-list"></app-change-list-name>
+    <div class="rounded card text-center bg-transparent border-0 text-secondary hoverable-box">
         <div>
             <h6 class="px-2 py-1 text-break">...</h6>
             <a class="stretched-link" (click)=visibleListMenuComponent()></a>
         </div>
-        <app-list-menu [hidden]="!visibleListMenu" id="{{ listId }}" (visibleListMenuComponent)="visibleListMenuComponent()" (getCardListsForListComponent)="getCardListsForListComponent()" ></app-list-menu>
+        <app-list-menu [hidden]="!visibleListMenu" listId="{{ listId }}" (visibleListMenuComponent)="visibleListMenuComponent()" (getCardListsForListComponent)="getCardListsForListComponent()"></app-list-menu>
     </div>
-    <div class="overflow-auto scrollbar list-cards" style="clear: both;">
+    <div class="overflow-auto scrollbar list-cards">
         <ul class="list-unstyled">
             <li class="px-1" *ngFor="let card of cards">
                 <app-card-in-list (click)="openCardView(card.cardId, name)" [name]=card.name></app-card-in-list>

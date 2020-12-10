@@ -11,7 +11,7 @@ export class ListMenuComponent implements OnInit {
   @Output("getCardListsForListComponent") getCardListsForListComponent: EventEmitter<any> = new EventEmitter();
   @Output("visibleListMenuComponent") visibleListMenuComponent: EventEmitter<any> = new EventEmitter();
 
-  @Input() id: number;
+  @Input() listId: number;
 
   constructor(private apiService: ApiService) { }
 
@@ -22,17 +22,21 @@ export class ListMenuComponent implements OnInit {
     this.visibleListMenuComponent.emit();
   }
 
-  archive() : void {
-    var endpoint = `${endpoints.LIST_EDIT}/${this.id}`; 
+  archiveList() : void {
+    var endpoint = `${endpoints.LIST_EDIT}/${this.listId}`; 
 
     this.apiService.executePostRequest(endpoint, this.getData(), true).subscribe(
       resp => {
         console.log("List archived");
-        this.visibleListMenuComponent.emit();
-        this.getCardListsForListComponent.emit();
+        this.handleArchiveListResponse();
       },
       error => console.error(error)
     );
+  }
+
+  private handleArchiveListResponse() {
+    this.visibleListMenuComponent.emit();
+    this.getCardListsForListComponent.emit();
   }
 
   private getData(): object {
