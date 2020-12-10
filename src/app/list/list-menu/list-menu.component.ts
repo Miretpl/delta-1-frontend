@@ -28,6 +28,7 @@ export class ListMenuComponent implements OnInit {
     this.apiService.executePostRequest(endpoint, this.getData(), true).subscribe(
       resp => {
         console.log("List archived");
+        this.visibleListMenuComponent.emit();
         this.getCardListsForListComponent.emit();
       },
       error => console.error(error)
