@@ -16,6 +16,7 @@ export class ViewListComponent implements OnInit {
   @Input() listId: number;
 
   visibleAddCard: boolean;
+  visibleListMenu: boolean;
 
   constructor(private apiService: ApiService) { }
 
@@ -31,6 +32,10 @@ export class ViewListComponent implements OnInit {
 
   visibleAddCardForm(): void {
     this.visibleAddCard = !this.visibleAddCard;
+  }
+
+  visibleListMenuComponent(): void {
+    this.visibleListMenu = !this.visibleListMenu;
   }
  
   getCardListsForListComponent(): void {

@@ -39,12 +39,26 @@
     cursor: pointer;
 }
 
-.px-1 div {
+.px-1 div, .hoverable-box div {
     transition: all 0.3s;
     background-color: transparent;
     border: none;
 }
 
-.px-1:hover div {
+.px-1:hover div, .hoverable-box:hover div {
     background-color: rgba(0, 0, 0, 0.05);
+}
+
+.change-list {
+    float: left; 
+    width: 85%;
+}
+
+.hoverable-box {
+    float: right; 
+    width: 14%;
+}
+
+.list-cards {
+    clear: both;
 }
