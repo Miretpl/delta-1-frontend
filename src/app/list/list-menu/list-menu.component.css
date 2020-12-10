@@ -1,3 +1,38 @@
-p {
+.align-items-center {
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.box {
+    width: 15rem;
     position: absolute;
+    z-index: 1;
+}
+
+.link-item {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.link-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+    margin: 0 auto;
+    width: 90%;
+}
+
+.close-element {
+    cursor: pointer;
+    position: absolute;
+    top: 14%;
+    right: 7%;
+    font-size: small;
+    font-family: sans-serif;
+    color: rgba(0, 0, 0, .4);
 }

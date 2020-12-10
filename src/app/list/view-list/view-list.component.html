@@ -5,7 +5,7 @@
             <h6 class="px-2 py-1 text-break">...</h6>
             <a class="stretched-link" (click)=visibleListMenuComponent()></a>
         </div>
-        <app-list-menu [hidden]="!visibleListMenu" id="{{ listId }}"></app-list-menu>
+        <app-list-menu [hidden]="!visibleListMenu" id="{{ listId }}" (visibleListMenuComponent)="visibleListMenuComponent()" (getCardListsForListComponent)="getCardListsForListComponent()" ></app-list-menu>
     </div>
     <div class="overflow-auto scrollbar list-cards" style="clear: both;">
         <ul class="list-unstyled">

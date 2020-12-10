@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { ApiService } from 'src/app/api/api.service';
+import { endpoints } from 'src/app/config/endpoints';
 
 @Component({
   selector: 'app-list-menu',
@@ -6,11 +8,37 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./list-menu.component.css']
 })
 export class ListMenuComponent implements OnInit {
+  @Output("getCardListsForListComponent") getCardListsForListComponent: EventEmitter<any> = new EventEmitter();
+  @Output("visibleListMenuComponent") visibleListMenuComponent: EventEmitter<any> = new EventEmitter();
+
   @Input() id: number;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
+  }
+
+  closeListMenu() : void {
+    this.visibleListMenuComponent.emit();
+  }
+
+  archive() : void {
+    var endpoint = `${endpoints.LIST_EDIT}/${this.id}`; 
+
+    this.apiService.executePostRequest(endpoint, this.getData(), true).subscribe(
+      resp => {
+        console.log("List archived");
+        this.getCardListsForListComponent.emit();
+      },
+      error => console.error(error)
+    );
+  }
+
+  private getData(): object {
+    return {
+      name: "isArchived",
+      value: "true"
+    }
   }
 
 }

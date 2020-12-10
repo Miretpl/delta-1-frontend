@@ -1,1 +1,10 @@
-<p>list-menu works!</p>
+<div class="align-items-center" (click)="closeListMenu()"></div>
+<div class="card box">
+    <div class="card-header bg-transparent py-2">
+      List actions
+      <div class="close-element" (click)="closeListMenu()">X</div>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item link-item py-2" (click)=archive()>Archive This List</li>
+    </ul>
+</div>
