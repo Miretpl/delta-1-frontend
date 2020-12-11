@@ -1,4 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { ApiService } from 'src/app/api/api.service';
+import { endpoints } from 'src/app/config/endpoints';
 
 @Component({
   selector: 'app-invite-user-to-board',
@@ -6,17 +8,42 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
   styleUrls: ['./invite-user-to-board.component.css']
 })
 export class InviteUserToBoardComponent implements OnInit {
+  private MAX_USERNAME_LENGTH: number = 32;
+  
   @Output("visibleInviteUserToBoardComponent") visibleInviteUserToBoardComponent: EventEmitter<any> = new EventEmitter();
 
   @Input() boardId: number;
 
-  constructor() { }
+  username: string;
+
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
   }
 
   closeInviteUserToBoardComponent() {
     this.visibleInviteUserToBoardComponent.emit();
+  }
+
+  inviteUserToBoard() : void {
+    if (this.isCorrectUsername()) {
+      var endpoint = `${endpoints.BOARD_USER_ADD}/${this.boardId}`; 
+
+      this.apiService.executePostRequest(endpoint, this.getData(), true).subscribe(
+        resp => console.log("User invited"),
+        error => console.error(error)
+      );
+    }
+  }
+
+  private isCorrectUsername() {
+    return this.username != "" && this.username.length < this.MAX_USERNAME_LENGTH;
+  }
+
+  private getData(): object {
+    return {
+      username: this.username
+    }
   }
 
 }

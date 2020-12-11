@@ -1,10 +1,15 @@
 <div class="align-items-center" (click)="closeInviteUserToBoardComponent()"></div>
 <div class="card box">
     <div class="card-header bg-transparent py-2">
-      List actions
+      Invite To Board
       <div class="close-element" (click)="closeInviteUserToBoardComponent()">X</div>
     </div>
     <ul class="list-group list-group-flush">
-      <!-- <li class="list-group-item link-item py-2" (click)=archiveList()>Archive This List</li> -->
+      <li class="list-group-item link-item py-2">
+        <form>
+          <input type="text" [(ngModel)]="username" name="username" class="form-control my-2 w-100" id="username" placeholder="Username" required="" />
+          <button class="btn btn-secondary w-100" type="submit" (click)="inviteUserToBoard()">Send invitation</button>  
+        </form>
+         </li>
     </ul>
 </div>
