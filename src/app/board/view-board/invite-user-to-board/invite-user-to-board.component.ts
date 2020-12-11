@@ -33,11 +33,13 @@ export class InviteUserToBoardComponent implements OnInit {
         resp => console.log("User invited"),
         error => console.error(error)
       );
+
+      this.closeInviteUserToBoardComponent();
     }
   }
 
   private isCorrectUsername() {
-    return this.username != "" && this.username.length < this.MAX_USERNAME_LENGTH;
+    return this.username != null && this.username != "" && this.username.length < this.MAX_USERNAME_LENGTH;
   }
 
   private getData(): object {
