@@ -21,11 +21,11 @@ export class InviteUserToBoardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  closeInviteUserToBoardComponent() {
+  closeInviteUserToBoardComponent(): void {
     this.visibleInviteUserToBoardComponent.emit();
   }
 
-  inviteUserToBoard() : void {
+  inviteUserToBoard(): void {
     if (this.isCorrectUsername()) {
       var endpoint = `${endpoints.BOARD_USER_ADD}/${this.boardId}`; 
 
@@ -38,7 +38,7 @@ export class InviteUserToBoardComponent implements OnInit {
     }
   }
 
-  private isCorrectUsername() {
+  private isCorrectUsername(): boolean {
     return this.username != null && this.username != "" && this.username.length < this.MAX_USERNAME_LENGTH;
   }
 
