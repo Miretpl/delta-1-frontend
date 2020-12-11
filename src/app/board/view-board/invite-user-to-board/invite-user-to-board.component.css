@@ -8,18 +8,9 @@
 }
 
 .box {
-    width: 15rem;
+    width: 18rem;
     position: absolute;
     z-index: 3;
-}
-
-.link-item {
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.link-item:hover {
-    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .card-header {
@@ -30,7 +21,7 @@
 .close-element {
     cursor: pointer;
     position: absolute;
-    top: 14%;
+    top: 7%;
     right: 7%;
     font-size: small;
     font-family: sans-serif;
