@@ -57,3 +57,7 @@
     line-height: 24px;
     width: 50%;
 }
+
+.hoverable-box:hover .invite-button {
+    background-color: rgba(0, 0, 0, .04);
+}
