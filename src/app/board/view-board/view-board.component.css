@@ -38,3 +38,22 @@
 .stretched-link {
     cursor: pointer;
 }
+
+.navbar-nav {
+    display: inline; 
+    width: 100%;
+}
+
+.navbar-nav li {
+    width: 10%;
+    display: block;
+    float: left;
+    margin-right: .5%;
+}
+
+.invite-button {
+    background-color: rgba(0, 0, 0, .02);
+    height: 40px;
+    line-height: 24px;
+    width: 50%;
+}

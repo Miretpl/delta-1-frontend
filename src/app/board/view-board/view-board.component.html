@@ -4,6 +4,15 @@
             <li>
                 <app-change-board-name name="{{ boardName }}" id="{{ boardId }}"></app-change-board-name>
             </li>
+            <li>
+                <div class="rounded card text-center bg-blue border-0 text-secondary hoverable-box">
+                    <div>
+                        <h6 class="px-2 py-2 text-break invite-button rounded">Invite</h6>
+                        <a class="stretched-link" (click)=visibleInviteUserToBoardComponent()></a>
+                    </div>
+                    <app-invite-user-to-board [hidden]="!visibleInviteUserToBoardBox" boardId="{{ boardId }}" (visibleInviteUserToBoardComponent)="visibleInviteUserToBoardComponent()"></app-invite-user-to-board>
+                </div>
+            </li>
         </ul>
     </nav>
     <div class="overflow-auto text-nowrap scrollbar px-2 board-lists">

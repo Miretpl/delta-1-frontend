@@ -17,6 +17,7 @@ export class ViewBoardComponent implements OnInit {
   cardLists: any;
   visibleAddList: boolean;
   visibleCardView: boolean;
+  visibleInviteUserToBoardBox: boolean;
 
   constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService) { }
 
@@ -36,6 +37,10 @@ export class ViewBoardComponent implements OnInit {
 
   visibleAddListForm(): void {
     this.visibleAddList = !this.visibleAddList;
+  }
+
+  visibleInviteUserToBoardComponent(): void {
+    this.visibleInviteUserToBoardBox = !this.visibleInviteUserToBoardBox;
   }
 
   public getCardLists(): void {
