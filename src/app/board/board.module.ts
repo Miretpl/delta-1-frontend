@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { ListModule } from 'src/app/list/list.module';
 import { CardModule } from 'src/app/card/card.module';
@@ -24,11 +25,13 @@ import { InviteUserToBoardComponent } from './view-board/invite-user-to-board/in
     ReactiveFormsModule,
     ListModule,
     CardModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   exports:[
     CreateBoardComponent,
-    InviteUserToBoardComponent
+    InviteUserToBoardComponent,
+    ViewBoardComponent
   ]
 })
 export class BoardModule { }

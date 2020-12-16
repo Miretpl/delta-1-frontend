@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { CardModule } from 'src/app/card/card.module';
 
@@ -23,7 +24,8 @@ import { ListMenuComponent } from './list-menu/list-menu.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CardModule
+    CardModule,
+    DragDropModule
   ],
   exports: [
     ViewListComponent,

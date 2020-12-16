@@ -42,7 +42,7 @@ export class ListMenuComponent implements OnInit {
   private getData(): object {
     return {
       name: "isArchived",
-      value: "true"
+      value: true
     }
   }
 
