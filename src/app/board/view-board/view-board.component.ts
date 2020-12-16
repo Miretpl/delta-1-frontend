@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
 import { ApiService } from 'src/app/api/api.service';
 import { endpoints } from 'src/app/config/endpoints';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-view-board',
@@ -18,10 +19,11 @@ export class ViewBoardComponent implements OnInit {
   boardId: number;
   boardName: string;
   cardLists: any;
+  addListButtonHeight: number = this.ADD_LIST_BUTTON_HEIGHT_MIN;
+
   visibleAddList: boolean;
   visibleCardView: boolean;
   visibleInviteUserToBoardBox: boolean;
-  addListButtonHeight: number = this.ADD_LIST_BUTTON_HEIGHT_MIN;
 
   constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService) { }
 
@@ -63,7 +65,7 @@ export class ViewBoardComponent implements OnInit {
   public handleDragAndDrop(listId: string, index: number): void {
     this.apiService.executePostRequest(`${endpoints.LIST_EDIT}/${listId}`, this.getDragAndDropData(index), true).subscribe(
       resp => {
-        console.log("Zmieniono pozycję na liście");
+        console.log("List posiotion changed.");
         this.getCardLists();
       },
       error => console.error(error)
