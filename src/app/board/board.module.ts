@@ -9,6 +9,7 @@ import { ViewBoardComponent } from './view-board/view-board.component';
 import { CreateBoardComponent } from './create-board/create-board.component';
 import { ChangeBoardNameComponent } from './view-board/change-board-name/change-board-name.component';
 import { InviteUserToBoardComponent } from './view-board/invite-user-to-board/invite-user-to-board.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 
@@ -24,11 +25,13 @@ import { InviteUserToBoardComponent } from './view-board/invite-user-to-board/in
     ReactiveFormsModule,
     ListModule,
     CardModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   exports:[
     CreateBoardComponent,
-    InviteUserToBoardComponent
+    InviteUserToBoardComponent,
+    ViewBoardComponent
   ]
 })
 export class BoardModule { }

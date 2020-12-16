@@ -9,6 +9,7 @@ import { CreateListComponent } from './create-list/create-list.component';
 import { CardInListComponent } from './card-in-list/card-in-list.component';
 import { ChangeListNameComponent } from './view-list/change-list-name/change-list-name.component';
 import { ListMenuComponent } from './list-menu/list-menu.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 
@@ -23,7 +24,8 @@ import { ListMenuComponent } from './list-menu/list-menu.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CardModule
+    CardModule,
+    DragDropModule
   ],
   exports: [
     ViewListComponent,
