@@ -3,7 +3,7 @@ export const endpoints = {
     BOARD_EDIT: "/board/edit",
     BOARD_GET: "/board/get",
     BOARD_LIST: "/board/list",
-    BOARD_USER_ADD: "/board/user/add/",
+    BOARD_USER_ADD: "/board/user/add",
 
     CARD_CREATE: "/card/create",
     CARD_EDIT: "/card/edit",
