@@ -89,7 +89,7 @@ export class ViewCardComponent implements OnInit {
     this.description = resp['description'];
     this.isArchived = resp['isArchived'];
 
-    if (this.description.length > 0) {
+    if (this.description != null && this.description.length > 0) {
       this.visibleChangeDescriptionField = false;
     }
 

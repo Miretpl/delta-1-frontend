@@ -55,7 +55,7 @@ export class ChangeDueDateComponent implements OnInit {
   }
 
   private setDueDate(): void {
-    if (this.dueDate.length > 0) {
+    if (this.dueDate != null && this.dueDate.length > 0) {
       this.setDateTimeFromSetted();
     } else {
       this.setLocalCurrentDateTime();
