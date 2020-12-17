@@ -38,15 +38,16 @@ export class CreateBoardComponent implements OnInit {
 
     if (this.submitted) {
       $("#boardcreationmodal").modal("hide");
-
-      await this.requestBoardCreation();
-      this.getBoardList.emit();
+      this.requestBoardCreation();
     }
   }
 
-  private async requestBoardCreation(): Promise<void> {
+  private requestBoardCreation(): void {
     this.apiService.executePutRequest(endpoints.BOARD_CREATE, this.getData()).subscribe(
-      resp => console.log("Board created"),
+      resp => {
+        console.log("Board created");
+        this.getBoardList.emit();
+      },
       error => console.error(error)
     );
   }
