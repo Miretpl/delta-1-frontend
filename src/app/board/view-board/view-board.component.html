@@ -16,7 +16,7 @@
         </ul>
     </nav>
     <div cdkDropList cdkDropListOrientation="horizontal" class="overflow-auto text-nowrap scrollbar px-2 board-lists" (cdkDropListDropped)="drop($event)">
-        <app-view-list cdkDrag *ngFor="let list of cardLists" id="{{ list.listId }}" (visibleCardViewModal)="visibleCardViewModal()" (getCardLists)="getCardLists()" [name]="list.name" [cards]="list.cards" [listId]="list.listId" [boardId]="boardId"></app-view-list>
+        <app-view-list cdkDrag *ngFor="let list of cardLists" id="{{ list.listId }}" (visibleCardViewModal)="visibleCardViewModal()" (getCardLists)="getCardLists()" [name]="list.name" [cards]="list.cards" [listId]="list.listId" [boardId]="boardId" [isArchived]="list.isArchived"></app-view-list>
         <div class="mx-1 p-1 rounded mh-100 list d-inline-block align-top shadow-sm card" [style.height.px]=addListButtonHeight>
             <div [hidden]="visibleAddList">
                 <h6 class="px-2 pt-1 text-break">Add new list</h6>
