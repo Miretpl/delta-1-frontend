@@ -21,9 +21,9 @@ export class ApiService {
 
   public executePostRequest(endpoint: string, data: any, auth: boolean) {
     if (auth) {
-      return this.postRequest(this.getUrl(endpoint), data, this.getHeader());
-    } else {
       return this.postRequest(this.getUrl(endpoint), data, this.getAuthorizationHeader());
+    } else {
+      return this.postRequest(this.getUrl(endpoint), data, this.getHeader());
     }
   }
 
