@@ -25,11 +25,14 @@ export class BoardInListComponent implements OnInit {
   }
 
   private boardsSeperationByVisibility(body: any): void {
+    this.publicBoards = [];
+    this.privateBoards = [];
+
     body.forEach((board: { isPublic: any; }) => {
       if (board.isPublic) {
         this.publicBoards.push(board);
       } else {
-          this.privateBoards.push(board);
+        this.privateBoards.push(board);
       }
     });
   }
