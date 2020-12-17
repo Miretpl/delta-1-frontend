@@ -34,7 +34,7 @@ export class ViewCardComponent implements OnInit {
     this.listName = String(this.apiService.getCookie("listName"));
     
     await this.requestCardData();
-    this.visibleChangeDescriptionField = this.description.length == 0 ? true : false;
+    this.visibleChangeDescriptionField = this.description == null ? true : false;
   }
 
   changeVisibilityOfTitleDueDatePicker(): void {
