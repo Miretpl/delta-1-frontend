@@ -1,25 +1,18 @@
 <div class="board">
-    <nav class="navbar navbar-expand-md board-menu">
-        <ul class="navbar-nav text-center">
-            <li>
-                <app-change-board-name name="{{ boardName }}" id="{{ boardId }}"></app-change-board-name>
-            </li>
-            <li>
-                <div class="rounded card text-center bg-blue border-0 text-secondary hoverable-box">
-                    <div>
-                        <h6 class="px-2 py-2 text-break invite-button rounded">Invite</h6>
-                        <a class="stretched-link" (click)=visibleInviteUserToBoardComponent()></a>
-                    </div>
-                    <app-invite-user-to-board [hidden]="!visibleInviteUserToBoardBox" boardId="{{ boardId }}" (visibleInviteUserToBoardComponent)="visibleInviteUserToBoardComponent()"></app-invite-user-to-board>
-                </div>
-            </li>
-        </ul>
-    </nav>
-    <div cdkDropList cdkDropListOrientation="horizontal" class="overflow-auto text-nowrap scrollbar px-2 board-lists" (cdkDropListDropped)="drop($event)">
-        <app-view-list cdkDrag *ngFor="let list of cardLists" id="{{ list.listId }}" (visibleCardViewModal)="visibleCardViewModal()" (getCardLists)="getCardLists()" [name]="list.name" [cards]="list.cards" [listId]="list.listId" [boardId]="boardId" [isArchived]="list.isArchived"></app-view-list>
-        <div class="mx-1 p-1 rounded mh-100 list d-inline-block align-top shadow-sm card" [style.height.px]=addListButtonHeight>
+    <div class="row row-eq-height px-2 mx-1 mb-1 align-items-center">
+        <div class="mx-1">
+            <app-change-board-name name="{{ boardName }}" id="{{ boardId }}"></app-change-board-name>
+        </div>
+        <div class="mx-1 invite-button rounded">
+            <button type="button" class="btn bg-transparent" (click)=visibleInviteUserToBoardComponent()>Invite</button>
+        </div>
+        <app-invite-user-to-board [hidden]="!visibleInviteUserToBoardBox" boardId="{{ boardId }}" (visibleInviteUserToBoardComponent)="visibleInviteUserToBoardComponent()"></app-invite-user-to-board>
+    </div>
+    <div cdkDropList cdkDropListOrientation="horizontal" class="px-2 overflow-auto scrollbar board-lists" (cdkDropListDropped)="drop($event)">
+        <app-view-list cdkDrag *ngFor="let list of cardLists" (visibleCardViewModal)="visibleCardViewModal()" (getCardLists)="getCardLists()" [name]="list.name" [cards]="list.cards" [listId]="list.listId" [boardId]="boardId" [isArchived]="list.isArchived"></app-view-list>
+        <div class="mx-1 p-1 rounded mh-100 d-inline-block align-top shadow-sm card cdk-drag list" [style.height.px]=addListButtonHeight>
             <div [hidden]="visibleAddList">
-                <h6 class="px-2 pt-1 text-break">Add new list</h6>
+                <h6 class="px-2 pt-1">Add new list</h6>
                 <a class="stretched-link" (click)=visibleAddListForm()></a>
             </div>
             <app-create-list [hidden]="!visibleAddList" (getCardLists)="getCardLists()" (visibleAddListForm)="visibleAddListForm()" [boardId]=boardId></app-create-list>
