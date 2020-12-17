@@ -6,13 +6,13 @@
         <div class="mx-1 invite-button rounded">
             <button type="button" class="btn bg-transparent" (click)=visibleInviteUserToBoardComponent()>Invite</button>
         </div>
-        <app-invite-user-to-board [hidden]="!visibleInviteUserToBoardBox" (visibleInviteUserToBoardComponent)="visibleInviteUserToBoardComponent()" [boardId]=boardId></app-invite-user-to-board>
+        <app-invite-user-to-board *ngIf="visibleInviteUserToBoardBox" (visibleInviteUserToBoardComponent)="visibleInviteUserToBoardComponent()" [boardId]=boardId></app-invite-user-to-board>
     </div>
     <div cdkDropList cdkDropListOrientation="horizontal" class="px-2 overflow-auto scrollbar board-lists" (cdkDropListDropped)="drop($event)">
         <app-view-list cdkDrag *ngFor="let list of cardLists" (visibleCardViewModal)="visibleCardViewModal()" (getCardLists)="getCardLists()" [name]="list.name" [cards]="list.cards" [listId]="list.listId" [boardId]="boardId" [isArchived]="list.isArchived"></app-view-list>
         <div class="mx-1 p-1 rounded d-inline-block align-top shadow-sm card cdk-drag list" [style.height.px]=addListButtonHeight>
             <div class="row">
-                <div class="mx-3 px-1 pt-1" *ngIf="!visibleAddList">
+                <div *ngIf="!visibleAddList" class="mx-3 px-1 pt-1">
                     <h6>Add new list</h6>
                     <a class="stretched-link" (click)=visibleAddListForm()></a>
                 </div>

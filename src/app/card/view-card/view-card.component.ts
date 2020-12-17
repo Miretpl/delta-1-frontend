@@ -91,17 +91,17 @@ export class ViewCardComponent implements OnInit {
     this.description = resp['description'];
     this.isArchived = resp['isArchived'];
 
-    this.formatDueDate(resp['dueDate']);
+    this.setDueDate(resp['dueDate']);
   }
 
-  private formatDueDate(text: string): void {
+  private setDueDate(text: string): void {
     if (text != null) {
       var datetimeStr = new Date(text).toLocaleString("pl-PL");
-      this.setFormattedDueDate(datetimeStr.split(', '));
+      this.setProperFormattedDueDate(datetimeStr.split(', '));
     }
   }
 
-  private setFormattedDueDate(datetime: object): void {
+  private setProperFormattedDueDate(datetime: object): void {
     datetime[0] = datetime[0].replace(new RegExp(/\./g), '-');
     datetime[1] = datetime[1].slice(0, datetime[1].length - 3);
 
