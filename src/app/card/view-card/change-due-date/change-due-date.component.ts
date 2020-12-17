@@ -40,6 +40,10 @@ export class ChangeDueDateComponent implements OnInit {
     this.changeVisibilityOfDueDatePicker.emit();
   }
 
+  closeDueDateComponent(): void {
+    this.changeVisibilityOfDueDatePicker.emit();
+  }
+
   private sendChangesToServer(newValue: string | null, message: string): void {
     this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(newValue), true).subscribe(
       resp => {
