@@ -29,11 +29,12 @@ export class ViewCardComponent implements OnInit {
 
   constructor(private apiService: ApiService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.cardId = Number(this.apiService.getCookie("cardId"));
     this.listName = String(this.apiService.getCookie("listName"));
-
-    this.requestCardData();
+    
+    await this.requestCardData();
+    this.visibleChangeDescriptionField = this.description.length == 0 ? true : false;
   }
 
   changeVisibilityOfTitleDueDatePicker(): void {
