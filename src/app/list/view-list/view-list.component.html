@@ -1,4 +1,4 @@
-<div class="mx-1 p-1 rounded mh-100 list d-inline-block align-top shadow-sm cdk-drag" (mousedown)="$event.stopPropagation()" *ngIf="(isArchived == false)">
+<div class="mx-1 p-1 rounded mh-100 list d-inline-block align-top shadow-sm cdk-drag" *ngIf="(isArchived == false)">
     <app-change-list-name name="{{ name }}" id="{{ listId }}" class="change-list"></app-change-list-name>
     <div class="rounded card text-center bg-transparent border-0 text-secondary hoverable-box">
         <div>
