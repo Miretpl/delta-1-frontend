@@ -13,7 +13,7 @@ import { endpoints } from 'src/app/config/endpoints';
 export class ViewBoardComponent implements OnInit {
   private TWO_MINUTES: number = 120000;
   private ADD_LIST_BUTTON_HEIGHT_MIN: number = 40;
-  private ADD_LIST_BUTTON_HEIGHT_MAX: number = 105;
+  private ADD_LIST_BUTTON_HEIGHT_MAX: number = 99;
   private interval: any;
 
   boardId: number;
@@ -44,6 +44,10 @@ export class ViewBoardComponent implements OnInit {
   visibleAddListForm(): void {
     this.addListButtonHeight = this.visibleAddList ? this.ADD_LIST_BUTTON_HEIGHT_MIN : this.ADD_LIST_BUTTON_HEIGHT_MAX;
     this.visibleAddList = !this.visibleAddList;
+  }
+
+  updateAddListButtonHeight($event: any): void {
+    this.addListButtonHeight = $event.height;
   }
 
   visibleInviteUserToBoardComponent(): void {
