@@ -29,7 +29,7 @@ export class CreateBoardComponent implements OnInit {
     return this.createBoardForm.controls;
   }
 
-  async onSubmit(): Promise<void> {
+  onSubmit(): Promise<void> {
     this.submitted = true;
 
     if (this.createBoardForm.invalid) {
