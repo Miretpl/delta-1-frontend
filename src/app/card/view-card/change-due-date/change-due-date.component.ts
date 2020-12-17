@@ -95,13 +95,13 @@ export class ChangeDueDateComponent implements OnInit {
 
   private extractDateFromDueDate(text: string): object {
     let temp = text.split(' ');
-    let date = temp[0].split('.');
+    let date = temp[0].split('-');
     let time = temp[1].split(':');
 
     return {
-      year: Number(date[0]),
+      year: Number(date[2]),
       month: Number(date[1]),
-      day: Number(date[2]),
+      day: Number(date[0]),
       hour: Number(time[0]),
       minute: Number(time[1]),
       second: Number(time[2])

@@ -31,13 +31,15 @@ export class ChangeCardDescriptionComponent implements OnInit {
         },
         error => console.error(error)
       );
-    }
 
-    this.close();
+      this.visibleChangeDescription.emit();
+    }
   }
 
   close(): void {
-    this.visibleChangeDescription.emit();
+    if (this.description.length > 0) {
+      this.visibleChangeDescription.emit();
+    }
   }
 
   private getData(newValue: string): object {

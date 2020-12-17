@@ -33,8 +33,7 @@ export class ViewCardComponent implements OnInit {
     this.cardId = Number(this.apiService.getCookie("cardId"));
     this.listName = String(this.apiService.getCookie("listName"));
     
-    await this.requestCardData();
-    this.visibleChangeDescriptionField = this.description == null ? true : false;
+    this.requestCardData();
   }
 
   changeVisibilityOfTitleDueDatePicker(): void {
@@ -77,9 +76,12 @@ export class ViewCardComponent implements OnInit {
     }
   }
 
-  async requestCardData(): Promise<void> {
+  requestCardData(): void {
     this.apiService.executeGetRequest(`${endpoints.CARD_GET}/${this.cardId}`).subscribe(
-      resp => this.extractCardData(resp),
+      resp => {
+        this.extractCardData(resp);
+        this.visibleChangeDescriptionField = this.description == null || this.description == "" ? true : false;
+      },
       error => console.error(error)
     );
   }
@@ -89,28 +91,32 @@ export class ViewCardComponent implements OnInit {
     this.description = resp['description'];
     this.isArchived = resp['isArchived'];
 
-    if (this.description != null && this.description.length > 0) {
-      this.visibleChangeDescriptionField = false;
-    }
+    this.formatDueDate(resp['dueDate']);
+  }
 
-    if (resp['dueDate'] != null) {
-      this.dueDate = new Date(resp['dueDate']).toLocaleString("pl-PL");
+  private formatDueDate(text: string): void {
+    if (text != null) {
+      var datetimeStr = new Date(text).toLocaleString("pl-PL");
+      this.setFormattedDueDate(datetimeStr.split(', '));
     }
+  }
+
+  private setFormattedDueDate(datetime: object): void {
+    datetime[0] = datetime[0].replace(new RegExp(/\./g), '-');
+    datetime[1] = datetime[1].slice(0, datetime[1].length - 3);
+
+    this.dueDate = `${datetime[0]} ${datetime[1]}`;
   }
 
   private updateCard(newValue: boolean, message: string) {
     this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(newValue), true).subscribe(
       resp => {
         console.log(`Card ${message}`);
-        this.refreshBoardAndCard();
+        this.requestCardData();
+        this.getCardLists.emit();
       },
       error => console.error(error)
     );
-  }
-
-  private async refreshBoardAndCard(): Promise<void> {
-    await this.requestCardData();
-    this.getCardLists.emit();
   }
 
   private getData(newValue: boolean): object {
