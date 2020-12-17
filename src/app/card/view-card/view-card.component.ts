@@ -88,7 +88,10 @@ export class ViewCardComponent implements OnInit {
     this.name = resp['name'];
     this.description = resp['description'];
     this.isArchived = resp['isArchived'];
-    this.dueDate = resp['dueDate'];
+
+    if (resp['dueDate'] != null) {
+      this.dueDate = new Date(resp['dueDate']).toLocaleString("pl-PL");
+    }
   }
 
   private updateCard(newValue: boolean, message: string) {
