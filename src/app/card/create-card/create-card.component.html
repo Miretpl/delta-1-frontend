@@ -2,7 +2,7 @@
     <form [formGroup]="createCardForm" (ngSubmit)="onSubmit()">
         <div class="row">
             <div class="col-sm-12 form-group">
-                <input type="text" placeholder="Add card name" formControlName="cardName" class="form-control" [ngClass]="{ 'is-invalid': submitted && getFormControls.cardName.errors }" />
+                <input type="text" placeholder="Add card name" formControlName="cardName" class="form-control" (mousedown)="$event.stopPropagation()" [ngClass]="{ 'is-invalid': submitted && getFormControls.cardName.errors }" />
                 <div *ngIf="submitted && getFormControls.cardName.errors" class="invalid-feedback">
                     <div *ngIf="getFormControls.cardName.errors.required">Card name is required</div>
                 </div>
