@@ -33,7 +33,7 @@ export class ChangeDueDateComponent implements OnInit {
   }
 
   removeDueDate(): void {
-    if (this.dueDate.length > 0) {
+    if (this.dueDate != null && this.dueDate.length > 0) {
       this.sendChangesToServer(null, "removed");
     }
 
