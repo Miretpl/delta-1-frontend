@@ -46,12 +46,11 @@ export class ChangeDueDateComponent implements OnInit {
 
   private sendChangesToServer(newValue: string | null, message: string): void {
     this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(newValue), true).subscribe(
-      resp => {
-        console.log(`Due date ${message}.`);
-        this.requestCardData.emit();
-      },
+      resp => console.log(`Due date ${message}.`),
       error => console.log(error)
     );
+    
+    this.requestCardData.emit();
   }
 
   private setDueDate(): void {
