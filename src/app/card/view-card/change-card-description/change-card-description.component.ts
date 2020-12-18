@@ -31,8 +31,6 @@ export class ChangeCardDescriptionComponent implements OnInit {
         },
         error => console.error(error)
       );
-
-      this.visibleChangeDescription.emit();
     }
   }
 
