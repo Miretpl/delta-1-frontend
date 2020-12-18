@@ -39,14 +39,11 @@ export class CreateCardComponent implements OnInit {
 
     if (this.submitted) {
       this.apiService.executePutRequest(endpoints.CARD_CREATE, this.getData()).subscribe(
-        resp => {
-          console.log("Card created");
-          this.close();
-          this.getCardListsForListComponent.emit();
-        },
+        resp => console.log("Card created"),
         error => console.error(error)
       );
 
+      this.getCardListsForListComponent.emit();
       this.close(); 
     }
   }
