@@ -37,7 +37,7 @@ export class ChangeCardDescriptionComponent implements OnInit {
   }
 
   close(): void {
-    if (this.description.length > 0) {
+    if (this.description != null && this.description.length > 0) {
       this.visibleChangeDescription.emit();
     }
   }
