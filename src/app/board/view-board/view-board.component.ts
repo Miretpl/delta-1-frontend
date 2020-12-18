@@ -58,7 +58,7 @@ export class ViewBoardComponent implements OnInit {
     if (event.previousIndex != event.currentIndex) {
       moveItemInArray(this.cardLists, event.previousIndex, event.currentIndex);
       this.handleDragAndDrop(event.item.element.nativeElement.id, event.currentIndex);
-      }
+    }
   }
 
   public getCardLists(): void {
