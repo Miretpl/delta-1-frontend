@@ -79,9 +79,8 @@ export class ChangeDueDateComponent implements OnInit {
 
     let hour = this.getProperStringValue(this.timeModel.hour);
     let minute = this.getProperStringValue(this.timeModel.minute);
-    let second = this.getProperStringValue(this.timeModel.second);
 
-    return `${this.calendarModel.year}-${month}-${day} ${hour}:${minute}:${second}`;
+    return `${this.calendarModel.year}-${month}-${day} ${hour}:${minute}:00`;
   }
 
   private getProperStringValue(value: number): string {
