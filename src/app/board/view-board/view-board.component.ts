@@ -55,8 +55,10 @@ export class ViewBoardComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<any>): void {
-    moveItemInArray(this.cardLists, event.previousIndex, event.currentIndex);
-    this.handleDragAndDrop(event.item.element.nativeElement.id, event.currentIndex);
+    if (event.previousIndex != event.currentIndex) {
+      moveItemInArray(this.cardLists, event.previousIndex, event.currentIndex);
+      this.handleDragAndDrop(event.item.element.nativeElement.id, event.currentIndex);
+      }
   }
 
   public getCardLists(): void {
