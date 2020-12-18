@@ -113,7 +113,6 @@ export class ViewCardComponent implements OnInit {
       resp => {
         console.log(`Card ${message}`);
         this.requestCardData();
-        this.getCardLists.emit();
       },
       error => console.error(error)
     );
