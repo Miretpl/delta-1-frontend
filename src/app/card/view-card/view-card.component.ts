@@ -54,7 +54,10 @@ export class ViewCardComponent implements OnInit {
 
   deleteCard(): void {
     this.apiService.executeDeleteRequest(`${endpoints.CARD_DELETE}/${this.cardId}`).subscribe(
-      resp => console.log("Card deleted"),
+      resp => {
+        console.log("Card deleted")
+        this.closeCardView();
+      },
       error => console.error(error)
     );
   }
@@ -73,6 +76,7 @@ export class ViewCardComponent implements OnInit {
     } else {
       this.apiService.setCookie("cardId", "");
       this.visibleCardViewModal.emit();
+      this.getCardLists.emit();
     }
   }
 
