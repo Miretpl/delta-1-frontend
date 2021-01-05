@@ -14,7 +14,8 @@ export class ViewListComponent implements OnInit {
   @Input() name: string;
   @Input() boardId: number;
   @Input() listId: number;
-
+  @Input() isArchived: boolean;
+  
   visibleAddCard: boolean;
   visibleListMenu: boolean;
 

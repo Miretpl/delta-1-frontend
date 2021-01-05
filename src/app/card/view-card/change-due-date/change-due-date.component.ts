@@ -33,7 +33,7 @@ export class ChangeDueDateComponent implements OnInit {
   }
 
   removeDueDate(): void {
-    if (this.dueDate.length > 0) {
+    if (this.dueDate != null && this.dueDate.length > 0) {
       this.sendChangesToServer(null, "removed");
     }
 
@@ -46,16 +46,15 @@ export class ChangeDueDateComponent implements OnInit {
 
   private sendChangesToServer(newValue: string | null, message: string): void {
     this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(newValue), true).subscribe(
-      resp => {
-        console.log(`Due date ${message}.`);
-        this.requestCardData.emit();
-      },
+      resp => console.log(`Due date ${message}.`),
       error => console.log(error)
     );
+    
+    this.requestCardData.emit();
   }
 
   private setDueDate(): void {
-    if (this.dueDate.length > 0) {
+    if (this.dueDate != null && this.dueDate.length > 0) {
       this.setDateTimeFromSetted();
     } else {
       this.setLocalCurrentDateTime();
@@ -80,9 +79,8 @@ export class ChangeDueDateComponent implements OnInit {
 
     let hour = this.getProperStringValue(this.timeModel.hour);
     let minute = this.getProperStringValue(this.timeModel.minute);
-    let second = this.getProperStringValue(this.timeModel.second);
 
-    return `${this.calendarModel.year}-${month}-${day} ${hour}:${minute}:${second}`;
+    return `${this.calendarModel.year}-${month}-${day} ${hour}:${minute}:00`;
   }
 
   private getProperStringValue(value: number): string {
@@ -97,11 +95,11 @@ export class ChangeDueDateComponent implements OnInit {
     let temp = text.split(' ');
     let date = temp[0].split('-');
     let time = temp[1].split(':');
-    
+
     return {
-      year: Number(date[0]),
+      year: Number(date[2]),
       month: Number(date[1]),
-      day: Number(date[2]),
+      day: Number(date[0]),
       hour: Number(time[0]),
       minute: Number(time[1]),
       second: Number(time[2])

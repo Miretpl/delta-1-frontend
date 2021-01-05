@@ -33,8 +33,7 @@ export class ViewCardComponent implements OnInit {
     this.cardId = Number(this.apiService.getCookie("cardId"));
     this.listName = String(this.apiService.getCookie("listName"));
     
-    await this.requestCardData();
-    this.visibleChangeDescriptionField = this.description == null ? true : false;
+    this.requestCardData();
   }
 
   changeVisibilityOfTitleDueDatePicker(): void {
@@ -55,7 +54,10 @@ export class ViewCardComponent implements OnInit {
 
   deleteCard(): void {
     this.apiService.executeDeleteRequest(`${endpoints.CARD_DELETE}/${this.cardId}`).subscribe(
-      resp => console.log("Card deleted"),
+      resp => {
+        console.log("Card deleted")
+        this.closeCardView();
+      },
       error => console.error(error)
     );
   }
@@ -74,36 +76,52 @@ export class ViewCardComponent implements OnInit {
     } else {
       this.apiService.setCookie("cardId", "");
       this.visibleCardViewModal.emit();
+      this.getCardLists.emit();
     }
   }
 
-  async requestCardData(): Promise<void> {
+  requestCardData(): void {
     this.apiService.executeGetRequest(`${endpoints.CARD_GET}/${this.cardId}`).subscribe(
-      resp => this.extractCardData(resp),
+      resp => this.handleCardDataRequestResponse(resp),
       error => console.error(error)
     );
+  }
+
+  private handleCardDataRequestResponse(resp: Object): void {
+    this.extractCardData(resp);
+    this.visibleChangeDescriptionField = this.description == null || this.description == "" ? true : false;
   }
 
   private extractCardData(resp: Object): void {
     this.name = resp['name'];
     this.description = resp['description'];
     this.isArchived = resp['isArchived'];
-    this.dueDate = resp['dueDate'];
+
+    this.setDueDate(resp['dueDate']);
+  }
+
+  private setDueDate(text: string): void {
+    if (text != null) {
+      var datetimeStr = new Date(text).toLocaleString("pl-PL");
+      this.setProperFormattedDueDate(datetimeStr.split(', '));
+    }
+  }
+
+  private setProperFormattedDueDate(datetime: object): void {
+    datetime[0] = datetime[0].replace(new RegExp(/\./g), '-');
+    datetime[1] = datetime[1].slice(0, datetime[1].length - 3);
+
+    this.dueDate = `${datetime[0]} ${datetime[1]}`;
   }
 
   private updateCard(newValue: boolean, message: string) {
     this.apiService.executePostRequest(`${endpoints.CARD_EDIT}/${this.cardId}`, this.getData(newValue), true).subscribe(
       resp => {
         console.log(`Card ${message}`);
-        this.refreshBoardAndCard();
+        this.requestCardData();
       },
       error => console.error(error)
     );
-  }
-
-  private async refreshBoardAndCard(): Promise<void> {
-    await this.requestCardData();
-    this.getCardLists.emit();
   }
 
   private getData(newValue: boolean): object {

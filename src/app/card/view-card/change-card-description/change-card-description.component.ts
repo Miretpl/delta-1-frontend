@@ -32,12 +32,12 @@ export class ChangeCardDescriptionComponent implements OnInit {
         error => console.error(error)
       );
     }
-
-    this.close();
   }
 
   close(): void {
-    this.visibleChangeDescription.emit();
+    if (this.description != null && this.description.length > 0) {
+      this.visibleChangeDescription.emit();
+    }
   }
 
   private getData(newValue: string): object {

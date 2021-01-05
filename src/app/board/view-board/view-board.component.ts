@@ -13,7 +13,7 @@ import { endpoints } from 'src/app/config/endpoints';
 export class ViewBoardComponent implements OnInit {
   private TWO_MINUTES: number = 120000;
   private ADD_LIST_BUTTON_HEIGHT_MIN: number = 40;
-  private ADD_LIST_BUTTON_HEIGHT_MAX: number = 105;
+  private ADD_LIST_BUTTON_HEIGHT_MAX: number = 99;
   private interval: any;
 
   boardId: number;
@@ -46,13 +46,19 @@ export class ViewBoardComponent implements OnInit {
     this.visibleAddList = !this.visibleAddList;
   }
 
+  updateAddListButtonHeight($event: any): void {
+    this.addListButtonHeight = $event.height;
+  }
+
   visibleInviteUserToBoardComponent(): void {
     this.visibleInviteUserToBoardBox = !this.visibleInviteUserToBoardBox;
   }
 
   drop(event: CdkDragDrop<any>): void {
-    moveItemInArray(this.cardLists, event.previousIndex, event.currentIndex);
-    this.handleDragAndDrop(event.item.element.nativeElement.id, event.currentIndex);
+    if (event.previousIndex != event.currentIndex) {
+      moveItemInArray(this.cardLists, event.previousIndex, event.currentIndex);
+      this.handleDragAndDrop(event.item.element.nativeElement.id, event.currentIndex);
+    }
   }
 
   public getCardLists(): void {

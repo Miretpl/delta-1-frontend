@@ -30,7 +30,7 @@ export class CreateCardComponent implements OnInit {
     return this.createCardForm.controls;
   }
 
-  onSubmit(): void {
+  onSubmit(): Promise<void> {
     this.submitted = true;
 
     if (this.createCardForm.invalid) {
@@ -38,21 +38,25 @@ export class CreateCardComponent implements OnInit {
     }
 
     if (this.submitted) {
-      this.apiService.executePutRequest(endpoints.CARD_CREATE, this.getData()).subscribe(
-        resp => {
-          console.log("Card created");
-          this.close();
-          this.getCardListsForListComponent.emit();
-        },
-        error => console.error(error)
-      );
-
-      this.close(); 
+      this.createCard();
     }
   }
 
   public close(): void {
     this.visibleAddCardForm.emit();
+  }
+
+  private async createCard(): Promise<void> {
+    await this.createCardRequest();
+    this.close();
+    this.getCardListsForListComponent.emit();
+}
+
+  private async createCardRequest(): Promise<void> {
+    this.apiService.executePutRequest(endpoints.CARD_CREATE, this.getData()).subscribe(
+      resp => console.log("Card created"),
+      error => console.error(error)
+    );
   }
 
   private getData(): object {

@@ -9,8 +9,11 @@ import { endpoints } from 'src/app/config/endpoints';
   styleUrls: ['./create-list.component.css']
 })
 export class CreateListComponent implements OnInit {
+  private ADD_LIST_BUTTON_HEIGHT_MAX_ERROR: number = 125;
+  
   @Output("visibleAddListForm") visibleAddListForm: EventEmitter<any> = new EventEmitter();
   @Output("getCardLists") getCardLists: EventEmitter<any> = new EventEmitter();
+  @Output("updateAddListButtonHeight") updateAddListButtonHeight: EventEmitter<any> = new EventEmitter();
 
   @Input() boardId: number;
 
@@ -22,7 +25,7 @@ export class CreateListComponent implements OnInit {
   ngOnInit(): void {
     this.createListForm = new FormBuilder().group({
       listName: ['', [Validators.required]]
-    })
+    });
   }
 
   get getFormControls(): any {
@@ -33,6 +36,7 @@ export class CreateListComponent implements OnInit {
     this.submitted = true;
 
     if (this.createListForm.invalid) {
+      this.updateAddListButtonHeight.emit({ height: this.ADD_LIST_BUTTON_HEIGHT_MAX_ERROR });
       return;
     }
 

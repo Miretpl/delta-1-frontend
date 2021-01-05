@@ -1,10 +1,29 @@
+.board {	
+    height: 94vh;
+}
+
+.board-lists {
+    max-height: 88vh;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.invite-button {
+    transition: all 0.3s;
+}
+
+.invite-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
 .scrollbar::-webkit-scrollbar-track {
     background-color: #ececec;
     border-radius: 25px;
 }
 
 .scrollbar::-webkit-scrollbar {
-    height: 12px;
+    height: 1vh;
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
@@ -16,57 +35,26 @@
     scrollbar-color: #c2c2c2 #f5f5f5;
 }
 
-.board-menu {
-    height: 6vh;
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .list {
     background-color: #f5f5f5;
-    width: 280px;
+    min-width: 280px;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+    border: none;
+}
+
+.list:hover {
+    background-color: rgba(0, 0, 0, 0.10);
 }
 
 .stretched-link {
     cursor: pointer;
-}
-
-.navbar-nav {
-    display: inline; 
-    width: 100%;
-}
-
-.navbar-nav li {
-    width: 10%;
-    display: block;
-    float: left;
-    margin-right: .5%;
-}
-
-.invite-button {
-    background-color: rgba(0, 0, 0, .02);
-    height: 40px;
-    line-height: 24px;
-    width: 50%;
-}
-
-.hoverable-box:hover .invite-button {
-    background-color: rgba(0, 0, 0, .04);
-}
-
-.board-lists {
-    max-height: 88vh;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-}
-
-.cdk-drag-placeholder {
-    opacity: 0;
-}
-  
-.cdk-drag-animating {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-  
-.board-lists.cdk-drop-list-dragging .board-lists:not(.cdk-drag-placeholder) {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

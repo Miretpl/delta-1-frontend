@@ -14,18 +14,25 @@ export class BoardInListComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
+    this.getBoardList();
+  }
+
+  getBoardList(): void {
     this.apiService.executeGetRequest(endpoints.BOARD_LIST).subscribe(
       resp => this.boardsSeperationByVisibility(resp),
       error => console.error(error)
     );
   }
 
-  private boardsSeperationByVisibility(body: any) {
+  private boardsSeperationByVisibility(body: any): void {
+    this.publicBoards = [];
+    this.privateBoards = [];
+
     body.forEach((board: { isPublic: any; }) => {
       if (board.isPublic) {
         this.publicBoards.push(board);
       } else {
-          this.privateBoards.push(board);
+        this.privateBoards.push(board);
       }
     });
   }

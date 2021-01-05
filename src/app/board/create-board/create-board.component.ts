@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/api/api.service';
 import { endpoints } from 'src/app/config/endpoints';
@@ -11,6 +11,8 @@ declare var $: any;
   styleUrls: ['./create-board.component.css']
 })
 export class CreateBoardComponent implements OnInit {
+  @Output("getBoardList") getBoardList: EventEmitter<any> = new EventEmitter();
+  
   createBoardForm: FormGroup;
   submitted = false;
 
@@ -36,12 +38,18 @@ export class CreateBoardComponent implements OnInit {
 
     if (this.submitted) {
       $("#boardcreationmodal").modal("hide");
-
-      this.apiService.executePutRequest(endpoints.BOARD_CREATE, this.getData()).subscribe(
-        resp => console.log("Board created"),
-        error => console.error(error)
-      );
+      this.requestBoardCreation();
     }
+  }
+
+  private requestBoardCreation(): void {
+    this.apiService.executePutRequest(endpoints.BOARD_CREATE, this.getData()).subscribe(
+      resp => {
+        console.log("Board created");
+        this.getBoardList.emit();
+      },
+      error => console.error(error)
+    );
   }
 
   private getData(): object {

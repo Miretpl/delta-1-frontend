@@ -8,7 +8,7 @@ export const endpoints = {
     CARD_CREATE: "/card/create",
     CARD_EDIT: "/card/edit",
     CARD_GET: "/card/get",
-    CARD_DELETE: "card/delete",
+    CARD_DELETE: "/card/delete",
 
     LIST_CREATE: "/list/create",
     LIST_EDIT: "/list/edit",
