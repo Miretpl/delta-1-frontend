@@ -82,12 +82,14 @@ export class ViewCardComponent implements OnInit {
 
   requestCardData(): void {
     this.apiService.executeGetRequest(`${endpoints.CARD_GET}/${this.cardId}`).subscribe(
-      resp => {
-        this.extractCardData(resp);
-        this.visibleChangeDescriptionField = this.description == null || this.description == "" ? true : false;
-      },
+      resp => this.handleCardDataRequestResponse(resp),
       error => console.error(error)
     );
+  }
+
+  private handleCardDataRequestResponse(resp: Object): void {
+    this.extractCardData(resp);
+    this.visibleChangeDescriptionField = this.description == null || this.description == "" ? true : false;
   }
 
   private extractCardData(resp: Object): void {
