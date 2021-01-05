@@ -29,7 +29,7 @@ export class CreateBoardComponent implements OnInit {
     return this.createBoardForm.controls;
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
     this.submitted = true;
 
     if (this.createBoardForm.invalid) {
