@@ -3,6 +3,9 @@
         <div class="mx-1">
             <app-change-board-name [name]=boardName [id]=boardId></app-change-board-name>
         </div>
+        <div class="mx-1">
+            <app-show-users *ngFor="let user of users" [username]="user"></app-show-users>
+        </div>
         <div class="mx-1 invite-button rounded">
             <button type="button" class="btn bg-transparent" (click)=visibleInviteUserToBoardComponent()>Invite</button>
         </div>
