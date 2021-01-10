@@ -38,3 +38,49 @@ a {
 .w-100 {
     width: 100%;
 }
+
+.activity {
+    position: relative;
+    height: 100%;
+}
+
+.card-history-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.card-history-button > button {
+    font-size: 12px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    background-color: #e2e2e2;
+    border-radius: 20px;
+}
+
+.scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #b0b1b6;
+}
+
+.scrollbar {
+    scrollbar-color: #b0b1b6 #f5f5f5;
+}
+
+.card-history-list-wrapper {
+    margin-top: 20px;
+    height: 540px; 
+    /* 
+        Wartość podana w pikselach ze wzgledu na to, że wszyscy rodzice mają ustawione %.
+        Aby scroll działał poprawnie gdzieś w hierarchi muszą być px.
+        https://stackoverflow.com/questions/35724779/does-css-overflow-auto-works-only-when-height-is-set-explicitly-and-not-in-per
+    */
+}

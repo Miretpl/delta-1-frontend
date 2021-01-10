@@ -10,29 +10,37 @@ declare var $: any;
   styleUrls: ['./view-card.component.css']
 })
 export class ViewCardComponent implements OnInit {
+  private SHOW_CARD_HISTORY_BUTTON_TEXT: string = "Show Details";
+  private HIDE_CARD_HISTORY_BUTTON_TEXT: string = "Hide Details";
+
   @Output("visibleCardViewModal") visibleCardViewModal: EventEmitter<any> = new EventEmitter();
   @Output("getCardLists") getCardLists: EventEmitter<any> = new EventEmitter();
 
   cardId: number;
   listName: string;
   
+  cardHistoryListButtonText: string;
+
   name: string;
   description: string;
   dueDate: string;
   isArchived: boolean;
-  
+  cardHistoryList: any;
+
   isInsideClickComponent: boolean;
   
   visibleChangeDescriptionField: boolean;
   visibleMenuDueDatePicker: boolean;
   visibleTitleDueDatePicker: boolean;
+  visibleCardHistoryList: boolean;
 
   constructor(private apiService: ApiService) { }
 
   async ngOnInit(): Promise<void> {
     this.cardId = Number(this.apiService.getCookie("cardId"));
     this.listName = String(this.apiService.getCookie("listName"));
-    
+    this.cardHistoryListButtonText = this.SHOW_CARD_HISTORY_BUTTON_TEXT;
+
     this.requestCardData();
   }
 
@@ -66,6 +74,11 @@ export class ViewCardComponent implements OnInit {
     this.visibleChangeDescriptionField = !this.visibleChangeDescriptionField;
   }
 
+  visibleChangeCardHistoryList(): void {
+    this.visibleCardHistoryList = !this.visibleCardHistoryList;
+    this.changeCardHistoryListButtonText();
+  }
+
   insideClickDetect(): void {
     this.isInsideClickComponent = true;
   }
@@ -87,6 +100,14 @@ export class ViewCardComponent implements OnInit {
     );
   }
 
+  private changeCardHistoryListButtonText(): void {
+    if (this.visibleCardHistoryList) {
+      this.cardHistoryListButtonText = this.HIDE_CARD_HISTORY_BUTTON_TEXT;
+    } else {
+      this.cardHistoryListButtonText = this.SHOW_CARD_HISTORY_BUTTON_TEXT;
+    }
+  }
+
   private handleCardDataRequestResponse(resp: Object): void {
     this.extractCardData(resp);
     this.visibleChangeDescriptionField = this.description == null || this.description == "" ? true : false;
@@ -96,6 +117,7 @@ export class ViewCardComponent implements OnInit {
     this.name = resp['name'];
     this.description = resp['description'];
     this.isArchived = resp['isArchived'];
+    this.cardHistoryList = resp['cardHistoryList'];
 
     this.setDueDate(resp['dueDate']);
   }

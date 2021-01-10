@@ -24,6 +24,15 @@
           </div>
           <app-change-card-description *ngIf="visibleChangeDescriptionField" (visibleChangeDescription)="visibleChangeDescription()" (requestCardData)="requestCardData()" [description]=description [id]=cardId></app-change-card-description>
         </div>
+        <div class="mt-3 activity">
+          <h5>Activity</h5>
+          <div class="hoverable rounded card card-history-button">
+            <button type="button" class="btn" (click)=visibleChangeCardHistoryList()>{{ cardHistoryListButtonText }}</button>
+          </div>
+          <div *ngIf="visibleCardHistoryList" class="overflow-auto scrollbar card-history-list-wrapper">
+            <app-show-activity *ngFor="let cardHistory of cardHistoryList" [username]=cardHistory.username [description]=cardHistory.description [creationTime]=cardHistory.creationTime></app-show-activity>
+          </div>
+        </div>
       </div>
       <div class="col-md-3 mt-3 align-self-start">
         <div>

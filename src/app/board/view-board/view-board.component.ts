@@ -19,6 +19,7 @@ export class ViewBoardComponent implements OnInit {
   boardId: number;
   boardName: string;
   cardLists: any;
+  users: any;
   addListButtonHeight: number = this.ADD_LIST_BUTTON_HEIGHT_MIN;
 
   visibleAddList: boolean;
@@ -82,6 +83,7 @@ export class ViewBoardComponent implements OnInit {
     this.cardLists = resp['lists'];
     this.boardName = resp['name'];
     this.boardId = Number(resp['boardId']);
+    this.users = resp['users'];
   }
 
   private getDragAndDropData(index: number): object {
