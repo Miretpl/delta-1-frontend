@@ -20,19 +20,19 @@ export class ShowActivityComponent implements OnInit {
   }
 
   private prepareData(): void {
-    if (this.isCorrctString(this.creationTime)) {
+    if (this.isCorrectString(this.creationTime)) {
       var creationTimeTmp = this.creationTime.split("T");
       var timeTmp = creationTimeTmp[1].split(":");
   
       this.date = `${creationTimeTmp[0]} at ${timeTmp[0]}:${timeTmp[1]}`;
     }
 
-    if (this.isCorrctString(this.username)) {
+    if (this.isCorrectString(this.username)) {
       this.usernameFirstLetter = this.username.charAt(0);
     }
   }
 
-  private isCorrctString(text: string): boolean {
+  private isCorrectString(text: string): boolean {
     return text != null && text.length > 0;
   }
 

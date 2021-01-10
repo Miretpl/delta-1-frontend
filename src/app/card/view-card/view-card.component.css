@@ -76,7 +76,7 @@ a {
 
 .card-history-list-wrapper {
     margin-top: 20px;
-    height: 540px; 
+    height: 300px; 
     /* 
         Wartość podana w pikselach ze wzgledu na to, że wszyscy rodzice mają ustawione %.
         Aby scroll działał poprawnie gdzieś w hierarchi muszą być px.
