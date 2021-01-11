@@ -9,7 +9,7 @@
         <div class="mx-1 invite-button rounded">
             <button type="button" class="btn bg-transparent" (click)=visibleInviteUserToBoardComponent()>Invite</button>
         </div>
-        <app-invite-user-to-board *ngIf="visibleInviteUserToBoardBox" (visibleInviteUserToBoardComponent)="visibleInviteUserToBoardComponent()" [boardId]=boardId></app-invite-user-to-board>
+        <app-invite-user-to-board *ngIf="visibleInviteUserToBoardBox" (getCardLists)="getCardLists()" (visibleInviteUserToBoardComponent)="visibleInviteUserToBoardComponent()" [boardId]=boardId></app-invite-user-to-board>
     </div>
     <div cdkDropList cdkDropListOrientation="horizontal" class="px-2 overflow-auto scrollbar board-lists" (cdkDropListDropped)="drop($event)">
         <app-view-list cdkDrag *ngFor="let list of cardLists" (visibleCardViewModal)="visibleCardViewModal()" (getCardLists)="getCardLists()" [name]="list.name" [cards]="list.cards" [listId]="list.listId" [boardId]="boardId" [isArchived]="list.isArchived" id="{{ list.listId }}"></app-view-list>

@@ -11,6 +11,7 @@ export class InviteUserToBoardComponent implements OnInit {
   private MAX_USERNAME_LENGTH: number = 32;
   
   @Output("visibleInviteUserToBoardComponent") visibleInviteUserToBoardComponent: EventEmitter<any> = new EventEmitter();
+  @Output("getCardLists") getCardLists: EventEmitter<any> = new EventEmitter();
 
   @Input() boardId: number;
 
@@ -30,7 +31,10 @@ export class InviteUserToBoardComponent implements OnInit {
       var endpoint = `${endpoints.BOARD_USER_ADD}/${this.boardId}`; 
 
       this.apiService.executePostRequest(endpoint, this.getData(), true).subscribe(
-        resp => console.log("User invited"),
+        resp => {
+          console.log("User invited");
+          this.getCardLists.emit();
+        },
         error => console.error(error)
       );
 
