@@ -9,6 +9,7 @@ import { ViewCardComponent } from './view-card/view-card.component';
 import { ChangeCardNameComponent } from './view-card/change-card-name/change-card-name.component';
 import { ChangeCardDescriptionComponent } from './view-card/change-card-description/change-card-description.component';
 import { ChangeDueDateComponent } from './view-card/change-due-date/change-due-date.component';
+import { ShowActivityComponent } from './view-card/show-activity/show-activity.component';
 
 
 
@@ -18,7 +19,8 @@ import { ChangeDueDateComponent } from './view-card/change-due-date/change-due-d
     ViewCardComponent,
     ChangeCardNameComponent,
     ChangeCardDescriptionComponent,
-    ChangeDueDateComponent
+    ChangeDueDateComponent,
+    ShowActivityComponent
   ],
   imports: [
     CommonModule,
