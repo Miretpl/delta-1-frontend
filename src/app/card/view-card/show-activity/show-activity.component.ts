@@ -21,15 +21,19 @@ export class ShowActivityComponent implements OnInit {
 
   private prepareData(): void {
     if (this.isCorrectString(this.creationTime)) {
-      var creationTimeTmp = this.creationTime.split("T");
-      var timeTmp = creationTimeTmp[1].split(":");
-  
-      this.date = `${creationTimeTmp[0]} at ${timeTmp[0]}:${timeTmp[1]}`;
+      this.getDate();
     }
 
     if (this.isCorrectString(this.username)) {
       this.usernameFirstLetter = this.username.charAt(0);
     }
+  }
+
+  private getDate() {
+    var creationTimeTmp = this.creationTime.split("T");
+    var timeTmp = creationTimeTmp[1].split(":");
+
+    this.date = `${creationTimeTmp[0]} at ${timeTmp[0]}:${timeTmp[1]}`;
   }
 
   private isCorrectString(text: string): boolean {

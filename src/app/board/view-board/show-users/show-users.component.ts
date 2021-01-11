@@ -16,7 +16,6 @@ export class ShowUsersComponent implements OnInit {
     this.extractUsernameFirstLetter();
   }
 
-
   private extractUsernameFirstLetter(): void {
     if (this.isUsername()) {
       this.usernameFirstLetter = this.username.charAt(0);
