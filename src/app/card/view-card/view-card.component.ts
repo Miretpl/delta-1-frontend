@@ -124,9 +124,8 @@ export class ViewCardComponent implements OnInit {
 
   private setDueDate(text: string): void {
     if (text != null) {
-      console.log()
-      var datetimeStr = new Date(text).toLocaleString("pl-PL");
-      this.setProperFormattedDueDate(datetimeStr.split('T'));
+      var datetimeStr = new Date(text).toLocaleString("pl-PL", { timeZone: 'UTC' });
+      this.setProperFormattedDueDate(datetimeStr.split(', '));
     }
   }
 
