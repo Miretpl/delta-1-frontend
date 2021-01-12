@@ -124,7 +124,7 @@ export class ViewCardComponent implements OnInit {
 
   private setDueDate(text: string): void {
     if (text != null) {
-      var datetimeStr = new Date(text);
+      var datetimeStr = new Date(text).toString();
       this.setProperFormattedDueDate(datetimeStr.split(', '));
     }
   }
