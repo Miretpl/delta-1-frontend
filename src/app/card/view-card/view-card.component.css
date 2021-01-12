@@ -1,0 +1,90 @@
+.underline {
+    text-decoration: underline;
+}
+
+.align-items-center {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.card-view {
+    width: 40vw;
+    height: 80vh;
+}
+
+a {
+    cursor: pointer;
+}
+
+.hoverable {
+    transition: all 0.3s;
+    border: none;
+}
+
+.hoverable:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.due-date {
+    width: fit-content;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.activity {
+    position: relative;
+    height: 65%;
+}
+
+.card-history-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+}
+
+.card-history-button > button {
+    font-size: 12px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    background-color: #e2e2e2;
+    border-radius: 20px;
+}
+
+.scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #b0b1b6;
+}
+
+.scrollbar {
+    scrollbar-color: #b0b1b6 #f5f5f5;
+}
+
+.description {
+    height: 17vh;
+}
+
+.activity-div {
+    height: 74%;
+}
+
+.col-md-9 {
+    height: 88%;
+}
+
+.row {
+    height: 100%;
+}

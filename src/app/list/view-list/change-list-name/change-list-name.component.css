@@ -1,0 +1,8 @@
+h6 {
+    transition: all 0.3s;
+    cursor: text;
+}
+
+h6:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}

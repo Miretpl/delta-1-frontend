@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/user/service/user.service';
 import { ApiService } from 'src/app/api/api.service';
-import { consts } from 'src/app/config/consts';
+import { endpoints } from 'src/app/config/endpoints';
 
 @Component({
   selector: 'app-menu',
@@ -22,7 +22,7 @@ export class MenuComponent implements OnInit {
   }
 
   logout(): void {
-    this.apiService.logout(consts.LOGOUT_ENDPOINT).subscribe(
+    this.apiService.executePostRequest(endpoints.LOGOUT, null, true).subscribe(
       resp => this.handleLogout(),
       error => console.error(error)
     );

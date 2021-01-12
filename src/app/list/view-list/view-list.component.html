@@ -1,17 +1,24 @@
-<div class="mx-1 p-1 rounded mh-100 list d-inline-block align-top shadow-sm">
-    <h6 class="px-2 pt-1 text-break">{{ name }}</h6>
+<div *ngIf="!isArchived" class="mx-1 p-1 rounded mh-100 d-inline-block align-top shadow-sm cdk-drag list">
+    <app-change-list-name [name]=name [id]=listId class="change-list"></app-change-list-name>
+    <div class="rounded card text-center bg-transparent border-0 text-secondary hoverable-box">
+        <div class="rounded" (mousedown)="$event.stopPropagation()">
+            <h6 class="px-2 py-1 text-break">...</h6>
+            <a class="stretched-link" (click)=visibleListMenuComponent()></a>
+        </div>
+        <app-list-menu *ngIf="visibleListMenu" (visibleListMenuComponent)="visibleListMenuComponent()" (getCardListsForListComponent)="getCardListsForListComponent()" [listId]=listId></app-list-menu>
+    </div>
     <div class="overflow-auto scrollbar list-cards">
         <ul class="list-unstyled">
             <li class="px-1" *ngFor="let card of cards">
-                <app-card-in-list [id]=card.cardId [name]=card.name></app-card-in-list>
+                <app-card-in-list (click)="openCardView(card.cardId, name)" [name]=card.name></app-card-in-list>
             </li>
             <li class="px-1">
-                <div class="card">
-                    <div [hidden]="visibleAddCard">
+                <div class="card" (mousedown)="$event.stopPropagation()">
+                    <div *ngIf="!visibleAddCard">
                         <h6 class="px-2 pt-1 text-break">Add new card</h6>
                         <a class="stretched-link" (click)=visibleAddCardForm()></a>
                     </div>
-                    <app-create-card [hidden]="!visibleAddCard" (getCardListsForListComponent)="getCardListsForListComponent()" (visibleAddCardForm)="visibleAddCardForm()" [boardId]=boardId [listId]=listId></app-create-card>
+                    <app-create-card *ngIf="visibleAddCard" (getCardListsForListComponent)="getCardListsForListComponent()" (visibleAddCardForm)="visibleAddCardForm()" [boardId]=boardId [listId]=listId></app-create-card>
                 </div>
             </li>
         </ul>

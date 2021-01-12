@@ -1,0 +1,1 @@
+<h6 class="text-left rounded px-2 py-2 w-100" (mousedown)="$event.stopPropagation()" #newName contenteditable (keydown)="checkCharacters($event, newName.innerText)" (blur)="updateName(newName.innerText)">{{ name }}</h6>

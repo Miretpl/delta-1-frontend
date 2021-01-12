@@ -1,1 +1,1 @@
-<h5 class="text-center rounded px-3 py-2" #newName contenteditable (keydown)="checkCharacters($event, newName.innerText)" (blur)="updateName(newName.innerText)">{{ name }}</h5>
+<h5 class="text-center text-break rounded px-3 py-2 my-1" #newName contenteditable (keydown)="checkCharacters($event, newName.innerText)" (blur)="updateName(newName.innerText)">{{ name }}</h5>

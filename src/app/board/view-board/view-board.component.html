@@ -1,19 +1,27 @@
 <div class="board">
-    <nav class="navbar navbar-expand-md board-menu">
-        <ul class="navbar-nav text-center">
-            <li>
-                <app-change-board-name name="{{ boardName }}" id="{{ boardId }}"></app-change-board-name>
-            </li>
-        </ul>
-    </nav>
-    <div class="overflow-auto text-nowrap scrollbar px-2 board-lists">
-        <app-view-list *ngFor="let list of cardLists" (getCardLists)="getCardLists()" [name]="list.name" [cards]="list.cards" [listId]="list.listId" [boardId]="boardId"></app-view-list>
-        <div class="mx-1 p-1 rounded mh-100 list d-inline-block align-top shadow-sm card">
-            <div [hidden]="visibleAddList">
-                <h6 class="px-2 pt-1 text-break">Add new list</h6>
-                <a class="stretched-link" (click)=visibleAddListForm()></a>
+    <div class="row row-eq-height px-2 mx-1 mb-1 align-items-center">
+        <div class="mx-1">
+            <app-change-board-name [name]=boardName [id]=boardId></app-change-board-name>
+        </div>
+        <div class="mx-1">
+            <app-show-users *ngFor="let user of users" [username]="user"></app-show-users>
+        </div>
+        <div class="mx-1 invite-button rounded">
+            <button type="button" class="btn bg-transparent" (click)=visibleInviteUserToBoardComponent()>Invite</button>
+        </div>
+        <app-invite-user-to-board *ngIf="visibleInviteUserToBoardBox" (getCardLists)="getCardLists()" (visibleInviteUserToBoardComponent)="visibleInviteUserToBoardComponent()" [boardId]=boardId></app-invite-user-to-board>
+    </div>
+    <div cdkDropList cdkDropListOrientation="horizontal" class="px-2 overflow-auto scrollbar board-lists" (cdkDropListDropped)="drop($event)">
+        <app-view-list cdkDrag *ngFor="let list of cardLists" (visibleCardViewModal)="visibleCardViewModal()" (getCardLists)="getCardLists()" [name]="list.name" [cards]="list.cards" [listId]="list.listId" [boardId]="boardId" [isArchived]="list.isArchived" id="{{ list.listId }}"></app-view-list>
+        <div class="mx-1 p-1 rounded d-inline-block align-top shadow-sm card cdk-drag list" [style.height.px]=addListButtonHeight>
+            <div class="row">
+                <div *ngIf="!visibleAddList" class="mx-3 px-1 pt-1">
+                    <h6>Add new list</h6>
+                    <a class="stretched-link" (click)=visibleAddListForm()></a>
+                </div>
+                <app-create-list *ngIf="visibleAddList" (getCardLists)="getCardLists()" (visibleAddListForm)="visibleAddListForm()" (updateAddListButtonHeight)="updateAddListButtonHeight($event)" [boardId]=boardId></app-create-list>
             </div>
-            <app-create-list [hidden]="!visibleAddList" (getCardLists)="getCardLists()" (visibleAddListForm)="visibleAddListForm()" [boardId]=boardId></app-create-list>
         </div>
     </div>
+    <app-view-card *ngIf="visibleCardView" (visibleCardViewModal)="visibleCardViewModal()" (getCardLists)="getCardLists()"></app-view-card>
 </div>

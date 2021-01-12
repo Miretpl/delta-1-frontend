@@ -11,39 +11,34 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getBoardList(endpoint: string) {
-    let url = this.getUrl(endpoint);
-    return this.httpClient.get(url, { headers: this.getAuthorizationHeader(), observe: 'body' });
+  public executeGetRequest(endpoint: string) {
+    return this.getRequest(this.getUrl(endpoint), this.getAuthorizationHeader());
   }
 
-  public register(data: any, endpoint: string) {
-    return this.postRequest(`${this.SERVER_URL}${endpoint}`, data, null);
-  }
-
-  public logout(endpoint: string) {
-    return this.postRequest(`${this.SERVER_URL}${endpoint}`, null, this.getAuthorizationHeader());
-  }
-
-  public editBoardElement(data: any, endpoint: string) {
-    return this.postRequest(this.SERVER_URL + endpoint, data, this.getAuthorizationHeader());
-  }
-
-  public createBoard(data: any, endpoint: string) {
+  public executePutRequest(endpoint: string, data: any) {
     return this.putRequest(this.getUrl(endpoint), data, this.getAuthorizationHeader());
   }
 
-  public createList(data: any, endpoint: string) {
-    return this.putRequest(this.getUrl(endpoint), data, this.getAuthorizationHeader());
+  public executePostRequest(endpoint: string, data: any, auth: boolean) {
+    if (auth) {
+      return this.postRequest(this.getUrl(endpoint), data, this.getAuthorizationHeader());
+    } else {
+      return this.postRequest(this.getUrl(endpoint), data, this.getHeader());
+    }
   }
 
-  public createCard(data: any, endpoint: string) {
-    return this.putRequest(this.getUrl(endpoint), data, this.getAuthorizationHeader());
+  public executeDeleteRequest(endpoint: string) {
+    return this.deleteRequest(this.getUrl(endpoint), this.getAuthorizationHeader());
   }
 
-  public send(endpoint: string, data: any) {
-    return this.postRequest(this.SERVER_URL + endpoint, data, this.getHeader());
+  private deleteRequest(url: string, headers: any) {
+    return this.httpClient.delete(url, { headers: headers });
   }
 
+  private getRequest(url: string, headers: any) {
+    return this.httpClient.get(url, { headers: headers, observe: 'body' });
+  }
+  
   private putRequest(url: string, data: any, headers: any) {
     return this.httpClient.put(url, data, { headers: headers});
   }
@@ -66,7 +61,11 @@ export class ApiService {
       .set('Authorization', `${this.getCookie(consts.TOKEN_NAME)}`);
   }
 
-  private getCookie(name: string) {
+  public setCookie(name: string, value: string) {
+    document.cookie = `${name}=${value};`;
+  }
+
+  public getCookie(name: string) {
     return document.cookie.match(`(?<=${name}=).[^;]{0,}`);
   }
 
